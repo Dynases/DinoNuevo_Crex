@@ -1152,6 +1152,11 @@ Public Class P_Principal
         frm.Show()
     End Sub
 
+    Private Sub btConfDescuentosProveedor_Click(sender As Object, e As EventArgs) Handles btConfDescuentosProveedor.Click
+        Dim frm As New DescuentoXProveedor
+        frm.Show()
+    End Sub
+
 
 
 

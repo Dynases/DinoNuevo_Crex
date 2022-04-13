@@ -155,6 +155,7 @@ Public Class F0_Venta2
         btnGrabar.Enabled = False
         btnNuevo.Enabled = True
         btnBitacora.Enabled = False
+        SwDescuentoProveedor.Enabled = False
         'btnEliminar.Enabled = True
 
         If grVentas.GetValue("taest") = 1 Then
@@ -2554,6 +2555,7 @@ Public Class F0_Venta2
         btnGrabar.Enabled = True
         PanelNavegacion.Enabled = False
         btnBitacora.Enabled = True
+        SwDescuentoProveedor.Enabled = True
         tbNit.Select()
     End Sub
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click

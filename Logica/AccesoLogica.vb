@@ -1356,6 +1356,18 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+    Public Shared Function L_fnEliminarCategoriaProveedorDescuento(Id As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", -1))
+        _listParam.Add(New Datos.DParametro("@Id", Id))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Descuento_Proveedor", _listParam)
+
+        Return _Tabla
+    End Function
 
     Public Shared Function L_fnListarProductosDescuentos() As DataTable
         Dim _Tabla As DataTable
@@ -1369,6 +1381,18 @@ Public Class AccesoLogica
         Return _Tabla
     End Function
 
+    Public Shared Function L_fnListarCategoriaProveedorDescuento() As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 4))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Descuento_Proveedor", _listParam)
+
+        Return _Tabla
+    End Function
+
     Public Shared Function L_fnListarDescuentos(ProductoId As Integer) As DataTable
         Dim _Tabla As DataTable
 
@@ -1378,6 +1402,18 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
         _listParam.Add(New Datos.DParametro("@ProductoId", ProductoId))
         _Tabla = D_ProcedimientoConParam("sp_Mam_Descuentos", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnListarDescuentosXProveedor(ProveedorId As Integer) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 3))
+        _listParam.Add(New Datos.DParametro("@Usuario", L_Usuario))
+        _listParam.Add(New Datos.DParametro("@ProveedorID", ProveedorId))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Descuento_Proveedor", _listParam)
 
         Return _Tabla
     End Function
@@ -1410,6 +1446,32 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@Estado", 1))
         _listParam.Add(New Datos.DParametro("@usuario", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_Descuentos", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            numi = _Tabla.Rows(0).Item(0)
+            _resultado = True
+        Else
+            _resultado = False
+        End If
+
+        Return _resultado
+    End Function
+    Public Shared Function L_fnGrabarCategoriaProveedorDescuentos(ByRef numi As String, codProveedor As String, desde As Integer, hasta As Integer, porcentaje As Double, estadoDescricion As String, estado As Integer) As Boolean
+        Dim _resultado As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 1))
+        _listParam.Add(New Datos.DParametro("@ProveedorID", codProveedor))
+        _listParam.Add(New Datos.DParametro("@MontoInicial", desde))
+        _listParam.Add(New Datos.DParametro("@MontoFinal", hasta))
+        _listParam.Add(New Datos.DParametro("@DescuentoPorcentaje", porcentaje))
+        _listParam.Add(New Datos.DParametro("@EstadoDescripcion", estadoDescricion))
+        _listParam.Add(New Datos.DParametro("@FechaFin", Now))
+        _listParam.Add(New Datos.DParametro("@Estado", estado))
+        _listParam.Add(New Datos.DParametro("@usuario", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_Descuento_Proveedor", _listParam)
 
         If _Tabla.Rows.Count > 0 Then
             numi = _Tabla.Rows(0).Item(0)

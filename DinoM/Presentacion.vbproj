@@ -224,6 +224,12 @@
     <Compile Include="Descuentos\Descuentos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Descuentos\DescuentoXProveedor.Designer.vb">
+      <DependentUpon>DescuentoXProveedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Descuentos\DescuentoXProveedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F0_AnularFactura.Designer.vb">
       <DependentUpon>F0_AnularFactura.vb</DependentUpon>
     </Compile>
@@ -1093,6 +1099,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Descuentos\Descuentos.resx">
       <DependentUpon>Descuentos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Descuentos\DescuentoXProveedor.resx">
+      <DependentUpon>DescuentoXProveedor.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F0_AnularFactura.resx">
       <DependentUpon>F0_AnularFactura.vb</DependentUpon>

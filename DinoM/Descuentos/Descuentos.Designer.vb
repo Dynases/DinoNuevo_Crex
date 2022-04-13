@@ -23,15 +23,12 @@ Partial Class Descuentos
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.ButtonX1 = New DevComponents.DotNetBar.ButtonX()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.GroupPanel2 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.grProducto = New Janus.Windows.GridEX.GridEX()
         Me.GroupPanel1 = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.grdetalle = New Janus.Windows.GridEX.GridEX()
         Me.MenuEliminar = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EliminarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.lbProducto = New DevComponents.DotNetBar.LabelX()
         Me.tbPrecio = New DevComponents.Editors.DoubleInput()
@@ -40,9 +37,11 @@ Partial Class Descuentos
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.tbDesde = New DevComponents.Editors.IntegerInput()
         Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
+        Me.EliminarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnGrabar = New DevComponents.DotNetBar.ButtonX()
         Me.btnNuevo = New DevComponents.DotNetBar.ButtonX()
-        Me.Panel1.SuspendLayout()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.ButtonX1 = New DevComponents.DotNetBar.ButtonX()
         Me.Panel2.SuspendLayout()
         Me.GroupPanel2.SuspendLayout()
         CType(Me.grProducto, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,35 +52,8 @@ Partial Class Descuentos
         CType(Me.tbPrecio, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbHasta, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbDesde, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'Panel1
-        '
-        Me.Panel1.BackgroundImage = Global.DinoM.My.Resources.Resources.fondo1
-        Me.Panel1.Controls.Add(Me.ButtonX1)
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(800, 61)
-        Me.Panel1.TabIndex = 0
-        '
-        'ButtonX1
-        '
-        Me.ButtonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
-        Me.ButtonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
-        Me.ButtonX1.Font = New System.Drawing.Font("Calibri", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ButtonX1.Image = Global.DinoM.My.Resources.Resources.atras1
-        Me.ButtonX1.ImageFixedSize = New System.Drawing.Size(25, 25)
-        Me.ButtonX1.ImageTextSpacing = 5
-        Me.ButtonX1.Location = New System.Drawing.Point(21, 10)
-        Me.ButtonX1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
-        Me.ButtonX1.Name = "ButtonX1"
-        Me.ButtonX1.Size = New System.Drawing.Size(122, 38)
-        Me.ButtonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013
-        Me.ButtonX1.TabIndex = 5
-        Me.ButtonX1.Text = "Salir"
-        Me.ButtonX1.TextColor = System.Drawing.Color.White
         '
         'Panel2
         '
@@ -90,7 +62,7 @@ Partial Class Descuentos
         Me.Panel2.Controls.Add(Me.GroupPanel1)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Panel2.Location = New System.Drawing.Point(0, 61)
-        Me.Panel2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(800, 360)
         Me.Panel2.TabIndex = 0
@@ -103,7 +75,7 @@ Partial Class Descuentos
         Me.GroupPanel2.DisabledBackColor = System.Drawing.Color.Empty
         Me.GroupPanel2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupPanel2.Location = New System.Drawing.Point(0, 0)
-        Me.GroupPanel2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupPanel2.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupPanel2.Name = "GroupPanel2"
         Me.GroupPanel2.Size = New System.Drawing.Size(364, 360)
         '
@@ -143,7 +115,7 @@ Partial Class Descuentos
         Me.grProducto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grProducto.HideSelection = Janus.Windows.GridEX.HideSelection.Highlight
         Me.grProducto.Location = New System.Drawing.Point(0, 0)
-        Me.grProducto.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grProducto.Margin = New System.Windows.Forms.Padding(2)
         Me.grProducto.Name = "grProducto"
         Me.grProducto.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.grProducto.Office2007CustomColor = System.Drawing.Color.DodgerBlue
@@ -160,7 +132,7 @@ Partial Class Descuentos
         Me.GroupPanel1.Dock = System.Windows.Forms.DockStyle.Right
         Me.GroupPanel1.Font = New System.Drawing.Font("Calibri", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupPanel1.Location = New System.Drawing.Point(364, 0)
-        Me.GroupPanel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.GroupPanel1.Margin = New System.Windows.Forms.Padding(2)
         Me.GroupPanel1.Name = "GroupPanel1"
         Me.GroupPanel1.Size = New System.Drawing.Size(436, 360)
         '
@@ -202,7 +174,7 @@ Partial Class Descuentos
         Me.grdetalle.ContextMenuStrip = Me.MenuEliminar
         Me.grdetalle.Dock = System.Windows.Forms.DockStyle.Fill
         Me.grdetalle.Location = New System.Drawing.Point(0, 188)
-        Me.grdetalle.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.grdetalle.Margin = New System.Windows.Forms.Padding(2)
         Me.grdetalle.Name = "grdetalle"
         Me.grdetalle.Size = New System.Drawing.Size(430, 144)
         Me.grdetalle.TabIndex = 1
@@ -213,13 +185,6 @@ Partial Class Descuentos
         Me.MenuEliminar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EliminarToolStripMenuItem})
         Me.MenuEliminar.Name = "MenuEliminar"
         Me.MenuEliminar.Size = New System.Drawing.Size(122, 30)
-        '
-        'EliminarToolStripMenuItem
-        '
-        Me.EliminarToolStripMenuItem.Image = Global.DinoM.My.Resources.Resources.trash
-        Me.EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
-        Me.EliminarToolStripMenuItem.Size = New System.Drawing.Size(121, 26)
-        Me.EliminarToolStripMenuItem.Text = "Eliminar"
         '
         'Panel3
         '
@@ -234,7 +199,7 @@ Partial Class Descuentos
         Me.Panel3.Controls.Add(Me.btnNuevo)
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
-        Me.Panel3.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Panel3.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(430, 188)
         Me.Panel3.TabIndex = 0
@@ -266,7 +231,7 @@ Partial Class Descuentos
         Me.tbPrecio.Font = New System.Drawing.Font("Arial", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbPrecio.Increment = 1.0R
         Me.tbPrecio.Location = New System.Drawing.Point(124, 104)
-        Me.tbPrecio.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbPrecio.Margin = New System.Windows.Forms.Padding(2)
         Me.tbPrecio.Name = "tbPrecio"
         Me.tbPrecio.Size = New System.Drawing.Size(80, 24)
         Me.tbPrecio.TabIndex = 7
@@ -298,7 +263,7 @@ Partial Class Descuentos
         Me.tbHasta.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.tbHasta.Font = New System.Drawing.Font("Arial", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbHasta.Location = New System.Drawing.Point(266, 65)
-        Me.tbHasta.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbHasta.Margin = New System.Windows.Forms.Padding(2)
         Me.tbHasta.Name = "tbHasta"
         Me.tbHasta.Size = New System.Drawing.Size(82, 24)
         Me.tbHasta.TabIndex = 6
@@ -330,7 +295,7 @@ Partial Class Descuentos
         Me.tbDesde.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2
         Me.tbDesde.Font = New System.Drawing.Font("Arial", 10.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbDesde.Location = New System.Drawing.Point(122, 65)
-        Me.tbDesde.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.tbDesde.Margin = New System.Windows.Forms.Padding(2)
         Me.tbDesde.Name = "tbDesde"
         Me.tbDesde.Size = New System.Drawing.Size(82, 24)
         Me.tbDesde.TabIndex = 5
@@ -352,6 +317,13 @@ Partial Class Descuentos
         Me.LabelX2.TabIndex = 226
         Me.LabelX2.Text = "Desde:"
         '
+        'EliminarToolStripMenuItem
+        '
+        Me.EliminarToolStripMenuItem.Image = Global.DinoM.My.Resources.Resources.trash
+        Me.EliminarToolStripMenuItem.Name = "EliminarToolStripMenuItem"
+        Me.EliminarToolStripMenuItem.Size = New System.Drawing.Size(121, 26)
+        Me.EliminarToolStripMenuItem.Text = "Eliminar"
+        '
         'btnGrabar
         '
         Me.btnGrabar.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
@@ -361,7 +333,7 @@ Partial Class Descuentos
         Me.btnGrabar.ImageFixedSize = New System.Drawing.Size(25, 25)
         Me.btnGrabar.ImageTextSpacing = 5
         Me.btnGrabar.Location = New System.Drawing.Point(247, 136)
-        Me.btnGrabar.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnGrabar.Margin = New System.Windows.Forms.Padding(2)
         Me.btnGrabar.Name = "btnGrabar"
         Me.btnGrabar.Size = New System.Drawing.Size(122, 38)
         Me.btnGrabar.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013
@@ -378,13 +350,41 @@ Partial Class Descuentos
         Me.btnNuevo.ImageFixedSize = New System.Drawing.Size(25, 25)
         Me.btnNuevo.ImageTextSpacing = 5
         Me.btnNuevo.Location = New System.Drawing.Point(82, 136)
-        Me.btnNuevo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnNuevo.Margin = New System.Windows.Forms.Padding(2)
         Me.btnNuevo.Name = "btnNuevo"
         Me.btnNuevo.Size = New System.Drawing.Size(122, 38)
         Me.btnNuevo.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013
         Me.btnNuevo.TabIndex = 4
         Me.btnNuevo.Text = "Nuevo"
         Me.btnNuevo.TextColor = System.Drawing.Color.MidnightBlue
+        '
+        'Panel1
+        '
+        Me.Panel1.BackgroundImage = Global.DinoM.My.Resources.Resources.fondo1
+        Me.Panel1.Controls.Add(Me.ButtonX1)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(800, 61)
+        Me.Panel1.TabIndex = 0
+        '
+        'ButtonX1
+        '
+        Me.ButtonX1.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
+        Me.ButtonX1.ColorTable = DevComponents.DotNetBar.eButtonColor.BlueOrb
+        Me.ButtonX1.Font = New System.Drawing.Font("Calibri", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonX1.Image = Global.DinoM.My.Resources.Resources.atras1
+        Me.ButtonX1.ImageFixedSize = New System.Drawing.Size(25, 25)
+        Me.ButtonX1.ImageTextSpacing = 5
+        Me.ButtonX1.Location = New System.Drawing.Point(21, 10)
+        Me.ButtonX1.Margin = New System.Windows.Forms.Padding(2)
+        Me.ButtonX1.Name = "ButtonX1"
+        Me.ButtonX1.Size = New System.Drawing.Size(122, 38)
+        Me.ButtonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2013
+        Me.ButtonX1.TabIndex = 5
+        Me.ButtonX1.Text = "Salir"
+        Me.ButtonX1.TextColor = System.Drawing.Color.White
         '
         'Descuentos
         '
@@ -393,11 +393,10 @@ Partial Class Descuentos
         Me.ClientSize = New System.Drawing.Size(800, 421)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Panel1)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "Descuentos"
         Me.Text = "Descuentos"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
-        Me.Panel1.ResumeLayout(False)
         Me.Panel2.ResumeLayout(False)
         Me.GroupPanel2.ResumeLayout(False)
         CType(Me.grProducto, System.ComponentModel.ISupportInitialize).EndInit()
@@ -409,6 +408,7 @@ Partial Class Descuentos
         CType(Me.tbPrecio, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbHasta, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbDesde, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

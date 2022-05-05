@@ -1276,9 +1276,6 @@ Public Class F0_VentasSupermercado
                             Dim precio As Double = dtDetalle.Rows(pos).Item("tbpbas")
                             Dim total As Decimal = CStr(Format(precio * saldo, "####0.00"))
                             dtDetalle.Rows(pos).Item("tbptot") = total
-                            Dim descuento As Double = (dt.Rows(i).Item("tbtotdesc") / dt.Rows(i).Item("tbcmin"))
-                            dtDetalle.Rows(pos).Item("tbtotdesc") = total - (saldo * descuento)
-                            'dtDetalle.Rows(pos).Item("tbtotdesc") = total
                             dtDetalle.Rows(pos).Item("tbcmin") = saldo
                             Dim precioCosto As Double = dtDetalle.Rows(pos).Item("tbpcos")
                             dtDetalle.Rows(pos).Item("tbptot2") = precioCosto * saldo
@@ -2452,7 +2449,7 @@ Public Class F0_VentasSupermercado
                 End If
             Else
                 grdetalle.DataChanged = False
-                ToastNotification.Show(Me, "El código de barra del producto no existe", My.Resources.WARNING, 3000, eToastGlowColor.Red, eToastPosition.TopCenter)
+                ToastNotification.Show(Me, "El código de barra del producto no existe o no tiene precio, verifique!!!".ToUpper, My.Resources.WARNING, 3300, eToastGlowColor.Red, eToastPosition.TopCenter)
             End If
 
             'End If

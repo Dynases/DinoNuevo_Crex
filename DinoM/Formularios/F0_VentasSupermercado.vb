@@ -1248,24 +1248,26 @@ Public Class F0_VentasSupermercado
                                     Dim pos As Integer = dtDetalle.Rows.Count - 1
 
                                     Dim precio As Double = dtDetalle.Rows(pos).Item("tbpbas")
-                                    Dim total As Decimal = CStr(Format(precio * inventario, "####0.00"))
+                                    Dim total As Decimal = CStr(Format(precio * saldo, "####0.00"))
                                     dtDetalle.Rows(pos).Item("tbptot") = total
 
-                                    Dim descuento As Double = (dt.Rows(i).Item("tbtotdesc") / dt.Rows(i).Item("tbcmin"))
+                                    'Dim descuento As Double = (dt.Rows(i).Item("tbtotdesc") / dt.Rows(i).Item("tbcmin"))
 
-                                    dtDetalle.Rows(pos).Item("tbtotdesc") = total - (inventario * descuento)
+                                    'dtDetalle.Rows(pos).Item("tbtotdesc") = total - (inventario * descuento)
                                     'CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbtotdesc") = total
                                     'CType(grdetalle.DataSource, DataTable).Rows(pos).Item("tbcmin") = inventario
-                                    dtDetalle.Rows(pos).Item("tbcmin") = inventario
+                                    dtDetalle.Rows(pos).Item("tbcmin") = saldo
 
                                     Dim precioCosto As Double = dtDetalle.Rows(pos).Item("tbpcos")
-                                    dtDetalle.Rows(pos).Item("tbptot2") = precioCosto * inventario
+                                    dtDetalle.Rows(pos).Item("tbptot2") = precioCosto * saldo
                                     dtDetalle.Rows(pos).Item("tblote") = dtSaldos.Rows(k).Item("iclot")
                                     dtDetalle.Rows(pos).Item("tbfechaVenc") = dtSaldos.Rows(k).Item("icfven")
 
-                                    saldo = saldo - inventario
+
+                                    'saldo = saldo - inventario
                                     'Actualiza el inventario en la Tabla
-                                    dtSaldos.Rows(k).Item("iccven") = dtSaldos.Rows(k).Item("iccven") - inventario
+                                    dtSaldos.Rows(k).Item("iccven") = dtSaldos.Rows(k).Item("iccven") - saldo
+                                    saldo = 0
                                 End If
                             End If
                             k += 1
@@ -1349,7 +1351,8 @@ Public Class F0_VentasSupermercado
             Dim dtUsuario = L_BuscarPoUsuario(L_Usuario)
             Dim Vendedor As Integer = dtUsuario.Rows(0).Item("yd_numiVend")
 
-            Dim dtDetalle As DataTable = rearmarDetalle()
+            'Dim dtDetalle As DataTable = rearmarDetalle()
+            Dim dtDetalle As DataTable = CType(grdetalle.DataSource, DataTable)
             Dim res As Boolean = L_fnGrabarVenta(numi, "", Now.Date.ToString("yyyy/MM/dd"), Vendedor, 1, Now.Date.ToString("yyyy/MM/dd"), _CodCliente, 1, "", tbDescuento.Value, 0, Str(tbTotal.Value), dtDetalle, Sucursal, 0, tabla, gs_NroCaja, Programa)
             If res Then
                 'res = P_fnGrabarFacturarTFV001(numi)

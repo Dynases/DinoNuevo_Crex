@@ -226,7 +226,7 @@ Public Class F1_ExcelVenta
                 .Visible = True
                 .FormatString = "0.00"
                 .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
-                '.AggregateFunction = AggregateFunction.Sum
+                .AggregateFunction = AggregateFunction.Sum
             End With
             With JGrM_Buscador.RootTable.Columns("PrecioCosto")
                 .Width = 100
@@ -290,9 +290,9 @@ Public Class F1_ExcelVenta
                 .FilterMode = FilterMode.Automatic
                 .FilterRowUpdateMode = FilterRowUpdateMode.WhenValueChanges
                 .GroupByBoxVisible = False
-                '.TotalRow = InheritableBoolean.True
-                '.TotalRowFormatStyle.BackColor = Color.Gold
-                '.TotalRowPosition = TotalRowPosition.BottomFixed
+                .TotalRow = InheritableBoolean.True
+                .TotalRowFormatStyle.BackColor = Color.Gold
+                .TotalRowPosition = TotalRowPosition.BottomFixed
                 'diseño de la grilla
             End With
 

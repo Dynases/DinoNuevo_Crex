@@ -498,6 +498,23 @@ Public Class F0_Precios
     End Sub
     Private Sub grprecio_CellEdited(sender As Object, e As ColumnActionEventArgs) Handles grprecio.CellEdited
         If (_fnAccesible()) Then
+            If (e.Column.Index = grprecio.RootTable.Columns("1099").Index) Then
+                If (Not IsNumeric(grprecio.GetValue("1099")) Or grprecio.GetValue("1099").ToString = String.Empty) Then
+                    grprecio.SetValue("1099", 0)
+                End If
+            End If
+            If (e.Column.Index = grprecio.RootTable.Columns("70").Index) Then
+                If (Not IsNumeric(grprecio.GetValue("70")) Or grprecio.GetValue("70").ToString = String.Empty) Then
+                    grprecio.SetValue("70", 0)
+                End If
+            End If
+            If (e.Column.Index = grprecio.RootTable.Columns("1100").Index) Then
+                If (Not IsNumeric(grprecio.GetValue("1100")) Or grprecio.GetValue("1100").ToString = String.Empty) Then
+                    grprecio.SetValue("1100", 0)
+                End If
+            End If
+
+
             'Habilitar solo las columnas de Precio, %, Monto y Observación
             If (e.Column.Index > 1) Then
                 Dim data As String = grprecio.GetValue(e.Column.Index - 1).ToString.Trim 'En esta columna obtengo un protocolo que me indica el estado del precio 0= no insertado 1= ya insertado , a la ves con un '-' me indica la posicion de ese dato en el Datatable que envio para grabarlo que esta en 'precio' Ejemplo:1-15 -> estado=1 posicion=15
@@ -512,8 +529,6 @@ Public Class F0_Precios
                         precio.Rows(pos).Item("yhprecio") = grprecio.GetValue(e.Column.Index)
                     End If
                 End If
-
-
             End If
 
         End If

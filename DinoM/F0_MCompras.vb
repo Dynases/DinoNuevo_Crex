@@ -435,11 +435,11 @@ Public Class F0_MCompras
             .Caption = "Unidad".ToUpper
         End With
         With grdetalle.RootTable.Columns("cbpcost")
-            .Width = 120
+            .Width = 140
             .CellStyle.TextAlignment = Janus.Windows.GridEX.TextAlignment.Far
             .Visible = True
             .FormatString = "0.00"
-            .Caption = "Precio U.".ToUpper
+            .Caption = "Precio Costo U.".ToUpper
         End With
         If (_estadoPor = 1) Then
             With grdetalle.RootTable.Columns("cbutven")
@@ -1388,7 +1388,7 @@ Public Class F0_MCompras
                 End If
             Else
 
-                If (e.Column.Index = grdetalle.RootTable.Columns("cbcmin").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbpcost").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbprven").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbutven").Index Or e.Column.Index = grdetalle.RootTable.Columns("cblote").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbfechavenc").Index) Then
+                If (e.Column.Index = grdetalle.RootTable.Columns("cbcmin").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbpcost").Index Or e.Column.Index = grdetalle.RootTable.Columns("cblote").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbfechavenc").Index) Then
                     e.Cancel = False
                 Else
                     e.Cancel = True

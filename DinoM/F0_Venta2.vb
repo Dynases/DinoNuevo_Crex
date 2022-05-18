@@ -1559,7 +1559,9 @@ Public Class F0_Venta2
             _prInsertarMontoNuevo(tabla)
             ''Verifica si existe estock para los productos
             'If _prExisteStockParaProducto() Then
-            Dim dtDetalle As DataTable = rearmarDetalle()
+
+            'Dim dtDetalle As DataTable = rearmarDetalle()
+            Dim dtDetalle As DataTable = CType(grdetalle.DataSource, DataTable)
             Dim res As Boolean = L_fnGrabarVenta(numi, "", tbFechaVenta.Value.ToString("yyyy/MM/dd"), _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), IIf(swTipoVenta.Value = True,
                                                 Now.Date.ToString("yyyy/MM/dd"), tbFechaVenc.Value.ToString("yyyy/MM/dd")), _CodCliente, IIf(swMoneda.Value = True, 1, 0),
                                                   tbObservacion.Text, tbMdesc.Value, tbIce.Value, tbTotalBs.Text, dtDetalle, cbSucursal.Value, 0, tabla, gs_NroCaja, Programa)

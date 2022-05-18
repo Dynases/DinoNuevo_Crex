@@ -7,7 +7,8 @@ Public Class Pr_ProductosVentas
 
     Public _nameButton As String
     Public _tab As SuperTabItem
-
+    Private idProveedor As Integer = 0
+    Private idProducto As Integer = 0
     Public Sub _prIniciarTodo()
         tbFechaI.Value = Now.Date
         tbFechaF.Value = Now.Date
@@ -16,27 +17,27 @@ Public Class Pr_ProductosVentas
         Me.Text = "REPORTE PRODUCTOS"
         MReportViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None
         _IniciarComponentes()
+        _prCargarComboLibreriaSucursal(tbAlmacen)
+        _prCargarComboLibreria(cbProveedor, 1, 1)
+        _prCargarComboLibreriaProducto(cbProducto)
+
     End Sub
     Public Sub _IniciarComponentes()
         tbAlmacen.ReadOnly = True
         tbAlmacen.Enabled = False
         CheckTodosAlmacen.CheckValue = True
-
-
+        CheckTodosProveedor.Checked = True
+        CheckTodosProducto.Checked = True
     End Sub
     Public Sub _prInterpretarDatos(ByRef _dt As DataTable)
-        If (swTipoVenta.Value = True) Then
-            _dt = L_prVentasVsProductosGeneral(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"))
+        Dim fechaDesde As DateTime = tbFechaI.Value.ToString("yyyy/MM/dd")
+        Dim fechaHasta As DateTime = tbFechaF.Value.ToString("yyyy/MM/dd")
+        Dim idproducto As Integer = 0, idProveedor As Integer = 0, idAlmacen As Integer = 0
 
-        Else
-            If (CheckTodosAlmacen.Checked) Then
-                _dt = L_prVentasVsProductosTodosALmacenesPrecio(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"))
-            Else
-                If (CheckUnaALmacen.Checked And tbAlmacen.SelectedIndex >= 0) Then
-                    _dt = L_prVentasVsProductosUnaALmacenesPrecio(tbFechaI.Value.ToString("yyyy/MM/dd"), tbFechaF.Value.ToString("yyyy/MM/dd"), tbAlmacen.Value)
-                End If
-            End If
-        End If
+        If tbAlmacen.SelectedIndex <> 0 Then idAlmacen = tbAlmacen.Value
+        If cbProducto.SelectedIndex <> -1 Then idproducto = cbProducto.Value
+        If cbProveedor.SelectedIndex <> -1 Then idProveedor = cbProveedor.Value
+        _dt = L_prVentasVsProductos(fechaDesde, fechaHasta, almacen:=idAlmacen, idProveedor, idproducto)
 
 
     End Sub
@@ -98,7 +99,7 @@ Public Class Pr_ProductosVentas
             tbAlmacen.BackColor = Color.White
             tbAlmacen.Focus()
             tbAlmacen.ReadOnly = False
-            _prCargarComboLibreriaSucursal(tbAlmacen)
+
             If (CType(tbAlmacen.DataSource, DataTable).Rows.Count > 0) Then
                 tbAlmacen.SelectedIndex = 0
 
@@ -112,8 +113,7 @@ Public Class Pr_ProductosVentas
             tbAlmacen.Enabled = True
             tbAlmacen.BackColor = Color.Gainsboro
             tbAlmacen.ReadOnly = True
-            _prCargarComboLibreriaSucursal(tbAlmacen)
-            CType(tbAlmacen.DataSource, DataTable).Rows.Clear()
+            'CType(tbAlmacen.DataSource, DataTable).Rows.Clear()
             tbAlmacen.SelectedIndex = -1
 
         End If
@@ -134,6 +134,21 @@ Public Class Pr_ProductosVentas
             .Refresh()
         End With
     End Sub
+    Private Sub _prCargarComboLibreriaProducto(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo)
+        Dim dt As New DataTable
+        dt = L_prObtenerProductos()
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("idProducto").Width = 60
+            .DropDownList.Columns("idProducto").Caption = "COD"
+            .DropDownList.Columns.Add("Descripcion").Width = 500
+            .DropDownList.Columns("Descripcion").Caption = "SUCURSAL"
+            .ValueMember = "idProducto"
+            .DisplayMember = "Descripcion"
+            .DataSource = dt
+            .Refresh()
+        End With
+    End Sub
 
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
 
@@ -149,6 +164,69 @@ Public Class Pr_ProductosVentas
         Else
             Me.Opacity = 100
             Timer1.Enabled = False
+        End If
+    End Sub
+    Private Sub _prCargarComboLibreria(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, cod1 As String, cod2 As String)
+        Dim dt As New DataTable
+        dt = L_prLibreriaClienteLGeneral(cod1, cod2)
+        With mCombo
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("yccod3").Width = 70
+            .DropDownList.Columns("yccod3").Caption = "COD"
+            .DropDownList.Columns.Add("ycdes3").Width = 200
+            .DropDownList.Columns("ycdes3").Caption = "DESCRIPCION"
+            .ValueMember = "yccod3"
+            .DisplayMember = "ycdes3"
+            .DataSource = dt
+            .Refresh()
+        End With
+    End Sub
+
+    Private Sub CheckUnaProveedor_CheckValueChanged(sender As Object, e As EventArgs) Handles CheckUnaProveedor.CheckValueChanged
+        If (CheckUnaProveedor.Checked) Then
+            CheckTodosProveedor.CheckValue = False
+            cbProveedor.Enabled = True
+            cbProveedor.BackColor = Color.White
+            cbProveedor.Focus()
+            cbProveedor.ReadOnly = False
+            If (CType(cbProveedor.DataSource, DataTable).Rows.Count > 0) Then
+                cbProveedor.SelectedIndex = 0
+            End If
+        End If
+    End Sub
+
+    Private Sub CheckTodosProveedor_CheckValueChanged(sender As Object, e As EventArgs) Handles CheckTodosProveedor.CheckValueChanged
+        If (CheckTodosProveedor.Checked) Then
+            CheckUnaProveedor.CheckValue = False
+            cbProveedor.Enabled = True
+            cbProveedor.BackColor = Color.Gainsboro
+            cbProveedor.ReadOnly = True
+            cbProveedor.SelectedIndex = -1
+            idProveedor = 0
+        End If
+    End Sub
+
+    Private Sub CheckUnaProducto_CheckValueChanged(sender As Object, e As EventArgs) Handles CheckUnaProducto.CheckValueChanged
+        If (CheckUnaProducto.Checked) Then
+            CheckTodosProducto.CheckValue = False
+            cbProducto.Enabled = True
+            cbProducto.BackColor = Color.White
+            cbProducto.Focus()
+            cbProducto.ReadOnly = False
+            If (CType(cbProducto.DataSource, DataTable).Rows.Count > 0) Then
+                cbProducto.SelectedIndex = 0
+            End If
+        End If
+    End Sub
+
+    Private Sub CheckTodosProducto_CheckValueChanged(sender As Object, e As EventArgs) Handles CheckTodosProducto.CheckValueChanged
+        If (CheckTodosProducto.Checked) Then
+            CheckUnaProducto.CheckValue = False
+            cbProducto.Enabled = True
+            cbProducto.BackColor = Color.Gainsboro
+            cbProducto.ReadOnly = True
+            cbProducto.SelectedIndex = -1
+            idProducto = 0
         End If
     End Sub
 End Class

@@ -51,6 +51,17 @@ Public Class Pr_VentasAtendidas
         Return ventasAtendidas
 
     End Function
+    Private Sub EjecutarReporte(objrep As Object, tabla As DataTable)
+        objrep.SetDataSource(tabla)
+        Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
+        Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
+        objrep.SetParameterValue("usuario", L_Usuario)
+        objrep.SetParameterValue("fechaI", fechaI)
+        objrep.SetParameterValue("fechaF", fechaF)
+        MReportViewer.ReportSource = objrep
+        MReportViewer.Show()
+        MReportViewer.BringToFront()
+    End Sub
     Private Sub _prCargarReporte()
         Dim _ventasAtendidas As New DataTable
         _ventasAtendidas = _prValidadrFiltros()
@@ -58,54 +69,20 @@ Public Class Pr_VentasAtendidas
             If (swTipoVenta.Value = True) Then
                 If swMostrar.Value = True Then
                     Dim objrep As New R_VentasAtendidasAlmacenVendedor
-                    objrep.SetDataSource(_ventasAtendidas)
-                    Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-                    Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
-                    objrep.SetParameterValue("usuario", L_Usuario)
-                    objrep.SetParameterValue("fechaI", fechaI)
-                    objrep.SetParameterValue("fechaF", fechaF)
-                    MReportViewer.ReportSource = objrep
-                    MReportViewer.Show()
-                    MReportViewer.BringToFront()
+                    EjecutarReporte(objrep, _ventasAtendidas)
                 Else
                     Dim objrep As New R_VentasAtendidasAlmacenVendedorRS
-                    objrep.SetDataSource(_ventasAtendidas)
-                    Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-                    Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
-                    objrep.SetParameterValue("usuario", L_Usuario)
-                    objrep.SetParameterValue("fechaI", fechaI)
-                    objrep.SetParameterValue("fechaF", fechaF)
-                    MReportViewer.ReportSource = objrep
-                    MReportViewer.Show()
-                    MReportViewer.BringToFront()
+                    EjecutarReporte(objrep, _ventasAtendidas)
                 End If
             Else
                 If swMostrar.Value = True Then
                     Dim objrep As New R_VentasAtendidasVendedorAlmacen
-                    objrep.SetDataSource(_ventasAtendidas)
-                    Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-                    Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
-                    objrep.SetParameterValue("usuario", L_Usuario)
-                    objrep.SetParameterValue("fechaI", fechaI)
-                    objrep.SetParameterValue("fechaF", fechaF)
-                    MReportViewer.ReportSource = objrep
-                    MReportViewer.Show()
-                    MReportViewer.BringToFront()
+                    EjecutarReporte(objrep, _ventasAtendidas)
                 Else
                     Dim objrep As New R_VentasAtendidasVendedorAlmacenRS
-                    objrep.SetDataSource(_ventasAtendidas)
-                    Dim fechaI As String = tbFechaI.Value.ToString("dd/MM/yyyy")
-                    Dim fechaF As String = tbFechaF.Value.ToString("dd/MM/yyyy")
-                    objrep.SetParameterValue("usuario", L_Usuario)
-                    objrep.SetParameterValue("fechaI", fechaI)
-                    objrep.SetParameterValue("fechaF", fechaF)
-                    MReportViewer.ReportSource = objrep
-                    MReportViewer.Show()
-                    MReportViewer.BringToFront()
+                    EjecutarReporte(objrep, _ventasAtendidas)
                 End If
-
             End If
-
         Else
             ToastNotification.Show(Me, "NO HAY DATOS PARA LOS PARAMETROS SELECCIONADOS..!!!",
                                        My.Resources.INFORMATION, 2000,

@@ -24,10 +24,20 @@ Partial Class Pr_ProductosVentas
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Pr_ProductosVentas))
+        Dim cbProducto_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
+        Dim cbProveedor_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Dim tbAlmacen_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.swTipoVenta = New DevComponents.DotNetBar.Controls.SwitchButton()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.cbProducto = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.CheckTodosProducto = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.CheckUnaProducto = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.LabelX5 = New DevComponents.DotNetBar.LabelX()
+        Me.cbProveedor = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.CheckTodosProveedor = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.CheckUnaProveedor = New DevComponents.DotNetBar.Controls.CheckBoxX()
+        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.tbAlmacen = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.CheckTodosAlmacen = New DevComponents.DotNetBar.Controls.CheckBoxX()
         Me.CheckUnaALmacen = New DevComponents.DotNetBar.Controls.CheckBoxX()
@@ -54,6 +64,8 @@ Partial Class Pr_ProductosVentas
         CType(Me.MPicture, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        CType(Me.cbProducto, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbProveedor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbAlmacen, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFechaF, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,17 +86,18 @@ Partial Class Pr_ProductosVentas
         Me.SuperTabPrincipal.ControlBox.MenuBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.Name = ""
         Me.SuperTabPrincipal.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabPrincipal.ControlBox.MenuBox, Me.SuperTabPrincipal.ControlBox.CloseBox})
+        Me.SuperTabPrincipal.Size = New System.Drawing.Size(1362, 741)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelBuscador, 0)
         Me.SuperTabPrincipal.Controls.SetChildIndex(Me.SuperTabControlPanelRegistro, 0)
         '
         'SuperTabControlPanelBuscador
         '
-        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelBuscador.Margin = New System.Windows.Forms.Padding(4)
         Me.SuperTabControlPanelBuscador.Size = New System.Drawing.Size(858, 561)
         '
         'SuperTabControlPanelRegistro
         '
-        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.SuperTabControlPanelRegistro.Margin = New System.Windows.Forms.Padding(4)
         Me.SuperTabControlPanelRegistro.Size = New System.Drawing.Size(1330, 741)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.SuperTabControlPanelRegistro.Controls.SetChildIndex(Me.PanelIzq, 0)
@@ -103,7 +116,8 @@ Partial Class Pr_ProductosVentas
         '
         'PanelInferior
         '
-        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelInferior.Location = New System.Drawing.Point(0, 705)
+        Me.PanelInferior.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelInferior.Size = New System.Drawing.Size(1330, 36)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Gold
@@ -145,23 +159,25 @@ Partial Class Pr_ProductosVentas
         '
         'PanelPrincipal
         '
-        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PanelPrincipal.Margin = New System.Windows.Forms.Padding(4)
         Me.PanelPrincipal.Size = New System.Drawing.Size(967, 705)
         '
         'MPanelUserAct
         '
         Me.MPanelUserAct.Location = New System.Drawing.Point(1130, 0)
-        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MPanelUserAct.Margin = New System.Windows.Forms.Padding(4)
         '
         'MReportViewer
         '
-        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MReportViewer.Margin = New System.Windows.Forms.Padding(4)
         Me.MReportViewer.Size = New System.Drawing.Size(967, 705)
+        Me.MReportViewer.ToolPanelWidth = 200
         '
         'MGPFiltros
         '
         Me.MGPFiltros.Controls.Add(Me.GroupBox2)
         Me.MGPFiltros.Controls.Add(Me.GroupBox1)
+        Me.MGPFiltros.Size = New System.Drawing.Size(363, 633)
         '
         '
         '
@@ -190,6 +206,10 @@ Partial Class Pr_ProductosVentas
         '
         '
         Me.MGPFiltros.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        '
+        'PanelIzq
+        '
+        Me.PanelIzq.Size = New System.Drawing.Size(363, 705)
         Me.PanelIzq.Controls.SetChildIndex(Me.PanelSuperior, 0)
         Me.PanelIzq.Controls.SetChildIndex(Me.MGPFiltros, 0)
         '
@@ -212,7 +232,7 @@ Partial Class Pr_ProductosVentas
         '
         '
         Me.swTipoVenta.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.swTipoVenta.Font = New System.Drawing.Font("Open Sans Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.swTipoVenta.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.swTipoVenta.Location = New System.Drawing.Point(96, 20)
         Me.swTipoVenta.Name = "swTipoVenta"
         Me.swTipoVenta.OffBackColor = System.Drawing.Color.DarkSlateGray
@@ -229,6 +249,14 @@ Partial Class Pr_ProductosVentas
         'GroupBox2
         '
         Me.GroupBox2.BackColor = System.Drawing.Color.Transparent
+        Me.GroupBox2.Controls.Add(Me.cbProducto)
+        Me.GroupBox2.Controls.Add(Me.CheckTodosProducto)
+        Me.GroupBox2.Controls.Add(Me.CheckUnaProducto)
+        Me.GroupBox2.Controls.Add(Me.LabelX5)
+        Me.GroupBox2.Controls.Add(Me.cbProveedor)
+        Me.GroupBox2.Controls.Add(Me.CheckTodosProveedor)
+        Me.GroupBox2.Controls.Add(Me.CheckUnaProveedor)
+        Me.GroupBox2.Controls.Add(Me.LabelX2)
         Me.GroupBox2.Controls.Add(Me.tbAlmacen)
         Me.GroupBox2.Controls.Add(Me.CheckTodosAlmacen)
         Me.GroupBox2.Controls.Add(Me.CheckUnaALmacen)
@@ -247,19 +275,135 @@ Partial Class Pr_ProductosVentas
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Datos"
         '
+        'cbProducto
+        '
+        Me.cbProducto.BackColor = System.Drawing.Color.Gainsboro
+        cbProducto_DesignTimeLayout.LayoutString = resources.GetString("cbProducto_DesignTimeLayout.LayoutString")
+        Me.cbProducto.DesignTimeLayout = cbProducto_DesignTimeLayout
+        Me.cbProducto.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbProducto.Location = New System.Drawing.Point(69, 211)
+        Me.cbProducto.Name = "cbProducto"
+        Me.cbProducto.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.cbProducto.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.cbProducto.SelectedIndex = -1
+        Me.cbProducto.SelectedItem = Nothing
+        Me.cbProducto.Size = New System.Drawing.Size(280, 22)
+        Me.cbProducto.TabIndex = 257
+        Me.cbProducto.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'CheckTodosProducto
+        '
+        '
+        '
+        '
+        Me.CheckTodosProducto.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.CheckTodosProducto.Location = New System.Drawing.Point(291, 239)
+        Me.CheckTodosProducto.Name = "CheckTodosProducto"
+        Me.CheckTodosProducto.Size = New System.Drawing.Size(55, 23)
+        Me.CheckTodosProducto.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.CheckTodosProducto.TabIndex = 256
+        Me.CheckTodosProducto.Text = "Todos"
+        '
+        'CheckUnaProducto
+        '
+        '
+        '
+        '
+        Me.CheckUnaProducto.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.CheckUnaProducto.Location = New System.Drawing.Point(241, 239)
+        Me.CheckUnaProducto.Name = "CheckUnaProducto"
+        Me.CheckUnaProducto.Size = New System.Drawing.Size(44, 23)
+        Me.CheckUnaProducto.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.CheckUnaProducto.TabIndex = 253
+        Me.CheckUnaProducto.Text = "Una"
+        '
+        'LabelX5
+        '
+        Me.LabelX5.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX5.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX5.Location = New System.Drawing.Point(4, 187)
+        Me.LabelX5.Name = "LabelX5"
+        Me.LabelX5.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX5.Size = New System.Drawing.Size(74, 23)
+        Me.LabelX5.TabIndex = 254
+        Me.LabelX5.Text = "Producto:"
+        '
+        'cbProveedor
+        '
+        Me.cbProveedor.BackColor = System.Drawing.Color.Gainsboro
+        cbProveedor_DesignTimeLayout.LayoutString = resources.GetString("cbProveedor_DesignTimeLayout.LayoutString")
+        Me.cbProveedor.DesignTimeLayout = cbProveedor_DesignTimeLayout
+        Me.cbProveedor.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbProveedor.Location = New System.Drawing.Point(69, 154)
+        Me.cbProveedor.Name = "cbProveedor"
+        Me.cbProveedor.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.cbProveedor.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.cbProveedor.SelectedIndex = -1
+        Me.cbProveedor.SelectedItem = Nothing
+        Me.cbProveedor.Size = New System.Drawing.Size(164, 22)
+        Me.cbProveedor.TabIndex = 252
+        Me.cbProveedor.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'CheckTodosProveedor
+        '
+        '
+        '
+        '
+        Me.CheckTodosProveedor.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.CheckTodosProveedor.Location = New System.Drawing.Point(291, 156)
+        Me.CheckTodosProveedor.Name = "CheckTodosProveedor"
+        Me.CheckTodosProveedor.Size = New System.Drawing.Size(55, 23)
+        Me.CheckTodosProveedor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.CheckTodosProveedor.TabIndex = 251
+        Me.CheckTodosProveedor.Text = "Todos"
+        '
+        'CheckUnaProveedor
+        '
+        '
+        '
+        '
+        Me.CheckUnaProveedor.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.CheckUnaProveedor.Location = New System.Drawing.Point(241, 156)
+        Me.CheckUnaProveedor.Name = "CheckUnaProveedor"
+        Me.CheckUnaProveedor.Size = New System.Drawing.Size(44, 23)
+        Me.CheckUnaProveedor.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.CheckUnaProveedor.TabIndex = 248
+        Me.CheckUnaProveedor.Text = "Una"
+        '
+        'LabelX2
+        '
+        Me.LabelX2.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX2.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(85, Byte), Integer), CType(CType(139, Byte), Integer))
+        Me.LabelX2.Location = New System.Drawing.Point(4, 130)
+        Me.LabelX2.Name = "LabelX2"
+        Me.LabelX2.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX2.Size = New System.Drawing.Size(74, 23)
+        Me.LabelX2.TabIndex = 249
+        Me.LabelX2.Text = "Proveedor:"
+        '
         'tbAlmacen
         '
         Me.tbAlmacen.BackColor = System.Drawing.Color.Gainsboro
         tbAlmacen_DesignTimeLayout.LayoutString = resources.GetString("tbAlmacen_DesignTimeLayout.LayoutString")
         Me.tbAlmacen.DesignTimeLayout = tbAlmacen_DesignTimeLayout
-        Me.tbAlmacen.Font = New System.Drawing.Font("Open Sans Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbAlmacen.Location = New System.Drawing.Point(72, 98)
         Me.tbAlmacen.Name = "tbAlmacen"
         Me.tbAlmacen.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
         Me.tbAlmacen.Office2007CustomColor = System.Drawing.Color.DodgerBlue
         Me.tbAlmacen.SelectedIndex = -1
         Me.tbAlmacen.SelectedItem = Nothing
-        Me.tbAlmacen.Size = New System.Drawing.Size(164, 25)
+        Me.tbAlmacen.Size = New System.Drawing.Size(164, 22)
         Me.tbAlmacen.TabIndex = 247
         Me.tbAlmacen.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
@@ -296,12 +440,12 @@ Partial Class Pr_ProductosVentas
         '
         Me.tbCodAlmacen.Border.Class = "TextBoxBorder"
         Me.tbCodAlmacen.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbCodAlmacen.Font = New System.Drawing.Font("Open Sans Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbCodAlmacen.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbCodAlmacen.ForeColor = System.Drawing.Color.FromArgb(CType(CType(45, Byte), Integer), CType(CType(59, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.tbCodAlmacen.Location = New System.Drawing.Point(42, 98)
         Me.tbCodAlmacen.Name = "tbCodAlmacen"
         Me.tbCodAlmacen.PreventEnterBeep = True
-        Me.tbCodAlmacen.Size = New System.Drawing.Size(22, 25)
+        Me.tbCodAlmacen.Size = New System.Drawing.Size(22, 22)
         Me.tbCodAlmacen.TabIndex = 243
         Me.tbCodAlmacen.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.tbCodAlmacen.Visible = False
@@ -347,7 +491,7 @@ Partial Class Pr_ProductosVentas
         Me.tbFechaF.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbFechaF.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown
         Me.tbFechaF.ButtonDropDown.Visible = True
-        Me.tbFechaF.Font = New System.Drawing.Font("Open Sans Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbFechaF.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbFechaF.IsPopupCalendarOpen = False
         Me.tbFechaF.Location = New System.Drawing.Point(145, 49)
         '
@@ -380,7 +524,7 @@ Partial Class Pr_ProductosVentas
         Me.tbFechaF.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbFechaF.MonthCalendar.TodayButtonVisible = True
         Me.tbFechaF.Name = "tbFechaF"
-        Me.tbFechaF.Size = New System.Drawing.Size(120, 25)
+        Me.tbFechaF.Size = New System.Drawing.Size(120, 22)
         Me.tbFechaF.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.tbFechaF.TabIndex = 234
         '
@@ -409,7 +553,7 @@ Partial Class Pr_ProductosVentas
         Me.tbFechaI.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbFechaI.ButtonDropDown.Shortcut = DevComponents.DotNetBar.eShortcut.AltDown
         Me.tbFechaI.ButtonDropDown.Visible = True
-        Me.tbFechaI.Font = New System.Drawing.Font("Open Sans Light", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.tbFechaI.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.tbFechaI.IsPopupCalendarOpen = False
         Me.tbFechaI.Location = New System.Drawing.Point(145, 18)
         '
@@ -442,7 +586,7 @@ Partial Class Pr_ProductosVentas
         Me.tbFechaI.MonthCalendar.NavigationBackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbFechaI.MonthCalendar.TodayButtonVisible = True
         Me.tbFechaI.Name = "tbFechaI"
-        Me.tbFechaI.Size = New System.Drawing.Size(120, 25)
+        Me.tbFechaI.Size = New System.Drawing.Size(120, 22)
         Me.tbFechaI.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.tbFechaI.TabIndex = 232
         '
@@ -457,7 +601,7 @@ Partial Class Pr_ProductosVentas
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1362, 741)
         Me.Location = New System.Drawing.Point(0, 0)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Pr_ProductosVentas"
         Me.Text = "PRODUCTOS VS VENTAS"
         Me.Controls.SetChildIndex(Me.SuperTabPrincipal, 0)
@@ -479,6 +623,8 @@ Partial Class Pr_ProductosVentas
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.cbProducto, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbProveedor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbAlmacen, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFechaF, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tbFechaI, System.ComponentModel.ISupportInitialize).EndInit()
@@ -498,4 +644,12 @@ Partial Class Pr_ProductosVentas
     Friend WithEvents LabelX3 As DevComponents.DotNetBar.LabelX
     Friend WithEvents tbAlmacen As Janus.Windows.GridEX.EditControls.MultiColumnCombo
     Friend WithEvents Timer1 As Timer
+    Friend WithEvents cbProducto As Janus.Windows.GridEX.EditControls.MultiColumnCombo
+    Friend WithEvents CheckTodosProducto As DevComponents.DotNetBar.Controls.CheckBoxX
+    Friend WithEvents CheckUnaProducto As DevComponents.DotNetBar.Controls.CheckBoxX
+    Friend WithEvents LabelX5 As DevComponents.DotNetBar.LabelX
+    Friend WithEvents cbProveedor As Janus.Windows.GridEX.EditControls.MultiColumnCombo
+    Friend WithEvents CheckTodosProveedor As DevComponents.DotNetBar.Controls.CheckBoxX
+    Friend WithEvents CheckUnaProveedor As DevComponents.DotNetBar.Controls.CheckBoxX
+    Friend WithEvents LabelX2 As DevComponents.DotNetBar.LabelX
 End Class

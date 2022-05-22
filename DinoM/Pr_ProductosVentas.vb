@@ -37,7 +37,7 @@ Public Class Pr_ProductosVentas
         If tbAlmacen.SelectedIndex <> 0 Then idAlmacen = tbAlmacen.Value
         If cbProducto.SelectedIndex <> -1 Then idproducto = cbProducto.Value
         If cbProveedor.SelectedIndex <> -1 Then idProveedor = cbProveedor.Value
-        _dt = L_prVentasVsProductos(fechaDesde, fechaHasta, almacen:=idAlmacen, idProveedor, idproducto)
+        _dt = L_prVentasVsProductos(fechaDesde, fechaHasta, idAlmacen, idProveedor, idproducto)
 
 
     End Sub

@@ -1388,7 +1388,9 @@ Public Class F0_MCompras
                 End If
             Else
 
-                If (e.Column.Index = grdetalle.RootTable.Columns("cbcmin").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbpcost").Index Or e.Column.Index = grdetalle.RootTable.Columns("cblote").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbfechavenc").Index) Then
+                If (e.Column.Index = grdetalle.RootTable.Columns("cbcmin").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbpcost").Index Or
+                    e.Column.Index = grdetalle.RootTable.Columns("cbutven").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbprven").Index Or
+                    e.Column.Index = grdetalle.RootTable.Columns("cblote").Index Or e.Column.Index = grdetalle.RootTable.Columns("cbfechavenc").Index) Then
                     e.Cancel = False
                 Else
                     e.Cancel = True

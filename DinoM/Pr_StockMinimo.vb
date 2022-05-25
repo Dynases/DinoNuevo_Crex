@@ -189,5 +189,20 @@ Public Class Pr_StockMinimo
         _tab.Close()
     End Sub
 
+    Private Sub checkUnaAlmacen_CheckedChanged(sender As Object, e As EventArgs) Handles checkUnaAlmacen.CheckedChanged
+        cbAlmacen.ReadOnly = False
+    End Sub
 
+    Private Sub checkUnaGrupo_CheckedChanged(sender As Object, e As EventArgs) Handles checkUnaGrupo.CheckedChanged
+        cbGrupos.ReadOnly = False
+    End Sub
+
+    Private Sub CheckTodosAlmacen_CheckedChanged(sender As Object, e As EventArgs) Handles CheckTodosAlmacen.CheckedChanged
+
+        cbAlmacen.ReadOnly = True
+    End Sub
+
+    Private Sub checkTodosGrupos_CheckedChanged(sender As Object, e As EventArgs) Handles checkTodosGrupos.CheckedChanged
+        cbGrupos.ReadOnly = True
+    End Sub
 End Class

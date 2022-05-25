@@ -597,7 +597,7 @@ Public Class F1_Productos
         listEstCeldas.Add(New Modelo.Celda("grupo3", True, lbgrupo3.Text.Substring(0, lbgrupo3.Text.Length - 1).ToUpper, 150))
         listEstCeldas.Add(New Modelo.Celda("grupo4", True, lbgrupo4.Text.Substring(0, lbgrupo4.Text.Length - 1).ToUpper, 150))
         listEstCeldas.Add(New Modelo.Celda("grupo5", True, "CATEGORÍA".ToUpper, 200))
-        listEstCeldas.Add(New Modelo.Celda("Umedida", True, "UMedida".ToUpper, 150))
+        listEstCeldas.Add(New Modelo.Celda("Umedida", True, "GRUPO DESCT.".ToUpper, 150))
         listEstCeldas.Add(New Modelo.Celda("UnidMin", True, "UniVenta".ToUpper, 150))
         listEstCeldas.Add(New Modelo.Celda("Umax", True, "UniMaxima".ToUpper, 150))
         listEstCeldas.Add(New Modelo.Celda("yfdetprod", False, "Descripcion".ToUpper, 150))
@@ -1134,7 +1134,4 @@ Public Class F1_Productos
         End If
     End Sub
 
-    Private Sub btnGrabar_Click(sender As Object, e As EventArgs) Handles btnGrabar.Click
-
-    End Sub
 End Class

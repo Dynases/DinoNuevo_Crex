@@ -1989,8 +1989,8 @@ Public Class AccesoLogica
     End Function
 
     Public Shared Function L_fnGrabarCompra(_canumi As String, _caalm As Integer, _cafdoc As String, _caTy4prov As Integer, _catven As Integer, _cafvcr As String,
-                                           _camon As Integer, _caobs As String,
-                                           _cadesc As Double, _catotal As Double, detalle As DataTable, detalleCompra As DataTable, _emision As Integer, _numemision As Integer,
+                                           _camon As Integer, _caobs As String, _caSubtotal As Double, _cadesc As Double, _cadescpro As Double, _caice As Double,
+                                           _catotal As Double, detalle As DataTable, detalleCompra As DataTable, _emision As Integer, _numemision As Integer,
                                            _consigna As Integer, _retenc As Integer, _tipocambio As Double) As Boolean
         Dim _Tabla As DataTable
         Dim _resultado As Boolean
@@ -2007,7 +2007,10 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@camon", _camon))
         _listParam.Add(New Datos.DParametro("@caest", 1))
         _listParam.Add(New Datos.DParametro("@caobs", _caobs))
+        _listParam.Add(New Datos.DParametro("@casubtot", _caSubtotal))
         _listParam.Add(New Datos.DParametro("@cadesc", _cadesc))
+        _listParam.Add(New Datos.DParametro("@cadescpro", _cadescpro))
+        _listParam.Add(New Datos.DParametro("@caice", _caice))
         _listParam.Add(New Datos.DParametro("@catotal", _catotal))
         _listParam.Add(New Datos.DParametro("@cauact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@caemision", _emision))
@@ -2044,8 +2047,8 @@ Public Class AccesoLogica
     End Function
 
     Public Shared Function L_fnModificarCompra(_canumi As String, _caalm As Integer, _cafdoc As String, _caTy4prov As Integer, _catven As Integer, _cafvcr As String,
-                                           _camon As Integer, _caobs As String,
-                                           _cadesc As Double, _catotal As Double, detalle As DataTable, detalleCompra As DataTable, _emision As Integer, _numemision As Integer,
+                                           _camon As Integer, _caobs As String, _caSubtotal As Double, _cadesc As Double, _cadescpro As Double, _caice As Double,
+                                           _catotal As Double, detalle As DataTable, detalleCompra As DataTable, _emision As Integer, _numemision As Integer,
                                            _consigna As Integer, _retenc As Integer, _tipocambio As Double) As Boolean
         Dim _Tabla As DataTable
         Dim _resultado As Boolean
@@ -2061,7 +2064,10 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@camon", _camon))
         _listParam.Add(New Datos.DParametro("@caest", 1))
         _listParam.Add(New Datos.DParametro("@caobs", _caobs))
+        _listParam.Add(New Datos.DParametro("@casubtot", _caSubtotal))
         _listParam.Add(New Datos.DParametro("@cadesc", _cadesc))
+        _listParam.Add(New Datos.DParametro("@cadescpro", _cadescpro))
+        _listParam.Add(New Datos.DParametro("@caice", _caice))
         _listParam.Add(New Datos.DParametro("@catotal", _catotal))
         _listParam.Add(New Datos.DParametro("@cauact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@caemision", _emision))

@@ -1228,13 +1228,17 @@ Public Class F0_MCompras
         Dim fndui As String
         Dim fautoriz As String
         Dim fmonto As String
+        Dim fmonto2 As String
         Dim fccont As String
         Dim sujetoCreditoFiscal As String
         Dim nosujetoCreditoFiscal As String
         Dim subTotal As String
+        Dim subTotal2 As String
         Dim fdesc As String
         Dim importeBaseCreditoFiscal As String
         Dim creditoFiscal As String
+        Dim importeBaseCreditoFiscal2 As String
+        Dim creditoFiscal2 As String
 
         If swEmision.Value = True Then
             ffec = tbFechaVenta.Value.ToString("yyyy/MM/dd")
@@ -1247,7 +1251,10 @@ Public Class F0_MCompras
             fndui = tbNDui.Text
 
             fautoriz = tbNAutorizacion.Text
-            fmonto = tbtotal.Value.ToString + tbMdesc.Value
+
+            'fmonto = tbtotal.Value.ToString + tbMdesc.Value
+            fmonto = tbSubtotalC.Value
+            fmonto2 = tbSubtotalC.Value + tbIce.Value
             'If tbSACF.Text = String.Empty Then
             '    tbSACF.Text = fmonto
             'End If
@@ -1257,37 +1264,43 @@ Public Class F0_MCompras
             '    sujetoCreditoFiscal = fmonto
             'End If
             nosujetoCreditoFiscal = tbtotal.Value.ToString - sujetoCreditoFiscal
-            subTotal = fmonto - nosujetoCreditoFiscal
+            subTotal = (fmonto + tbIce.Value) - nosujetoCreditoFiscal
+            subTotal2 = (fmonto2 - tbIce.Value) - nosujetoCreditoFiscal
             'If tbMdesc.Value = String.Empty Then
             '    tbMdesc.Value = 0
             'End If
-            fdesc = tbMdesc.Value.ToString
+
+            fdesc = tbMdesc.Value + tbDescPro.Value
             'tbImporteBaseCreditoFiscal.Value = TbSubTotal.Value - TbdDescuento.Value
-            importeBaseCreditoFiscal = fmonto - fdesc
+            importeBaseCreditoFiscal = subTotal - fdesc
             creditoFiscal = importeBaseCreditoFiscal * 0.13
+            importeBaseCreditoFiscal2 = subTotal2 - fdesc
+            creditoFiscal2 = importeBaseCreditoFiscal2 * 0.13
             fccont = tbCodControl.Text
             Dim numi As String = ""
 
-            _detalleCompras.Rows.Add(1, ffec, fnit, frsocial, fnro, fndui, fautoriz, fmonto, nosujetoCreditoFiscal, subTotal, fdesc, importeBaseCreditoFiscal, creditoFiscal, fccont, 1, 0, 0)
+            _detalleCompras.Rows.Add(1, ffec, fnit, frsocial, fnro, fndui, fautoriz, fmonto, fmonto2, tbIce.Value, 0, 0, 0, nosujetoCreditoFiscal, 0, 0, subTotal,
+                                     subTotal2, fdesc, 0, importeBaseCreditoFiscal, creditoFiscal, importeBaseCreditoFiscal2, creditoFiscal2, "INTERNO/ACTIVIDADES GRAVADAS",
+                                     fccont, "SI", "CONSOLIDADO", 0)
 
         Else
-            ffec = tbFechaVenta.Value.ToString("yyyy/MM/dd")
-            fnit = tbNitProv.Text
-            frsocial = tbProveedor.Text
-            fnro = tbNFactura.Text
-            fndui = 0
-            fautoriz = 0
-            fmonto = tbtotal.Value.ToString
-            sujetoCreditoFiscal = tbSACF.Text
-            nosujetoCreditoFiscal = 0
-            subTotal = fmonto
-            fdesc = tbMdesc.Value.ToString
-            importeBaseCreditoFiscal = fmonto - fdesc
-            creditoFiscal = 0
-            fccont = 0
-            Dim numi As String = ""
+            'ffec = tbFechaVenta.Value.ToString("yyyy/MM/dd")
+            'fnit = tbNitProv.Text
+            'frsocial = tbProveedor.Text
+            'fnro = tbNFactura.Text
+            'fndui = 0
+            'fautoriz = 0
+            'fmonto = tbtotal.Value.ToString
+            'sujetoCreditoFiscal = tbSACF.Text
+            'nosujetoCreditoFiscal = 0
+            'subTotal = fmonto
+            'fdesc = tbMdesc.Value.ToString
+            'importeBaseCreditoFiscal = fmonto - fdesc
+            'creditoFiscal = 0
+            'fccont = 0
+            'Dim numi As String = ""
 
-            _detalleCompras.Rows.Add(1, ffec, fnit, frsocial, fnro, fndui, fautoriz, fmonto, nosujetoCreditoFiscal, subTotal, fdesc, importeBaseCreditoFiscal, creditoFiscal, fccont, 1, 0, 0)
+            '_detalleCompras.Rows.Add(1, ffec, fnit, frsocial, fnro, fndui, fautoriz, fmonto, nosujetoCreditoFiscal, subTotal, fdesc, importeBaseCreditoFiscal, creditoFiscal, fccont, 1, 0, 0)
 
         End If
 
@@ -1607,7 +1620,7 @@ salirIf:
                 grdetalle.Row = grdetalle.Row
                 _fnObtenerFilaDetalle(pos, grdetalle.GetValue("cbnumi"))
                 Dim existe As Boolean = _fnExisteProducto(grProductos.GetValue("yfnumi"))
-                If (pos >= 0) Then ''And (Not existe))
+                If ((pos >= 0) And (Not existe)) Then
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbty5prod") = grProductos.GetValue("yfnumi")
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("yfcprod") = grProductos.GetValue("yfcprod")
                     CType(grdetalle.DataSource, DataTable).Rows(pos).Item("producto") = grProductos.GetValue("yfcdprod1")
@@ -1641,11 +1654,11 @@ salirIf:
                     _prCalcularPrecioTotal()
                     PanelDetalle.Height = 250
                     _DesHabilitarProductos()
-                    'Else
-                    '    If (existe) Then
-                    '        Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                    '        ToastNotification.Show(Me, "El producto ya existe en el detalle".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
-                    '    End If
+                Else
+                    If (existe) Then
+                        Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                        ToastNotification.Show(Me, "El producto ya existe en el detalle, modifique su cantidad".ToUpper, img, 2200, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    End If
                 End If
             End If
         End If
@@ -2153,9 +2166,7 @@ salirIf:
         g_prValidarTextBox(1, e)
     End Sub
 
-    Private Sub tbNAutorizacion_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbNAutorizacion.KeyPress
-        g_prValidarTextBox(1, e)
-    End Sub
+
 
     Private Sub tbNDui_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbNDui.KeyPress
         g_prValidarTextBox(1, e)

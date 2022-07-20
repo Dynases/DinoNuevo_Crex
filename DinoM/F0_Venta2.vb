@@ -39,7 +39,8 @@ Public Class F0_Venta2
         _prValidarLote()
         _prCargarComboLibreriaSucursal(cbSucursal)
         _prCargarComboLibreria(cbCambioDolar, 7, 1)
-        cbCambioDolar.Value = 1
+        cbCambioDolar.SelectedIndex = CType(cbCambioDolar.DataSource, DataTable).Rows.Count - 1
+        'cbCambioDolar.Value = 1
         'lbTipoMoneda.Visible = False
         swMoneda.Visible = False
         P_prCargarVariablesIndispensables()
@@ -314,6 +315,7 @@ Public Class F0_Venta2
 
         ' tbCliente.Focus()
         Table_Producto = Nothing
+        cbCambioDolar.SelectedIndex = CType(cbCambioDolar.DataSource, DataTable).Rows.Count - 1
     End Sub
     Public Sub _prMostrarRegistro(_N As Integer)
         '' grVentas.Row = _N

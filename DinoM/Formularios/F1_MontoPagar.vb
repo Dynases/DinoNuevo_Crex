@@ -280,6 +280,11 @@ Public Class F1_MontoPagar
     End Sub
 
     Private Sub btnContinuar_Click(sender As Object, e As EventArgs) Handles btnContinuar.Click
+        If tbNit.Text = String.Empty Or tbRazonSocial.Text = String.Empty Then
+            ToastNotification.Show(Me, "Debe Ingresar Nit y Razón Social obligatoriamente!!!", My.Resources.WARNING, 3500, eToastGlowColor.Red, eToastPosition.TopCenter)
+            Exit Sub
+        End If
+
         If (tbMontoTarej.Value + (tbMontoDolar.Value * cbCambioDolar.Text) + tbMontoBs.Value >= TotalVenta) Then
             Bandera = True
             TotalBs = tbMontoBs.Value
@@ -294,6 +299,7 @@ Public Class F1_MontoPagar
             ToastNotification.Show(Me, "Debe Ingresar un Monto a Cobrar Valido igual o mayor A = " + Str(TotalVenta), My.Resources.WARNING, 4000, eToastGlowColor.Red, eToastPosition.TopCenter)
             tbMontoBs.Focus()
         End If
+
     End Sub
 
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click

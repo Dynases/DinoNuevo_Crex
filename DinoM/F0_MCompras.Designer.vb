@@ -1428,7 +1428,7 @@ Partial Class F0_MCompras
         Me.LabelX3.SingleLineColor = System.Drawing.SystemColors.Control
         Me.LabelX3.Size = New System.Drawing.Size(85, 23)
         Me.LabelX3.TabIndex = 226
-        Me.LabelX3.Text = "Observacion:"
+        Me.LabelX3.Text = "Observación:"
         '
         'tbProveedor
         '

@@ -696,6 +696,17 @@ Public Class AccesoLogica
         _Tabla = D_Datos_Tabla("*", "TY005", _Where)
         Return _Tabla
     End Function
+    Public Shared Function L_fnValidarCodBarras(_codBarras As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 16))
+        _listParam.Add(New Datos.DParametro("@yfcbarra", _codBarras))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        Return _Tabla
+    End Function
 #End Region
 
 #Region "TY004 CLIENTES"

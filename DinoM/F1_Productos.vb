@@ -555,6 +555,26 @@ Public Class F1_Productos
             cbUMed.BackColor = Color.White
             MEP.SetError(cbUMed, "")
         End If
+        If swEstado.Value = False Then
+            tbCodBarra.Text = ""
+        Else
+            tbCodBarra.BackColor = Color.White
+            MEP.SetError(tbCodBarra, "")
+        End If
+        If tbCodBarra.Text <> String.Empty Then
+            Dim dt = L_fnValidarCodBarras(tbCodBarra.Text)
+            If dt.Rows.Count > 0 Then
+                tbCodBarra.BackColor = Color.Red
+                MEP.SetError(tbCodBarra, "Este código de barras ya existe en otro producto!".ToUpper)
+                _ok = False
+            Else
+                tbCodBarra.BackColor = Color.White
+                MEP.SetError(tbCodBarra, "")
+            End If
+        Else
+            tbCodBarra.BackColor = Color.White
+            MEP.SetError(tbCodBarra, "")
+        End If
 
 
         MHighlighterFocus.UpdateHighlights()

@@ -17,6 +17,7 @@ Public Class F1_Productos
     Public _tab As SuperTabItem
     Public _modulo As SideNavItem
     Public Limpiar As Boolean = False  'Bandera para indicar si limpiar todos los datos o mantener datos ya registrados
+    Public CodBarras As String
 #End Region
 #Region "Metodos Privados"
     Private Sub _prIniciarTodo()
@@ -562,11 +563,16 @@ Public Class F1_Productos
             MEP.SetError(tbCodBarra, "")
         End If
         If tbCodBarra.Text <> String.Empty Then
-            Dim dt = L_fnValidarCodBarras(tbCodBarra.Text)
-            If dt.Rows.Count > 0 Then
-                tbCodBarra.BackColor = Color.Red
-                MEP.SetError(tbCodBarra, "Este código de barras ya existe en otro producto!".ToUpper)
-                _ok = False
+            If CodBarras <> tbCodBarra.Text Then
+                Dim dt = L_fnValidarCodBarras(tbCodBarra.Text)
+                If dt.Rows.Count > 0 Then
+                    tbCodBarra.BackColor = Color.Red
+                    MEP.SetError(tbCodBarra, "Este código de barras ya existe en otro producto!".ToUpper)
+                    _ok = False
+                Else
+                    tbCodBarra.BackColor = Color.White
+                    MEP.SetError(tbCodBarra, "")
+                End If
             Else
                 tbCodBarra.BackColor = Color.White
                 MEP.SetError(tbCodBarra, "")
@@ -575,7 +581,6 @@ Public Class F1_Productos
             tbCodBarra.BackColor = Color.White
             MEP.SetError(tbCodBarra, "")
         End If
-
 
         MHighlighterFocus.UpdateHighlights()
         Return _ok
@@ -1154,4 +1159,7 @@ Public Class F1_Productos
         End If
     End Sub
 
+    Private Sub btnModificar_Click(sender As Object, e As EventArgs) Handles btnModificar.Click
+        CodBarras = tbCodBarra.Text
+    End Sub
 End Class

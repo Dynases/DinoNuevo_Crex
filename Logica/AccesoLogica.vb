@@ -2168,6 +2168,16 @@ Public Class AccesoLogica
 
         Return _Tabla
     End Function
+    Public Shared Function L_ComprasDetalladas(fechaI As String, fechaF As String) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 13))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@cauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TC001", _listParam)
+        Return _Tabla
+    End Function
     Public Shared Function L_prListarEstadoCuentasCompraTotal(idProveedor As Integer, fechai As String) As DataTable
         Dim _Tabla As DataTable
         Dim _listParam As New List(Of Datos.DParametro)
@@ -4530,6 +4540,19 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@almacen", _numiAlmacen))
         _listParam.Add(New Datos.DParametro("@vendedor", _numiVendedor))
+        _Tabla = D_ProcedimientoConParam("Sp_Mam_ReporteVentasVsCostos", _listParam)
+
+        Return _Tabla
+    End Function
+    Public Shared Function L_prProductosNoVendidos(fechaI As String, fechaF As String, proveedor As String) As DataTable
+        Dim _Tabla As DataTable
+
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 8))
+        _listParam.Add(New Datos.DParametro("@fechaI", fechaI))
+        _listParam.Add(New Datos.DParametro("@fechaF", fechaF))
+        _listParam.Add(New Datos.DParametro("@proveedor", proveedor))
+        _listParam.Add(New Datos.DParametro("@uact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("Sp_Mam_ReporteVentasVsCostos", _listParam)
 
         Return _Tabla

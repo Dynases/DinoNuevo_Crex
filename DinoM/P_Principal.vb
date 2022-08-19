@@ -1157,6 +1157,16 @@ Public Class P_Principal
         frm.Show()
     End Sub
 
+    Private Sub btComprasDet_Click(sender As Object, e As EventArgs) Handles btComprasDet.Click
+        Dim frm As New F1_ExcelCompra
+        frm.Show()
+    End Sub
+
+    Private Sub btProdSinVender_Click(sender As Object, e As EventArgs) Handles btProdSinVender.Click
+        Dim frm As New Pr_ProductosSinVender
+        frm.Show()
+    End Sub
+
 
 
 

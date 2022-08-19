@@ -1167,6 +1167,11 @@ Public Class P_Principal
         frm.Show()
     End Sub
 
+    Private Sub btRepMixtoDet_Click(sender As Object, e As EventArgs) Handles btRepMixtoDet.Click
+        Dim frm As New F1_ExcelMixto
+        frm.Show()
+    End Sub
+
 
 
 

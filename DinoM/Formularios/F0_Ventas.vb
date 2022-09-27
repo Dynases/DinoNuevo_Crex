@@ -1130,9 +1130,9 @@ Public Class F0_Ventas
             End If
 
             If (Not TbNit.Text.Trim.Equals("0")) Then
-                L_Grabar_Nit(TbNit.Text.Trim, TbNombre1.Text.Trim, TbNombre2.Text.Trim)
+                L_Grabar_Nit(TbNit.Text.Trim, TbNombre1.Text.Trim, TbNombre2.Text.Trim, "", "")
             Else
-                L_Grabar_Nit(TbNit.Text, "S/N", "")
+                L_Grabar_Nit(TbNit.Text, "S/N", "", "", "")
             End If
         End If
 
@@ -1151,28 +1151,28 @@ Public Class F0_Ventas
 
         Dim res As Boolean = False
         'Grabado de Cabesera Factura
-        L_Grabar_Factura(numi,
-                        dtiFechaFactura.Value.ToString("yyyy/MM/dd"),
-                        IIf(Val(tbNroFactura.Text) = 0, "0", tbNroFactura.Text),
-                        IIf(Val(tbNroAutoriz.Text) = 0, "0", tbNroAutoriz.Text),
-                        "1",
-                        TbNit.Text.Trim,
-                        "0",
-                        TbNombre1.Text,
-                        "",
-                        CStr(Format(a, "####0.00")),
-                        CStr(Format(b, "####0.00")),
-                        CStr(Format(c, "####0.00")),
-                        CStr(Format(d, "####0.00")),
-                        CStr(Format(e, "####0.00")),
-                        CStr(Format(f, "####0.00")),
-                        CStr(Format(g, "####0.00")),
-                        CStr(Format(h, "####0.00")),
-                        "",
-                        Now.Date.ToString("yyyy/MM/dd"),
-                        "''",
-                        "1",
-                        numi, "")
+        'L_Grabar_Factura(numi,
+        '                dtiFechaFactura.Value.ToString("yyyy/MM/dd"),
+        '                IIf(Val(tbNroFactura.Text) = 0, "0", tbNroFactura.Text),
+        '                IIf(Val(tbNroAutoriz.Text) = 0, "0", tbNroAutoriz.Text),
+        '                "1",
+        '                TbNit.Text.Trim,
+        '                "0",
+        '                TbNombre1.Text,
+        '                "",
+        '                CStr(Format(a, "####0.00")),
+        '                CStr(Format(b, "####0.00")),
+        '                CStr(Format(c, "####0.00")),
+        '                CStr(Format(d, "####0.00")),
+        '                CStr(Format(e, "####0.00")),
+        '                CStr(Format(f, "####0.00")),
+        '                CStr(Format(g, "####0.00")),
+        '                CStr(Format(h, "####0.00")),
+        '                "",
+        '                Now.Date.ToString("yyyy/MM/dd"),
+        '                "''",
+        '                "1",
+        '                numi, "")
 
         'Grabado de Detalle de Factura
         grProductos.Update()
@@ -2369,7 +2369,7 @@ salirIf:
         If (TbNit.Text.Trim = String.Empty) Then
             TbNit.Text = "0"
         End If
-        L_Validar_Nit(TbNit.Text.Trim, nom1, nom2)
+        L_Validar_Nit(TbNit.Text.Trim, nom1, nom2, "", "")
         TbNombre1.Text = nom1
         TbNombre2.Text = nom2
     End Sub

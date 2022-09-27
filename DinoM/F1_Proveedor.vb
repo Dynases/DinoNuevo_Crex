@@ -375,7 +375,10 @@ Public Class F1_Proveedor
         '                                       _ydfnac As String, _ydnomfac As String,
         '                                       _ydtip As Integer, _ydnit As String, _ydfecing As String, _ydultvent As String, _ydimg As String
 
-        Dim res As Boolean = L_fnGrabarCLiente(tbCodigoOriginal.Text, tbCodCliente.Text, "", tbNombre.Text, NumiVendedor, cbZona.Value, cbTipoDoc.Value, tbNdoc.Text, tbDireccion.Text, tbTelf1.Text, tbTelf2.Text, 70, IIf(swEstado.Value = True, 1, 0), _latitud, _longitud, tbObs.Text, tbFnac.Value.ToString("yyyy/MM/dd"), "", _Tipo, "", 0, 0, tbFIngr.Value.ToString("yyyy/MM/dd"), tbUltVenta.Value.ToString("yyyy/MM/dd"), nameImg, 1)
+        Dim res As Boolean = L_fnGrabarCLiente(tbCodigoOriginal.Text, tbCodCliente.Text, "", tbNombre.Text, NumiVendedor, cbZona.Value, cbTipoDoc.Value, tbNdoc.Text,
+                                               tbDireccion.Text, tbTelf1.Text, tbTelf2.Text, 70, IIf(swEstado.Value = True, 1, 0), _latitud, _longitud, tbObs.Text,
+                                               tbFnac.Value.ToString("yyyy/MM/dd"), "", _Tipo, "", 0, 0, tbFIngr.Value.ToString("yyyy/MM/dd"),
+                                               tbUltVenta.Value.ToString("yyyy/MM/dd"), nameImg, 1, "", "")
         If res Then
             Modificado = False
             _fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes ClienteDino", nameImg)

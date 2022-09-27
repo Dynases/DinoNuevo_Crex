@@ -165,6 +165,9 @@ Module P_Global
     Public gb_NotaAdicional As String = ""
     Public gb_TipoAyuda As Integer = 1
     Public gb_MostrarFamilia As Integer = 0 '0 no muestra grupo Familia en producto, 1 muestra grupo Familia en producto
+
+    Public gb_cufSifac As String = ""
+
 #End Region
 
 End Module

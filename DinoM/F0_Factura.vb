@@ -1107,29 +1107,29 @@ Public Class F0_Factura
         Dim res As Boolean = False
         Dim _Hora As String = Now.Hour.ToString + ":" + Now.Minute.ToString
         'Grabado de Cabesera Factura
-        L_Grabar_Factura(numi,
-                        Now.Date.ToString("yyyy/MM/dd"),
-                        "0",
-                        "0",
-                        "1",
-                        tbnit.Text.Trim,
-                        "0",
-                        tbnombfact.Text,
-                        "",
-                        CStr(Format(a, "####0.00")),
-                        CStr(Format(b, "####0.00")),
-                        CStr(Format(c, "####0.00")),
-                        CStr(Format(d, "####0.00")),
-                        CStr(Format(e, "####0.00")),
-                        CStr(Format(f, "####0.00")),
-                        CStr(Format(g, "####0.00")),
-                        CStr(Format(h, "####0.00")),
-                        "",
-                        Now.Date.ToString("yyyy/MM/dd"),
-                        "''",
-                        "0",
-                        numi,
-                         _Hora)
+        'L_Grabar_Factura(numi,
+        '                Now.Date.ToString("yyyy/MM/dd"),
+        '                "0",
+        '                "0",
+        '                "1",
+        '                tbnit.Text.Trim,
+        '                "0",
+        '                tbnombfact.Text,
+        '                "",
+        '                CStr(Format(a, "####0.00")),
+        '                CStr(Format(b, "####0.00")),
+        '                CStr(Format(c, "####0.00")),
+        '                CStr(Format(d, "####0.00")),
+        '                CStr(Format(e, "####0.00")),
+        '                CStr(Format(f, "####0.00")),
+        '                CStr(Format(g, "####0.00")),
+        '                CStr(Format(h, "####0.00")),
+        '                "",
+        '                Now.Date.ToString("yyyy/MM/dd"),
+        '                "''",
+        '                "0",
+        '                numi,
+        '                 _Hora)
 
         'Grabado de Detalle de Factura
         grProductos.Update()
@@ -1161,9 +1161,9 @@ Public Class F0_Factura
             'Validar para facturar
             P_prImprimirFacturar(numi, True, True) '_Codigo de a tabla TV001
             If (Not tbnit.Text.Trim.Equals("0")) Then
-                L_Grabar_Nit(tbnit.Text.Trim, tbnombfact.Text.Trim, "".Trim)
+                L_Grabar_Nit(tbnit.Text.Trim, tbnombfact.Text.Trim, "", "", "")
             Else
-                L_Grabar_Nit(tbnit.Text, "S/N", "")
+                L_Grabar_Nit(tbnit.Text, "S/N", "", "", "")
             End If
         End If
 

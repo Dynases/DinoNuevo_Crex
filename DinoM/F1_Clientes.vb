@@ -436,7 +436,11 @@ Public Class F1_Clientes
         '                                       _ydfnac As String, _ydnomfac As String,
         '                                       _ydtip As Integer, _ydnit As String, _ydfecing As String, _ydultvent As String, _ydimg As String
 
-        Dim res As Boolean = L_fnGrabarCLiente(tbCodigoOriginal.Text, tbCodCliente.Text, tbRazonSocial.Text, tbNombre.Text, NumiVendedor, cbZona.Value, cbTipoDoc.Value, tbNdoc.Text, tbDireccion.Text, tbTelf1.Text, tbTelf2.Text, cbCatPrec.Value, IIf(swEstado.Value = True, 1, 0), _latitud, _longitud, tbObs.Text, tbFnac.Value.ToString("yyyy/MM/dd"), tbNombFac.Text, _Tipo, tbNit.Text, Tbdias.Text, TbLCred.Text, tbFIngr.Value.ToString("yyyy/MM/dd"), tbUltVenta.Value.ToString("yyyy/MM/dd"), nameImg, cbVisita.Value)
+        Dim res As Boolean = L_fnGrabarCLiente(tbCodigoOriginal.Text, tbCodCliente.Text, tbRazonSocial.Text, tbNombre.Text, NumiVendedor, cbZona.Value, cbTipoDoc.Value,
+                                               tbNdoc.Text, tbDireccion.Text, tbTelf1.Text, tbTelf2.Text, cbCatPrec.Value, IIf(swEstado.Value = True, 1, 0),
+                                               _latitud, _longitud, tbObs.Text, tbFnac.Value.ToString("yyyy/MM/dd"), tbNombFac.Text, _Tipo, tbNit.Text, Tbdias.Text,
+                                               TbLCred.Text, tbFIngr.Value.ToString("yyyy/MM/dd"), tbUltVenta.Value.ToString("yyyy/MM/dd"), nameImg, cbVisita.Value,
+                                               "", "")
 
 
         If res Then

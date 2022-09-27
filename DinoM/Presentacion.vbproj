@@ -11,12 +11,13 @@
     <AssemblyName>DinoM</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publicar\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -173,13 +174,47 @@
     <Reference Include="Janus.Windows.UI.v3">
       <HintPath>C:\librerias\Janus\Janus.Windows.UI.v3.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.5.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="OnBarcode.Barcode.WinForms">
       <HintPath>C:\librerias\QrCode\OnBarcode.Barcode.WinForms.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\..\..\Sistemas Varios\DINO FACTURACION EDWIN\Dino_Nuevo\DinoM\bin\Debug\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.5.0.0\lib\net461\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.5.0.0\lib\net461\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
@@ -513,12 +548,35 @@
     <Compile Include="FO_Venta2Descu.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="F_ClienteNuevo.designer.vb">
+      <DependentUpon>F_ClienteNuevo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_ClienteNuevo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="KardexClienteRes.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>KardexClienteRes.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="modelosApi\AeconomicaResp.vb" />
+    <Compile Include="modelosApi\AnulacionEnvio.vb" />
+    <Compile Include="modelosApi\AnulacionResp.vb" />
+    <Compile Include="modelosApi\ConnSiat.vb" />
+    <Compile Include="modelosApi\DBApi.vb" />
+    <Compile Include="modelosApi\EmisorEnvio.vb" />
+    <Compile Include="modelosApi\EmisorResp.vb" />
+    <Compile Include="modelosApi\HomologEnvio.vb" />
+    <Compile Include="modelosApi\HomologResp.vb" />
+    <Compile Include="modelosApi\ListarPServResp.vb" />
+    <Compile Include="modelosApi\NitResp.vb" />
+    <Compile Include="modelosApi\LoginEnvio.vb" />
+    <Compile Include="modelosApi\LoginResp.vb" />
+    <Compile Include="modelosApi\Parametro.vb" />
+    <Compile Include="modelosApi\RespMetodosPago.vb" />
+    <Compile Include="modelosApi\RespTipoDoc.vb" />
+    <Compile Include="modelosApi\UmedidaResp.vb" />
     <Compile Include="NroCaja.Designer.vb">
       <DependentUpon>NroCaja.vb</DependentUpon>
     </Compile>
@@ -1113,6 +1171,12 @@
     <Compile Include="Utils\F_Inventario.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Utils\notifi.designer.vb">
+      <DependentUpon>notifi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\notifi.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Visualizador.Designer.vb">
       <DependentUpon>Visualizador.vb</DependentUpon>
     </Compile>
@@ -1273,6 +1337,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FO_Venta2Descu.resx">
       <DependentUpon>FO_Venta2Descu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_ClienteNuevo.resx">
+      <DependentUpon>F_ClienteNuevo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KardexClienteRes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -1641,6 +1708,9 @@
     <EmbeddedResource Include="Utils\F_Inventario.resx">
       <DependentUpon>F_Inventario.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Utils\notifi.resx">
+      <DependentUpon>notifi.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Visualizador.resx">
       <DependentUpon>Visualizador.vb</DependentUpon>
     </EmbeddedResource>
@@ -1678,6 +1748,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\addimg.png" />
   </ItemGroup>
   <ItemGroup>

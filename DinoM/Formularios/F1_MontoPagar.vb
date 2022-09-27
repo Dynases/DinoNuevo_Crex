@@ -218,7 +218,7 @@ Public Class F1_MontoPagar
         nom1 = ""
         nom2 = ""
         If (tbNit.Text.Trim <> String.Empty) Then
-            L_Validar_Nit(tbNit.Text.Trim, nom1, nom2)
+            L_Validar_Nit(tbNit.Text.Trim, nom1, nom2, "", "") ''falta validar
             If nom1 = "" Then
                 tbRazonSocial.Focus()
             Else

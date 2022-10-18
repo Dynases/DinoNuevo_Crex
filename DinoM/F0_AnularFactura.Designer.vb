@@ -26,11 +26,14 @@ Partial Class F0_AnularFactura
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F0_AnularFactura))
         Dim Background1 As DevComponents.DotNetBar.SuperGrid.Style.Background = New DevComponents.DotNetBar.SuperGrid.Style.Background()
         Dim Background2 As DevComponents.DotNetBar.SuperGrid.Style.Background = New DevComponents.DotNetBar.SuperGrid.Style.Background()
+        Dim CbMotivoA_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
         Me.TableLayoutPanelPrincipal = New System.Windows.Forms.TableLayoutPanel()
         Me.GroupPanelListaFactura = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.DgdFactura = New DevComponents.DotNetBar.SuperGrid.SuperGridControl()
         Me.GroupPanelDatosGenerales = New DevComponents.DotNetBar.Controls.GroupPanel()
         Me.PanelExDatosGenerales = New DevComponents.DotNetBar.PanelEx()
+        Me.CbMotivoA = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.LabelX25 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
         Me.Tb2NroFactura = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.Tb1Codigo = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -82,11 +85,13 @@ Partial Class F0_AnularFactura
         Me.GroupPanelListaFactura.SuspendLayout()
         Me.GroupPanelDatosGenerales.SuspendLayout()
         Me.PanelExDatosGenerales.SuspendLayout()
+        CType(Me.CbMotivoA, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControlPanel2.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelSuperior
         '
+        Me.PanelSuperior.Size = New System.Drawing.Size(1362, 72)
         Me.PanelSuperior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelSuperior.Style.BackColor1.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
         Me.PanelSuperior.Style.BackColor2.Color = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(45, Byte), Integer), CType(CType(150, Byte), Integer))
@@ -103,6 +108,8 @@ Partial Class F0_AnularFactura
         '
         'PanelInferior
         '
+        Me.PanelInferior.Location = New System.Drawing.Point(0, 702)
+        Me.PanelInferior.Size = New System.Drawing.Size(1362, 39)
         Me.PanelInferior.Style.Alignment = System.Drawing.StringAlignment.Center
         Me.PanelInferior.Style.BackColor1.Color = System.Drawing.Color.Transparent
         Me.PanelInferior.Style.BackColor2.Color = System.Drawing.Color.Transparent
@@ -150,6 +157,14 @@ Partial Class F0_AnularFactura
         '
         'btnModificar
         '
+        '
+        'PanelToolBar2
+        '
+        Me.PanelToolBar2.Location = New System.Drawing.Point(1282, 0)
+        '
+        'PanelPrincipal
+        '
+        Me.PanelPrincipal.Size = New System.Drawing.Size(1362, 741)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelInferior, 0)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelUsuario, 0)
         Me.PanelPrincipal.Controls.SetChildIndex(Me.PanelSuperior, 0)
@@ -168,21 +183,32 @@ Partial Class F0_AnularFactura
         'btnPrimero
         '
         '
+        'MPanelUserAct
+        '
+        Me.MPanelUserAct.Location = New System.Drawing.Point(1162, 0)
+        '
         'MRlAccion
         '
         '
         '
         '
         Me.MRlAccion.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.MRlAccion.Size = New System.Drawing.Size(906, 72)
         '
         'PanelContent
         '
         Me.PanelContent.Controls.Add(Me.TableLayoutPanelPrincipal)
         Me.PanelContent.Margin = New System.Windows.Forms.Padding(2)
+        Me.PanelContent.Size = New System.Drawing.Size(1329, 630)
+        '
+        'Panel1
+        '
+        Me.Panel1.Size = New System.Drawing.Size(1362, 630)
         '
         'MSuperTabControlPanel1
         '
         Me.MSuperTabControlPanel1.Margin = New System.Windows.Forms.Padding(2)
+        Me.MSuperTabControlPanel1.Size = New System.Drawing.Size(1329, 630)
         '
         'MSuperTabControl
         '
@@ -201,9 +227,14 @@ Partial Class F0_AnularFactura
         Me.MSuperTabControl.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.MSuperTabControl.ControlBox.MenuBox, Me.MSuperTabControl.ControlBox.CloseBox})
         Me.MSuperTabControl.Controls.Add(Me.SuperTabControlPanel2)
         Me.MSuperTabControl.SelectedTabIndex = 1
+        Me.MSuperTabControl.Size = New System.Drawing.Size(1362, 630)
         Me.MSuperTabControl.Tabs.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabItem1})
         Me.MSuperTabControl.Controls.SetChildIndex(Me.MSuperTabControlPanel1, 0)
         Me.MSuperTabControl.Controls.SetChildIndex(Me.SuperTabControlPanel2, 0)
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Location = New System.Drawing.Point(1089, 0)
         '
         'TableLayoutPanelPrincipal
         '
@@ -338,6 +369,8 @@ Partial Class F0_AnularFactura
         '
         Me.PanelExDatosGenerales.AutoScroll = True
         Me.PanelExDatosGenerales.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
+        Me.PanelExDatosGenerales.Controls.Add(Me.CbMotivoA)
+        Me.PanelExDatosGenerales.Controls.Add(Me.LabelX25)
         Me.PanelExDatosGenerales.Controls.Add(Me.LabelX1)
         Me.PanelExDatosGenerales.Controls.Add(Me.Tb2NroFactura)
         Me.PanelExDatosGenerales.Controls.Add(Me.Tb1Codigo)
@@ -377,6 +410,39 @@ Partial Class F0_AnularFactura
         Me.PanelExDatosGenerales.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText
         Me.PanelExDatosGenerales.Style.GradientAngle = 90
         Me.PanelExDatosGenerales.TabIndex = 27
+        '
+        'CbMotivoA
+        '
+        Me.CbMotivoA.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat
+        Me.CbMotivoA.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        CbMotivoA_DesignTimeLayout.LayoutString = resources.GetString("CbMotivoA_DesignTimeLayout.LayoutString")
+        Me.CbMotivoA.DesignTimeLayout = CbMotivoA_DesignTimeLayout
+        Me.CbMotivoA.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CbMotivoA.Location = New System.Drawing.Point(841, 88)
+        Me.CbMotivoA.Name = "CbMotivoA"
+        Me.CbMotivoA.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.CbMotivoA.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.CbMotivoA.SelectedIndex = -1
+        Me.CbMotivoA.SelectedItem = Nothing
+        Me.CbMotivoA.Size = New System.Drawing.Size(278, 22)
+        Me.CbMotivoA.TabIndex = 420
+        Me.CbMotivoA.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
+        '
+        'LabelX25
+        '
+        Me.LabelX25.BackColor = System.Drawing.Color.Transparent
+        '
+        '
+        '
+        Me.LabelX25.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
+        Me.LabelX25.Font = New System.Drawing.Font("Georgia", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelX25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
+        Me.LabelX25.Location = New System.Drawing.Point(722, 87)
+        Me.LabelX25.Name = "LabelX25"
+        Me.LabelX25.SingleLineColor = System.Drawing.SystemColors.Control
+        Me.LabelX25.Size = New System.Drawing.Size(115, 23)
+        Me.LabelX25.TabIndex = 421
+        Me.LabelX25.Text = "Motivo Anulación:"
         '
         'LabelX1
         '
@@ -462,12 +528,12 @@ Partial Class F0_AnularFactura
         Me.Bt1Guardar.Font = New System.Drawing.Font("Georgia", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Bt1Guardar.Image = Global.DinoM.My.Resources.Resources.OK
         Me.Bt1Guardar.ImageFixedSize = New System.Drawing.Size(40, 40)
-        Me.Bt1Guardar.Location = New System.Drawing.Point(715, 90)
+        Me.Bt1Guardar.Location = New System.Drawing.Point(725, 120)
         Me.Bt1Guardar.Name = "Bt1Guardar"
         Me.Bt1Guardar.Size = New System.Drawing.Size(226, 50)
         Me.Bt1Guardar.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled
         Me.Bt1Guardar.TabIndex = 24
-        Me.Bt1Guardar.Text = "Guardar"
+        Me.Bt1Guardar.Text = "ANULAR"
         Me.Bt1Guardar.TextColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(72, Byte), Integer), CType(CType(127, Byte), Integer))
         '
         'Tb2Fecha
@@ -895,6 +961,7 @@ Partial Class F0_AnularFactura
         Me.GroupPanelDatosGenerales.ResumeLayout(False)
         Me.PanelExDatosGenerales.ResumeLayout(False)
         Me.PanelExDatosGenerales.PerformLayout()
+        CType(Me.CbMotivoA, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControlPanel2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -935,4 +1002,6 @@ Partial Class F0_AnularFactura
     Friend WithEvents GroupPanelFactura As DevComponents.DotNetBar.Controls.GroupPanel
     Friend WithEvents SuperTabItem1 As DevComponents.DotNetBar.SuperTabItem
     Friend WithEvents Timer1 As Timer
+    Public WithEvents CbMotivoA As Janus.Windows.GridEX.EditControls.MultiColumnCombo
+    Friend WithEvents LabelX25 As DevComponents.DotNetBar.LabelX
 End Class

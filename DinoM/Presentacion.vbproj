@@ -548,6 +548,12 @@
     <Compile Include="FO_Venta2Descu.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="F_CiNitNuevo.designer.vb">
+      <DependentUpon>F_CiNitNuevo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_CiNitNuevo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F_ClienteNuevo.designer.vb">
       <DependentUpon>F_ClienteNuevo.vb</DependentUpon>
     </Compile>
@@ -575,6 +581,7 @@
     <Compile Include="modelosApi\LoginResp.vb" />
     <Compile Include="modelosApi\Parametro.vb" />
     <Compile Include="modelosApi\RespMetodosPago.vb" />
+    <Compile Include="modelosApi\RespMotivoAnulacion.vb" />
     <Compile Include="modelosApi\RespTipoDoc.vb" />
     <Compile Include="modelosApi\UmedidaResp.vb" />
     <Compile Include="NroCaja.Designer.vb">
@@ -1337,6 +1344,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FO_Venta2Descu.resx">
       <DependentUpon>FO_Venta2Descu.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_CiNitNuevo.resx">
+      <DependentUpon>F_CiNitNuevo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F_ClienteNuevo.resx">
       <DependentUpon>F_ClienteNuevo.vb</DependentUpon>

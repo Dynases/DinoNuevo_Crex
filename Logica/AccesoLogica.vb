@@ -500,14 +500,11 @@ Public Class AccesoLogica
         Return _resultado
     End Function
 
-    Public Shared Function L_fnModificarProducto(ByRef _yfnumi As String, _yfcprod As String,
-                                                 _yfcbarra As String, _yfcdprod1 As String,
-                                                 _yfcdprod2 As String, _yfgr1 As Integer, _yfgr2 As Integer,
-                                                 _yfgr3 As Integer, _yfgr4 As Integer, _yfMed As Integer,
-                                                 _yfumin As Integer, _yfusup As Integer, _yfvsup As Double,
-                                                 _yfsmin As Integer, _yfap As Integer, _yfimg As String,
-                                                 TY0051 As DataTable, _yfdetpro As String, _yfgr5 As String
-                                              ) As Boolean
+    Public Shared Function L_fnModificarProducto(ByRef _yfnumi As String, _yfcprod As String, _yfcbarra As String, _yfcdprod1 As String,
+                                                 _yfcdprod2 As String, _yfgr1 As Integer, _yfgr2 As Integer, _yfgr3 As Integer, _yfgr4 As Integer,
+                                                 _yfMed As Integer, _yfumin As Integer, _yfusup As Integer, _yfvsup As Double, _yfsmin As Integer,
+                                                 _yfap As Integer, _yfimg As String, TY0051 As DataTable, _yfdetpro As String, _yfgr5 As String,
+                                                  _ycodact As String, _ycodu As Integer, _ycodprosin As String, _ypreciosif As Double) As Boolean
         Dim _resultado As Boolean
 
         Dim _Tabla As DataTable
@@ -537,6 +534,12 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
         _listParam.Add(New Datos.DParametro("@yfdetpro", _yfdetpro))
         _listParam.Add(New Datos.DParametro("@yfgr5", _yfgr5))
+
+        _listParam.Add(New Datos.DParametro("@ycodact", _ycodact))
+        _listParam.Add(New Datos.DParametro("@ygcodu", _ycodu))
+        _listParam.Add(New Datos.DParametro("@ycodprosin", _ycodprosin))
+        _listParam.Add(New Datos.DParametro("@ypreciosif", _ypreciosif))
+
         _listParam.Add(New Datos.DParametro("@TY0051", "", TY0051))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
 
@@ -1678,7 +1681,7 @@ Public Class AccesoLogica
                                            _tamon As Integer, _taobs As String,
                                            _tadesc As Double, _taice As Double,
                                            _tatotal As Double, detalle As DataTable, _almacen As Integer, _taprforma As Integer, Monto As DataTable, _NroCaja As Integer,
-                                           _programa As String, _Nit As String, _Rsocial As String, _Correo As String, _TipoDoc As String) As Boolean
+                                           _programa As String, _Nit As String, _Rsocial As String, _Correo As String, _TipoDoc As String, _actualizar As Integer) As Boolean
         Dim _Tabla As DataTable
         Dim _resultado As Boolean
         Dim _listParam As New List(Of Datos.DParametro)
@@ -1707,6 +1710,7 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@correo", _Correo))
         _listParam.Add(New Datos.DParametro("@tipoDoc", _TipoDoc))
         _listParam.Add(New Datos.DParametro("@Rsocial", _Rsocial))
+        _listParam.Add(New Datos.DParametro("@actualizar", _actualizar))
         _listParam.Add(New Datos.DParametro("@TV0011", "", detalle))
         _listParam.Add(New Datos.DParametro("@TV0014", "", Monto))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
@@ -1939,6 +1943,15 @@ Public Class AccesoLogica
         _listParam.Add(New Datos.DParametro("@tipo", 22))
         _listParam.Add(New Datos.DParametro("@taNrocaja", _nrocaja))
         _listParam.Add(New Datos.DParametro("@anhio", _anhio))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+        Return _Tabla
+    End Function
+    Public Shared Function L_fnMostrarMontos2(tanumi As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 23))
+        _listParam.Add(New Datos.DParametro("@tanumi", tanumi))
         _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
         Return _Tabla
@@ -2790,7 +2803,7 @@ Public Class AccesoLogica
         Try
             Sql = IIf(_Fecha.Equals(""), "", "fvafec = '" + _Fecha + "', ") +
               IIf(_Nfact.Equals(""), "", "fvanfac = " + _Nfact + ", ") +
-              IIf(_NAutoriz.Equals(""), "", "fvaautoriz = " + _NAutoriz + ", ") +
+              IIf(_NAutoriz.Equals(""), "", "fvaautoriz = '" + _NAutoriz + "', ") +
               IIf(_Est.Equals(""), "", "fvaest = " + _Est) +
               IIf(_NitCli.Equals(""), "", "fvanitcli = '" + _NitCli + "', ") +
               IIf(_CodCli.Equals(""), "", "fvacodcli = " + _CodCli + ", ") +
@@ -2905,7 +2918,7 @@ Public Class AccesoLogica
         _Nom02 = ""
         Correo = ""
         TipoDoc = ""
-        L_Validar_Nit(_Nit, _Nom01, _Nom02, Correo, TipoDoc)
+        L_Validar_Nit(_Nit, _Nom01, _Nom02, Correo, TipoDoc, "")
 
         If _Nom01 = "" Then
             Sql = "'" + _Nit + "', '" + _Nom1 + "', '" + _Nom2 + "', '" + _TipoDoc + "','" + _Correo + "'"
@@ -2920,7 +2933,21 @@ Public Class AccesoLogica
 
     End Sub
 
-    Public Shared Sub L_Validar_Nit(_Nit As String, ByRef _Nom1 As String, ByRef _Nom2 As String, ByRef _Correo As String, ByRef _TipoDoc As String)
+    Public Shared Function L_Grabar_NitPrimero(_Nit As String, _Nom1 As String, _Nom2 As String, _TipoDoc As String, _Correo As String) As Boolean
+        Dim _Err As Boolean
+        Dim resultado As Boolean
+        Dim Sql As String
+
+        Sql = "'" + _Nit + "', '" + _Nom1 + "', '" + _Nom2 + "', '" + _TipoDoc + "','" + _Correo + "'"
+        _Err = D_Insertar_Datos("TS001", Sql)
+        If _Err = False Then
+            resultado = True
+        Else
+            resultado = False
+        End If
+        Return resultado
+    End Function
+    Public Shared Sub L_Validar_Nit(_Nit As String, ByRef _Nom1 As String, ByRef _Nom2 As String, ByRef _Correo As String, ByRef _TipoDoc As String, ByRef _Id As String)
         Dim _Tabla As DataTable
 
         _Tabla = D_Datos_Tabla("*", "TS001", "sanit = '" + _Nit + "'")
@@ -2930,6 +2957,7 @@ Public Class AccesoLogica
             _Nom2 = IIf(_Tabla.Rows(0).Item(3).ToString.Trim.Equals(""), "", _Tabla.Rows(0).Item(3))
             _Correo = _Tabla.Rows(0).Item(5)
             _TipoDoc = _Tabla.Rows(0).Item(4)
+            _Id = _Tabla.Rows(0).Item(0)
         End If
     End Sub
 

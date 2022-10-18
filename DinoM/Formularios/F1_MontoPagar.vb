@@ -10,6 +10,10 @@ Imports GMap.NET.WindowsForms.ToolTips
 Imports System.Drawing
 Imports DevComponents.DotNetBar.Controls
 Imports Logica.AccesoLogica
+
+'importando librerias api conexion
+Imports Newtonsoft.Json
+Imports System.Xml
 Public Class F1_MontoPagar
 
     Public TotalVenta As Double
@@ -20,7 +24,9 @@ Public Class F1_MontoPagar
     Public Nit As String = ""
     Public RazonSocial As String = ""
     Public TipoCambio As Double = 0
-
+    Public tipoDoc As ComboBox
+    Public email As String = ""
+    Public IdNit As String = ""
 
     Private Sub F1_MontoPagar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _prCargarComboLibreria(cbCambioDolar, 7, 1)
@@ -37,8 +43,14 @@ Public Class F1_MontoPagar
         tbNit.Text = Nit
         tbRazonSocial.Text = RazonSocial
 
+        chbTarjeta.Checked = False
+        tbNroTarjeta.Text = ""
+        lbNroTarjeta.Visible = False
+        tbNroTarjeta.Visible = False
+        lbEjemplo.Visible = False
 
         'tbNit.Focus()
+
     End Sub
     Private Sub _prCargarComboLibreria(mCombo As Janus.Windows.GridEX.EditControls.MultiColumnCombo, cod1 As String, cod2 As String)
         Dim dt As New DataTable
@@ -214,29 +226,66 @@ Public Class F1_MontoPagar
     End Sub
 
     Private Sub tbNit_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tbNit.Validating
-        Dim nom1, nom2 As String
+        Dim nom1, nom2, correo, tipoDoc, id As String
         nom1 = ""
         nom2 = ""
+        correo = ""
+        tipoDoc = ""
+        id = ""
         If (tbNit.Text.Trim <> String.Empty) Then
-            L_Validar_Nit(tbNit.Text.Trim, nom1, nom2, "", "") ''falta validar
+            L_Validar_Nit(tbNit.Text.Trim, nom1, nom2, correo, tipoDoc, id) ''falta validar
             If nom1 = "" Then
-                tbRazonSocial.Focus()
+                CiNitNuevo()
+                'tbRazonSocial.Focus()
+                L_Validar_Nit(tbNit.Text.Trim, nom1, nom2, correo, tipoDoc, id)
+                IdNit = id
             Else
-                tbRazonSocial.Text = nom1 + nom2
-
+                tbRazonSocial.Text = nom1
+                TbEmail.Text = correo
+                CbTipoDoc.Value = tipoDoc
+                IdNit = id
             End If
         End If
     End Sub
+    Private Sub CiNitNuevo()
+        Dim frm As New F_CiNitNuevo
+        Dim dt As DataTable
+        frm.tbNit.Text = tbNit.Text
+        With frm.CbTDoc
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("codigoClasificador").Width = 70
+            .DropDownList.Columns("codigoClasificador").Caption = "COD"
+            .DropDownList.Columns.Add("descripcion").Width = 500
+            .DropDownList.Columns("descripcion").Caption = "DESCRIPCION"
+            .ValueMember = "codigoClasificador"
+            .DisplayMember = "descripcion"
+            .DataSource = CbTipoDoc.DataSource
+            .Refresh()
+        End With
+        frm.CbTDoc.Value = CbTipoDoc.Value
+        frm.ShowDialog()
 
+
+        If (frm.Cliente = True) Then '
+
+            tbRazonSocial.Text = frm.Razonsocial
+            TbEmail.Text = frm.Correo
+            CbTipoDoc.Value = frm.CbTDoc.Value
+            'dt = L_fnObtenerClientesporRazonSocialNit(frm.Razonsocial, frm.Nit)
+            'If (dt.Rows.Count > 0) Then
+
+            'End If
+        End If
+    End Sub
     Private Sub tbRazonSocial_KeyDown(sender As Object, e As KeyEventArgs) Handles tbRazonSocial.KeyDown
         If (e.KeyData = Keys.Up) Then
             tbNit.Focus()
         End If
         If (e.KeyData = Keys.Down) Then
-            tbMontoBs.Focus()
+            TbEmail.Focus()
         End If
         If (e.KeyData = Keys.Enter) Then
-            tbMontoBs.Focus()
+            TbEmail.Focus()
         End If
 
         If (e.KeyData = Keys.Control + Keys.S) Then
@@ -284,6 +333,28 @@ Public Class F1_MontoPagar
             ToastNotification.Show(Me, "Debe Ingresar Nit y Razón Social obligatoriamente!!!", My.Resources.WARNING, 3500, eToastGlowColor.Red, eToastPosition.TopCenter)
             Exit Sub
         End If
+        If (CbTipoDoc.SelectedIndex < 0) Then
+            ToastNotification.Show(Me, "Por Favor Seleccione Tipo de Documento!!!", My.Resources.WARNING, 3500, eToastGlowColor.Red, eToastPosition.TopCenter)
+            CbTipoDoc.Focus()
+            Exit Sub
+        End If
+        If (CbTipoDoc.Value = 5) Then ''El tipo de Doc. es Nit
+
+            Dim tokenSifac As String = F0_VentasSupermercado.ObtToken()
+            Dim Succes As Integer = F0_VentasSupermercado.VerificarNit(tokenSifac, tbNit.Text)
+            If Succes <> 200 Then
+                Exit Sub
+            End If
+        End If
+        If (chbTarjeta.Checked = True) Then
+
+            If tbNroTarjeta.Text = String.Empty Or tbNroTarjeta.Text = "0" Then
+                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                ToastNotification.Show(Me, "Debe colocar el Nro. de Tarjeta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                tbNroTarjeta.Focus()
+                Exit Sub
+            End If
+        End If
 
         If (tbMontoTarej.Value + (tbMontoDolar.Value * cbCambioDolar.Text) + tbMontoBs.Value >= TotalVenta) Then
             Bandera = True
@@ -293,6 +364,8 @@ Public Class F1_MontoPagar
             Nit = tbNit.Text
             RazonSocial = tbRazonSocial.Text
             TipoCambio = cbCambioDolar.Text
+            'tipoDoc = CbTipoDoc.Value
+            'email = TbEmail.Text
             Me.Close()
 
         Else
@@ -320,11 +393,18 @@ Public Class F1_MontoPagar
             tbMontoBs.Enabled = False
             tbMontoDolar.Enabled = False
             tbMontoTarej.IsInputReadOnly = True
+            lbNroTarjeta.Visible = True
+            tbNroTarjeta.Visible = True
+            lbEjemplo.Visible = True
+
             tbMontoTarej.Focus()
         Else
             tbMontoBs.Enabled = True
             tbMontoDolar.Enabled = True
             tbMontoTarej.Value = 0
+            lbNroTarjeta.Visible = False
+            tbNroTarjeta.Visible = False
+            lbEjemplo.Visible = False
         End If
     End Sub
 
@@ -359,5 +439,22 @@ Public Class F1_MontoPagar
         Else
             e.Handled = True
         End If
+    End Sub
+
+
+    Private Sub TbEmail_KeyDown(sender As Object, e As KeyEventArgs) Handles TbEmail.KeyDown
+        If (e.KeyData = Keys.Up) Then
+            tbRazonSocial.Focus()
+        End If
+        If (e.KeyData = Keys.Down) Then
+            tbMontoBs.Focus()
+        End If
+        If (e.KeyData = Keys.Enter) Then
+            tbMontoBs.Focus()
+        End If
+    End Sub
+
+    Private Sub tbNroTarjeta_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbNroTarjeta.KeyPress
+        g_prValidarTextBox(1, e)
     End Sub
 End Class

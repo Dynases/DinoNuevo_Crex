@@ -1,10 +1,10 @@
 ﻿
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class F_ClienteNuevo
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+Partial Class F_CiNitNuevo
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -21,13 +21,11 @@ Partial Class F_ClienteNuevo
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim CbTDoc_DesignTimeLayout As Janus.Windows.GridEX.GridEXLayout = New Janus.Windows.GridEX.GridEXLayout()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F_ClienteNuevo))
-        Me.tbNombre = New DevComponents.DotNetBar.Controls.TextBoxX()
-        Me.LabelX6 = New DevComponents.DotNetBar.LabelX()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F_CiNitNuevo))
         Me.tbNit = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX20 = New DevComponents.DotNetBar.LabelX()
         Me.tbRazonSocial = New DevComponents.DotNetBar.Controls.TextBoxX()
@@ -42,42 +40,13 @@ Partial Class F_ClienteNuevo
         Me.MFlyoutUsuario = New DevComponents.DotNetBar.Controls.Flyout(Me.components)
         Me.TbEmailN = New DevComponents.DotNetBar.Controls.TextBoxX()
         Me.LabelX1 = New DevComponents.DotNetBar.LabelX()
-        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.CbTDoc = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
+        Me.LabelX2 = New DevComponents.DotNetBar.LabelX()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CbTDoc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'tbNombre
-        '
-        Me.tbNombre.AcceptsTab = True
-        '
-        '
-        '
-        Me.tbNombre.Border.Class = "TextBoxBorder"
-        Me.tbNombre.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.tbNombre.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbNombre.Location = New System.Drawing.Point(215, 96)
-        Me.tbNombre.Name = "tbNombre"
-        Me.tbNombre.PreventEnterBeep = True
-        Me.tbNombre.Size = New System.Drawing.Size(296, 22)
-        Me.tbNombre.TabIndex = 0
-        '
-        'LabelX6
-        '
-        Me.LabelX6.BackColor = System.Drawing.SystemColors.Control
-        '
-        '
-        '
-        Me.LabelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
-        Me.LabelX6.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX6.Location = New System.Drawing.Point(92, 95)
-        Me.LabelX6.Name = "LabelX6"
-        Me.LabelX6.Size = New System.Drawing.Size(85, 23)
-        Me.LabelX6.TabIndex = 145
-        Me.LabelX6.Text = "NOMBRE:"
         '
         'tbNit
         '
@@ -87,7 +56,7 @@ Partial Class F_ClienteNuevo
         Me.tbNit.Border.Class = "TextBoxBorder"
         Me.tbNit.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbNit.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbNit.Location = New System.Drawing.Point(215, 151)
+        Me.tbNit.Location = New System.Drawing.Point(214, 120)
         Me.tbNit.Name = "tbNit"
         Me.tbNit.PreventEnterBeep = True
         Me.tbNit.ReadOnly = True
@@ -102,7 +71,7 @@ Partial Class F_ClienteNuevo
         '
         Me.LabelX20.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX20.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX20.Location = New System.Drawing.Point(92, 150)
+        Me.LabelX20.Location = New System.Drawing.Point(92, 118)
         Me.LabelX20.Name = "LabelX20"
         Me.LabelX20.Size = New System.Drawing.Size(69, 23)
         Me.LabelX20.TabIndex = 153
@@ -116,7 +85,7 @@ Partial Class F_ClienteNuevo
         Me.tbRazonSocial.Border.Class = "TextBoxBorder"
         Me.tbRazonSocial.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.tbRazonSocial.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.tbRazonSocial.Location = New System.Drawing.Point(215, 124)
+        Me.tbRazonSocial.Location = New System.Drawing.Point(214, 152)
         Me.tbRazonSocial.Name = "tbRazonSocial"
         Me.tbRazonSocial.PreventEnterBeep = True
         Me.tbRazonSocial.Size = New System.Drawing.Size(296, 22)
@@ -130,7 +99,7 @@ Partial Class F_ClienteNuevo
         '
         Me.LabelX19.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX19.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX19.Location = New System.Drawing.Point(92, 121)
+        Me.LabelX19.Location = New System.Drawing.Point(92, 149)
         Me.LabelX19.Name = "LabelX19"
         Me.LabelX19.Size = New System.Drawing.Size(99, 23)
         Me.LabelX19.TabIndex = 152
@@ -171,7 +140,7 @@ Partial Class F_ClienteNuevo
         Me.ReflectionLabel1.Name = "ReflectionLabel1"
         Me.ReflectionLabel1.Size = New System.Drawing.Size(242, 53)
         Me.ReflectionLabel1.TabIndex = 0
-        Me.ReflectionLabel1.Text = "<b><font size=""12""><font color=""#313b42"">CREAR NUEVO CLIENTE</font></font></b>"
+        Me.ReflectionLabel1.Text = "<b><font size=""12""><font color=""#313b42"">CREAR NUEVO CI/NIT</font></font></b>"
         '
         'btnguardar
         '
@@ -235,7 +204,7 @@ Partial Class F_ClienteNuevo
         Me.TbEmailN.Border.Class = "TextBoxBorder"
         Me.TbEmailN.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.TbEmailN.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TbEmailN.Location = New System.Drawing.Point(215, 207)
+        Me.TbEmailN.Location = New System.Drawing.Point(214, 182)
         Me.TbEmailN.Name = "TbEmailN"
         Me.TbEmailN.PreventEnterBeep = True
         Me.TbEmailN.Size = New System.Drawing.Size(296, 22)
@@ -249,11 +218,28 @@ Partial Class F_ClienteNuevo
         '
         Me.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX1.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX1.Location = New System.Drawing.Point(92, 206)
+        Me.LabelX1.Location = New System.Drawing.Point(93, 182)
         Me.LabelX1.Name = "LabelX1"
         Me.LabelX1.Size = New System.Drawing.Size(69, 23)
         Me.LabelX1.TabIndex = 165
         Me.LabelX1.Text = "EMAIL:"
+        '
+        'CbTDoc
+        '
+        Me.CbTDoc.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat
+        Me.CbTDoc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        CbTDoc_DesignTimeLayout.LayoutString = resources.GetString("CbTDoc_DesignTimeLayout.LayoutString")
+        Me.CbTDoc.DesignTimeLayout = CbTDoc_DesignTimeLayout
+        Me.CbTDoc.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CbTDoc.Location = New System.Drawing.Point(214, 87)
+        Me.CbTDoc.Name = "CbTDoc"
+        Me.CbTDoc.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
+        Me.CbTDoc.Office2007CustomColor = System.Drawing.Color.DodgerBlue
+        Me.CbTDoc.SelectedIndex = -1
+        Me.CbTDoc.SelectedItem = Nothing
+        Me.CbTDoc.Size = New System.Drawing.Size(295, 23)
+        Me.CbTDoc.TabIndex = 422
+        Me.CbTDoc.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
         '
         'LabelX2
         '
@@ -263,30 +249,13 @@ Partial Class F_ClienteNuevo
         '
         Me.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square
         Me.LabelX2.Font = New System.Drawing.Font("Arial", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelX2.Location = New System.Drawing.Point(92, 177)
+        Me.LabelX2.Location = New System.Drawing.Point(93, 87)
         Me.LabelX2.Name = "LabelX2"
         Me.LabelX2.Size = New System.Drawing.Size(116, 23)
-        Me.LabelX2.TabIndex = 425
+        Me.LabelX2.TabIndex = 423
         Me.LabelX2.Text = "TIPO DOCUMENTO:"
         '
-        'CbTDoc
-        '
-        Me.CbTDoc.BorderStyle = Janus.Windows.GridEX.BorderStyle.Flat
-        Me.CbTDoc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        CbTDoc_DesignTimeLayout.LayoutString = resources.GetString("CbTDoc_DesignTimeLayout.LayoutString")
-        Me.CbTDoc.DesignTimeLayout = CbTDoc_DesignTimeLayout
-        Me.CbTDoc.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CbTDoc.Location = New System.Drawing.Point(215, 178)
-        Me.CbTDoc.Name = "CbTDoc"
-        Me.CbTDoc.Office2007ColorScheme = Janus.Windows.GridEX.Office2007ColorScheme.Custom
-        Me.CbTDoc.Office2007CustomColor = System.Drawing.Color.DodgerBlue
-        Me.CbTDoc.SelectedIndex = -1
-        Me.CbTDoc.SelectedItem = Nothing
-        Me.CbTDoc.Size = New System.Drawing.Size(295, 23)
-        Me.CbTDoc.TabIndex = 424
-        Me.CbTDoc.VisualStyle = Janus.Windows.GridEX.VisualStyle.Office2007
-        '
-        'F_ClienteNuevo
+        'F_CiNitNuevo
         '
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.ClientSize = New System.Drawing.Size(555, 333)
@@ -301,10 +270,8 @@ Partial Class F_ClienteNuevo
         Me.Controls.Add(Me.LabelX20)
         Me.Controls.Add(Me.tbRazonSocial)
         Me.Controls.Add(Me.LabelX19)
-        Me.Controls.Add(Me.tbNombre)
-        Me.Controls.Add(Me.LabelX6)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "F_ClienteNuevo"
+        Me.Name = "F_CiNitNuevo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "CREAR NUEVO CLIENTE"
         Me.Panel1.ResumeLayout(False)
@@ -315,8 +282,6 @@ Partial Class F_ClienteNuevo
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents tbNombre As DevComponents.DotNetBar.Controls.TextBoxX
-    Friend WithEvents LabelX6 As DevComponents.DotNetBar.LabelX
     Friend WithEvents tbNit As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents LabelX20 As DevComponents.DotNetBar.LabelX
     Friend WithEvents tbRazonSocial As DevComponents.DotNetBar.Controls.TextBoxX
@@ -331,6 +296,6 @@ Partial Class F_ClienteNuevo
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents TbEmailN As DevComponents.DotNetBar.Controls.TextBoxX
     Friend WithEvents LabelX1 As DevComponents.DotNetBar.LabelX
-    Friend WithEvents LabelX2 As DevComponents.DotNetBar.LabelX
     Public WithEvents CbTDoc As Janus.Windows.GridEX.EditControls.MultiColumnCombo
+    Friend WithEvents LabelX2 As DevComponents.DotNetBar.LabelX
 End Class

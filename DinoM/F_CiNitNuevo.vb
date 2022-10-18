@@ -4,10 +4,11 @@ Imports Janus.Windows.GridEX
 Imports DevComponents.DotNetBar
 Imports System.IO
 Imports DevComponents.DotNetBar.SuperGrid
-Imports Presentacion.F1_ServicioVenta
 
-Public Class F_ClienteNuevo
-    Dim TableVehiculo As DataTable
+
+
+Public Class F_CiNitNuevo
+
     Public Razonsocial As String = ""
     Public Nit As String = ""
     Public Correo As String = ""
@@ -15,24 +16,24 @@ Public Class F_ClienteNuevo
     Public Cliente As Boolean = False
 
 
-    Public Sub _priniciarTodo()
 
-        tbNombre.CharacterCasing = CharacterCasing.Upper
+    Public Sub _priniciarTodo()
         tbRazonSocial.CharacterCasing = CharacterCasing.Upper
         tbNit.CharacterCasing = CharacterCasing.Upper
+
         _LengthTextBox()
     End Sub
     Public Sub _LengthTextBox()
-        tbNombre.MaxLength = 50
         tbRazonSocial.MaxLength = 200
         tbNit.MaxLength = 20
+        TbEmailN.MaxLength = 200
     End Sub
 
     Public Sub _prHabilitarFocus()
         With MHighlighterFocus
-            .SetHighlightOnFocus(tbNombre, DevComponents.DotNetBar.Validator.eHighlightColor.Blue)
             .SetHighlightOnFocus(tbRazonSocial, DevComponents.DotNetBar.Validator.eHighlightColor.Blue)
             .SetHighlightOnFocus(tbNit, DevComponents.DotNetBar.Validator.eHighlightColor.Blue)
+            .SetHighlightOnFocus(TbEmailN, DevComponents.DotNetBar.Validator.eHighlightColor.Blue)
             .SetHighlightOnFocus(btnguardar, DevComponents.DotNetBar.Validator.eHighlightColor.Blue)
             .SetHighlightOnFocus(btnsalir, DevComponents.DotNetBar.Validator.eHighlightColor.Blue)
         End With
@@ -41,14 +42,7 @@ Public Class F_ClienteNuevo
         Dim _ok As Boolean = True
         MEP.Clear()
 
-        If tbNombre.Text = String.Empty Then
-            tbNombre.BackColor = Color.Red
-            MEP.SetError(tbNombre, "Ingrese nombre del cliente!".ToUpper)
-            _ok = False
-        Else
-            tbNombre.BackColor = Color.White
-            MEP.SetError(tbNombre, "")
-        End If
+
         If tbRazonSocial.Text = String.Empty Then
             tbRazonSocial.BackColor = Color.Red
             MEP.SetError(tbRazonSocial, "Ingrese Razón Social!".ToUpper)
@@ -65,6 +59,17 @@ Public Class F_ClienteNuevo
             tbNit.BackColor = Color.White
             MEP.SetError(tbNit, "")
         End If
+        'If TbEmailN.Text = String.Empty Then
+        '    TbEmailN.BackColor = Color.Red
+        '    MEP.SetError(TbEmailN, "Ingrese Correo Electrónico!".ToUpper)
+        '    _ok = False
+        'Else
+        '    TbEmailN.BackColor = Color.White
+        '    MEP.SetError(TbEmailN, "")
+
+        '    MHighlighterFocus.UpdateHighlights()
+        'End If
+
         If (CbTDoc.SelectedIndex < 0) Then
             CbTDoc.BackColor = Color.Red
             MEP.SetError(CbTDoc, "Por Favor Seleccione Tipo de Documento!!!".ToUpper)
@@ -78,16 +83,16 @@ Public Class F_ClienteNuevo
             TbEmailN.Text = "cliente@crex.com.bo"
         End If
 
-        'If TbEmailN.Text = String.Empty Then
-        '    TbEmailN.BackColor = Color.Red
-        '    MEP.SetError(TbEmailN, "Ingrese Correo Electrónico!".ToUpper)
-        '    _ok = False
-        'Else
-        '    TbEmailN.BackColor = Color.White
-        '    MEP.SetError(TbEmailN, "")
+        If (CbTDoc.Value = 5) Then ''El tipo de Doc. es Nit
 
-        '    MHighlighterFocus.UpdateHighlights()
-        'End If
+            Dim tokenSifac As String = F0_VentasSupermercado.ObtToken()
+            Dim Succes As Integer = F0_VentasSupermercado.VerificarNit(tokenSifac, tbNit.Text)
+            If Succes <> 200 Then
+                _ok = False
+            End If
+
+        End If
+
         Return _ok
 
     End Function
@@ -101,15 +106,16 @@ Public Class F_ClienteNuevo
     Private Sub btnguardar_Click(sender As Object, e As EventArgs) Handles btnguardar.Click
         If (_prValidar()) Then
 
-            Dim res As Boolean = L_fnGrabarCLiente("", "", tbRazonSocial.Text, tbNombre.Text, 1, 1, CbTDoc.Value, "", "", "", "", 1100, 1, 0, 0, "", Now.Date.ToString("yyyy/MM/dd"),
-                                                   tbRazonSocial.Text, 1, tbNit.Text, 0, 0, Now.Date.ToString("yyyy/MM/dd"),
-                                                   Now.Date.ToString("yyyy/MM/dd"), "Default.jpg", 1, TbEmailN.Text, CbTDoc.Value)
+
+            Dim res As Boolean = L_Grabar_NitPrimero(tbNit.Text, tbRazonSocial.Text, "", CbTDoc.Value, TbEmailN.Text)
+
             If res Then
-                ToastNotification.Show(Me, "El Cliente : ".ToUpper + tbNombre.Text + " Grabado con Exito.".ToUpper, My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.TopCenter)
+                ToastNotification.Show(Me, "Los datos se grabarono con éxito.".ToUpper, My.Resources.GRABACION_EXITOSA, 5000, eToastGlowColor.Green, eToastPosition.TopCenter)
                 Cliente = True
                 Razonsocial = tbRazonSocial.Text
                 Nit = tbNit.Text
                 Correo = TbEmailN.Text
+
 
                 Me.Close()
             End If
@@ -129,7 +135,7 @@ Public Class F_ClienteNuevo
         End If
     End Sub
 
-    Private Sub tbNombre_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbNombre.KeyPress
+    Private Sub tbNombre_KeyPress(sender As Object, e As KeyPressEventArgs)
         HabilitarEnter(sender, e)
     End Sub
 
@@ -140,4 +146,7 @@ Public Class F_ClienteNuevo
     Private Sub TbEmailN_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbEmailN.KeyPress
         HabilitarEnter(sender, e)
     End Sub
+
+
+
 End Class

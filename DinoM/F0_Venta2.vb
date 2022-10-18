@@ -207,6 +207,8 @@ Public Class F0_Venta2
         tbMontoBs.IsInputReadOnly = True
         tbMontoDolar.IsInputReadOnly = True
         tbMontoTarej.IsInputReadOnly = True
+        tbNroTarjeta.ReadOnly = True
+        chbTarjeta.Enabled = False
         'txtCambio1.IsInputReadOnly = True
 
         'txtMontoPagado1.IsInputReadOnly = True
@@ -255,6 +257,8 @@ Public Class F0_Venta2
         tbMontoBs.IsInputReadOnly = False
         tbMontoDolar.IsInputReadOnly = False
         tbMontoTarej.IsInputReadOnly = False
+        tbNroTarjeta.ReadOnly = False
+        chbTarjeta.Enabled = True
         'tbMdesc.IsInputReadOnly = False
 
         'txtCambio1.IsInputReadOnly = False
@@ -319,6 +323,12 @@ Public Class F0_Venta2
         txtMontoPagado1.Text = "0.00"
         tbTotalBs.Text = "0.00"
         tbTotalDo.Text = "0.00"
+        chbTarjeta.Checked = False
+        tbNroTarjeta.Text = ""
+        lbNroTarjeta.Visible = False
+        tbNroTarjeta.Visible = False
+
+
 
         txtEstado.BackColor = Color.White
         txtEstado.Clear()
@@ -430,6 +440,7 @@ Public Class F0_Venta2
             cbCambioDolar.Text = tMonto.Rows(0).Item("tgCambioDol").ToString
             tbMontoBs.Value = tMonto.Rows(0).Item("tgMontBs").ToString
             tbMontoDolar.Value = tMonto.Rows(0).Item("tgMontDol").ToString
+            tbNroTarjeta.Text = tMonto.Rows(0).Item("tgNroTarjeta").ToString
 
             txtMontoPagado1.Text = tbMontoBs.Value + (tbMontoDolar.Value * IIf(cbCambioDolar.Text = "", 0, Convert.ToDecimal(cbCambioDolar.Text))) + tbMontoTarej.Value
 
@@ -438,6 +449,18 @@ Public Class F0_Venta2
             Else
                 txtCambio1.Text = "0.00"
             End If
+            If tMonto.Rows(0).Item("tgMontTare") > 0 Then
+                chbTarjeta.Checked = True
+                lbNroTarjeta.Visible = True
+                tbNroTarjeta.Visible = True
+                lbEjemplo.Visible = True
+            Else
+                chbTarjeta.Checked = False
+                lbNroTarjeta.Visible = False
+                tbNroTarjeta.Visible = False
+                lbEjemplo.Visible = False
+            End If
+
         End If
         LblPaginacion.Text = Str(grVentas.Row + 1) + "/" + grVentas.RowCount.ToString
 
@@ -1051,6 +1074,9 @@ Public Class F0_Venta2
             .Visible = False
             .Caption = "Codsin"
         End With
+        With grProductos.RootTable.Columns("ygcodu")
+            .Visible = False
+        End With
         With grProductos
             .DefaultFilterRowComparison = FilterConditionOperator.Contains
             .FilterMode = FilterMode.Automatic
@@ -1422,17 +1448,23 @@ Public Class F0_Venta2
                 Return False
             End If
             If (CbTipoDoc.Value = 5) Then ''El tipo de Doc. es Nit
-                'Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                'ToastNotification.Show(Me, "Por Favor Seleccione una Sucursal".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
 
                 Dim tokenSifac As String = F0_Venta2.ObtToken()
-
-
                 Dim Succes As Integer = VerificarNit(tokenSifac)
                 If Succes <> 200 Then
                     Return False
                 End If
 
+            End If
+            If (chbTarjeta.Checked = True) Then
+
+                If tbNroTarjeta.Text = String.Empty Or tbNroTarjeta.Text = "0" Then
+                    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                    ToastNotification.Show(Me, "Debe colocar el Nro. de Tarjeta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    tbNroTarjeta.Focus()
+
+                    Return False
+                End If
 
             End If
 
@@ -1480,7 +1512,7 @@ Public Class F0_Venta2
 
     End Function
     Private Sub _prInsertarMontoNuevo(ByRef tabla As DataTable)
-        tabla.Rows.Add(0, tbMontoBs.Value, tbMontoDolar.Value, tbMontoTarej.Value, cbCambioDolar.Text, 0)
+        tabla.Rows.Add(0, tbMontoBs.Value, tbMontoDolar.Value, tbMontoTarej.Value, cbCambioDolar.Text, tbNroTarjeta.Text, 0)
     End Sub
     Private Sub _prInsertarMontoModificar(ByRef tabla As DataTable)
         tabla.Rows.Add(tbCodigo.Text, tbMontoBs.Value, tbMontoDolar.Value, tbMontoTarej.Value, cbCambioDolar.Text, 2)
@@ -1639,9 +1671,11 @@ Public Class F0_Venta2
     Public Sub _GuardarNuevo()
         Try
             Dim numi As String = ""
-            Dim tabla As DataTable = L_fnMostrarMontos(0)
+            Dim tabla As DataTable = L_fnMostrarMontos2(0)
             Dim factura = gb_FacturaEmite
             _prInsertarMontoNuevo(tabla)
+
+
             ''Verifica si existe estock para los productos
             'If _prExisteStockParaProducto() Then
 
@@ -1650,7 +1684,7 @@ Public Class F0_Venta2
             Dim res As Boolean = L_fnGrabarVenta(numi, "", tbFechaVenta.Value.ToString("yyyy/MM/dd"), _CodEmpleado, IIf(swTipoVenta.Value = True, 1, 0), IIf(swTipoVenta.Value = True,
                                                 Now.Date.ToString("yyyy/MM/dd"), tbFechaVenc.Value.ToString("yyyy/MM/dd")), _CodCliente, IIf(swMoneda.Value = True, 1, 0),
                                                 tbObservacion.Text, tbMdesc.Value, tbIce.Value, tbTotalBs.Text, dtDetalle, cbSucursal.Value, 0, tabla, gs_NroCaja, Programa,
-                                                tbNit.Text, TbNombre1.Text, TbEmail.Text, CbTipoDoc.Value)
+                                                tbNit.Text, TbNombre1.Text, TbEmail.Text, CbTipoDoc.Value, 1)
             If res Then
                 'res = P_fnGrabarFacturarTFV001(numi)
                 'Emite factura
@@ -1665,14 +1699,13 @@ Public Class F0_Venta2
                     _prImiprimirNotaVenta(numi)
                 End If
 
-                System.Diagnostics.Process.Start(FactUrl)
-
                 Dim img As Bitmap = New Bitmap(My.Resources.checked, 50, 50)
                 ToastNotification.Show(Me, "Código de Venta ".ToUpper + tbCodigo.Text + " Grabado con Exito.".ToUpper,
                                           img, 2000,
                                           eToastGlowColor.Green,
                                           eToastPosition.TopCenter
                                           )
+                System.Diagnostics.Process.Start(FactUrl)
 
                 _prCargarVenta()
                 _Limpiar()
@@ -2655,7 +2688,9 @@ Public Class F0_Venta2
         PanelNavegacion.Enabled = False
         btnBitacora.Enabled = True
         SwDescuentoProveedor.Enabled = True
-        tbNit.Select()
+
+        tbCliente.Select()
+        'tbNit.Select()
     End Sub
     Private Sub btnSalir_Click(sender As Object, e As EventArgs) Handles btnSalir.Click
         _prSalir()
@@ -2685,6 +2720,7 @@ Public Class F0_Venta2
                 listEstCeldas.Add(New Modelo.Celda("ydnomfac", False, "Nombre Factura", 50))
                 listEstCeldas.Add(New Modelo.Celda("ydnit", False, "Nit/CI", 50))
                 listEstCeldas.Add(New Modelo.Celda("email", False, "Email", 50))
+                listEstCeldas.Add(New Modelo.Celda("yddct", False, "Tipodoc", 50))
                 Dim ef = New Efecto
                 ef.tipo = 3
                 ef.dt = dt
@@ -2705,6 +2741,7 @@ Public Class F0_Venta2
                     tbNit.Text = Row.Cells("ydnit").Value
                     TbNombre1.Text = Row.Cells("ydnomfac").Value
                     TbEmail.Text = Row.Cells("email").Value
+                    CbTipoDoc.Value = Row.Cells("yddct").Value.ToString
 
                     Dim numiVendedor As Integer = IIf(IsDBNull(Row.Cells("ydnumivend").Value), 0, Row.Cells("ydnumivend").Value)
                     If (numiVendedor > 0) Then
@@ -3843,7 +3880,7 @@ salirIf:
             correo = ""
             tipoDoc = ""
             If (tbNit.Text.Trim <> String.Empty) Then
-                L_Validar_Nit(tbNit.Text.Trim, nom1, nom2, correo, tipoDoc)
+                L_Validar_Nit(tbNit.Text.Trim, nom1, nom2, correo, tipoDoc, "")
 
                 If nom1 = "" Then
                     ClienteNuevo()
@@ -3888,6 +3925,11 @@ salirIf:
 
                 Dim url As String = "https://www.pilotocrex.sifac.nwc.com.bo/api/v2/pdf/F53ABD0E99D139B9943A0235776C8310B11F2A5AB88D8297E33D6D74"
                 System.Diagnostics.Process.Start(url)
+
+
+
+
+
 
                 'If (gb_FacturaEmite) Then
                 '    If tbCodigo.Text = String.Empty Then
@@ -3980,6 +4022,16 @@ salirIf:
             tbMontoBs.Value = 0
             tbMontoDolar.Value = 0
             tbMontoTarej.Value = Convert.ToDecimal(tbTotalBs.Text)
+            tbMontoTarej.IsInputReadOnly = True
+            lbNroTarjeta.Visible = True
+            tbNroTarjeta.Visible = True
+            lbEjemplo.Visible = True
+        Else
+            tbMontoTarej.Value = 0
+            tbNroTarjeta.Text = ""
+            lbNroTarjeta.Visible = False
+            tbNroTarjeta.Visible = False
+            lbEjemplo.Visible = False
         End If
     End Sub
     Private Sub cbCambioDolar_ValueChanged_1(sender As Object, e As EventArgs) Handles cbCambioDolar.ValueChanged
@@ -4386,9 +4438,12 @@ salirIf:
         End If
         Return tabla
     End Function
+    Private Sub tbNroTarjeta_KeyPress(sender As Object, e As KeyPressEventArgs) Handles tbNroTarjeta.KeyPress
+        g_prValidarTextBox(1, e)
+    End Sub
 
 
-    'funciones de conexion con sifac para facturacion
+    'Funciones de conexion con sifac para facturacion
 
     Public Shared Function ObtToken()
         Dim api = New DBApi()
@@ -4504,8 +4559,7 @@ salirIf:
         Return ""
     End Function
 
-    'numero de factura
-    'Dim Nfact As Integer = 90
+
     Public Function Emisor(tokenObtenido)
 
         Dim api = New DBApi()
@@ -4530,8 +4584,8 @@ salirIf:
             EmenvioDetalle.precioUnitario = (row("tbpbas"))
             EmenvioDetalle.montoDescuento = 0
             EmenvioDetalle.subTotal = (row("tbtotdesc"))
-            EmenvioDetalle.numeroSerie = "111"
-            EmenvioDetalle.numeroImei = "1102"
+            EmenvioDetalle.numeroSerie = "0"
+            EmenvioDetalle.numeroImei = "0"
 
             PrecioTot = PrecioTot + (row("tbtotdesc")) 'total
             'CodProducto = (row("tbty5prod").ToString) 'cod producto
@@ -4549,7 +4603,8 @@ salirIf:
         Next
         Dim NumFactura As Integer
         Dim email As String
-        Dim dsApi As DataSet
+        Dim CodMetPago As Integer
+        Dim NroTarjeta As String
 
         If TbEmail.Text = String.Empty Then
             email = "cliente@crex.com.bo"
@@ -4558,8 +4613,13 @@ salirIf:
             email = TbEmail.Text
         End If
 
-        'dsApi = L_DosificacionCajas("1", "1", _Fecha, 1)
-        'NumFactura = CInt(dsApi.Tables(0).Rows(0).Item("sbnfac")) + 1
+        If chbTarjeta.Checked = True And tbMontoTarej.Value > 0 Then
+            CodMetPago = 2
+            NroTarjeta = tbNroTarjeta.Text
+        Else
+            CodMetPago = 1
+            NroTarjeta = ""
+        End If
 
         Dim dtmax = L_fnObtenerMaxFact(gs_NroCaja, Convert.ToInt32(Now.Date.Year))
         If dtmax.Rows.Count = 0 Then
@@ -4576,9 +4636,9 @@ salirIf:
         Emenvio.codigoTipoDocumentoIdentidad = TDoc
         Emenvio.numeroDocumento = tbNit.Text.ToString()
         Emenvio.complemento = "" '---------------------------------
-        Emenvio.codigoCliente = _CodCliente.ToString
-        Emenvio.codigoMetodoPago = 1
-        Emenvio.numeroTarjeta = "" '---------------------
+        Emenvio.codigoCliente = "A-" + _CodCliente.ToString
+        Emenvio.codigoMetodoPago = CodMetPago
+        Emenvio.numeroTarjeta = NroTarjeta
         Emenvio.codigoPuntoVenta = gs_NroCaja '--------------------
         Emenvio.codigoDocumentoSector = 1 '-------------------
         Emenvio.codigoMoneda = 1 'falta
@@ -4741,13 +4801,27 @@ salirIf:
         Dim frm As New F_ClienteNuevo
         Dim dt As DataTable
         frm.tbNit.Text = tbNit.Text
-        frm.TipoDoc = CbTipoDoc.Value
+        'frm.TipoDoc = CbTipoDoc.Value
 
+        With frm.CbTDoc
+            .DropDownList.Columns.Clear()
+            .DropDownList.Columns.Add("codigoClasificador").Width = 70
+            .DropDownList.Columns("codigoClasificador").Caption = "COD"
+            .DropDownList.Columns.Add("descripcion").Width = 500
+            .DropDownList.Columns("descripcion").Caption = "DESCRIPCION"
+            .ValueMember = "codigoClasificador"
+            .DisplayMember = "descripcion"
+            .DataSource = CbTipoDoc.DataSource
+            .Refresh()
+        End With
+        frm.CbTDoc.Value = CbTipoDoc.Value
         frm.ShowDialog()
 
 
         If (frm.Cliente = True) Then ''Aqui Consulto si se inserto un nuevo Cliente cargo sus datos del nuevo cliente insertado
             'TbEmail.Text =F_ClienteNuevo.Correo
+            CbTipoDoc.Value = frm.CbTDoc.Value
+
             dt = L_fnObtenerClientesporRazonSocialNit(frm.Razonsocial, frm.Nit)
             If (dt.Rows.Count > 0) Then
                 _CodCliente = dt.Rows(0).Item("ydnumi")
@@ -4773,6 +4847,11 @@ salirIf:
             End If
         End If
     End Sub
+
+
+
+
+
 
 
 #End Region

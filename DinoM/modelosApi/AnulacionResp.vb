@@ -27,9 +27,10 @@ End Class
 
 Public Class Errors1
     Public Property details As Object()
+    Public Property siat As Object()
 End Class
 
 Public Class error400
-    Public Property meta As Meta
-    Public Property errors As Errors
+    Public Property meta As Meta1
+    Public Property errors As Errors1
 End Class

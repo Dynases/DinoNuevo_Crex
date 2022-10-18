@@ -2369,7 +2369,7 @@ salirIf:
         If (TbNit.Text.Trim = String.Empty) Then
             TbNit.Text = "0"
         End If
-        L_Validar_Nit(TbNit.Text.Trim, nom1, nom2, "", "")
+        L_Validar_Nit(TbNit.Text.Trim, nom1, nom2, "", "", "")
         TbNombre1.Text = nom1
         TbNombre2.Text = nom2
     End Sub

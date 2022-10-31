@@ -66,6 +66,7 @@ Public Class F1_Productos
         Me.Icon = ico
 
         btnImprimir.Visible = False
+        SuperTabControl_Imagenes_DetalleProducto.SelectedTabIndex = 2
     End Sub
 
     Private Sub armarGrillaDetalleProducto(numi As Integer)
@@ -923,7 +924,7 @@ Public Class F1_Productos
     Private Sub btgrupo3_Click(sender As Object, e As EventArgs) Handles btgrupo3.Click
         Dim numi As String = ""
 
-        If L_prLibreriaGrabar(numi, "1", "3", cbgrupo3.Text, "") Then
+        If L_prLibreriaGrabarGrupos(numi, "1", "3", cbgrupo3.Text, "", 103) Then
             _prCargarComboLibreria(cbgrupo3, "1", "3")
             cbgrupo3.SelectedIndex = CType(cbgrupo3.DataSource, DataTable).Rows.Count - 1
         End If
@@ -932,7 +933,7 @@ Public Class F1_Productos
     Private Sub btgrupo1_Click(sender As Object, e As EventArgs) Handles btgrupo1.Click
         Dim numi As String = ""
 
-        If L_prLibreriaGrabar(numi, "1", "1", cbgrupo1.Text, "") Then
+        If L_prLibreriaGrabarGrupos(numi, "1", "1", cbgrupo1.Text, "", 0) Then
             _prCargarComboLibreria(cbgrupo1, "1", "1")
             cbgrupo1.SelectedIndex = CType(cbgrupo1.DataSource, DataTable).Rows.Count - 1
         End If
@@ -941,7 +942,7 @@ Public Class F1_Productos
     Private Sub btgrupo2_Click(sender As Object, e As EventArgs) Handles btgrupo2.Click
         Dim numi As String = ""
 
-        If L_prLibreriaGrabar(numi, "1", "2", cbgrupo2.Text, "") Then
+        If L_prLibreriaGrabarGrupos(numi, "1", "2", cbgrupo2.Text, "", 102) Then
             _prCargarComboLibreria(cbgrupo2, "1", "2")
             cbgrupo2.SelectedIndex = CType(cbgrupo2.DataSource, DataTable).Rows.Count - 1
         End If
@@ -950,7 +951,7 @@ Public Class F1_Productos
     Private Sub btgrupo4_Click(sender As Object, e As EventArgs) Handles btgrupo4.Click
         Dim numi As String = ""
 
-        If L_prLibreriaGrabar(numi, "1", "4", cbgrupo4.Text, "") Then
+        If L_prLibreriaGrabarGrupos(numi, "1", "4", cbgrupo4.Text, "", 104) Then
             _prCargarComboLibreria(cbgrupo4, "1", "4")
             cbgrupo4.SelectedIndex = CType(cbgrupo4.DataSource, DataTable).Rows.Count - 1
         End If
@@ -959,7 +960,7 @@ Public Class F1_Productos
     Private Sub btUMedida_Click(sender As Object, e As EventArgs) Handles btUMedida.Click
         Dim numi As String = ""
 
-        If L_prLibreriaGrabar(numi, "1", "5", cbUMed.Text, "") Then
+        If L_prLibreriaGrabarGrupos(numi, "1", "5", cbUMed.Text, "", 105) Then
             _prCargarComboLibreria(cbUMed, "1", "5")
             cbUMed.SelectedIndex = CType(cbUMed.DataSource, DataTable).Rows.Count - 1
         End If
@@ -968,7 +969,7 @@ Public Class F1_Productos
     Private Sub btUniVenta_Click(sender As Object, e As EventArgs) Handles btUniVenta.Click
         Dim numi As String = ""
 
-        If L_prLibreriaGrabar(numi, "1", "6", cbUniVenta.Text, "") Then
+        If L_prLibreriaGrabarGrupos(numi, "1", "6", cbUniVenta.Text, "", 106) Then
             _prCargarComboLibreria(cbUniVenta, "1", "6")
             _prCargarComboLibreria(cbUnidMaxima, "1", "6")
             cbUniVenta.SelectedIndex = CType(cbUniVenta.DataSource, DataTable).Rows.Count - 1
@@ -978,7 +979,7 @@ Public Class F1_Productos
     Private Sub btUniMaxima_Click(sender As Object, e As EventArgs) Handles btUniMaxima.Click
         Dim numi As String = ""
 
-        If L_prLibreriaGrabar(numi, "1", "6", cbUnidMaxima.Text, "") Then
+        If L_prLibreriaGrabarGrupos(numi, "1", "6", cbUnidMaxima.Text, "", 106) Then
             _prCargarComboLibreria(cbUnidMaxima, "1", "6")
             _prCargarComboLibreria(cbUniVenta, "1", "6")
             cbUnidMaxima.SelectedIndex = CType(cbUnidMaxima.DataSource, DataTable).Rows.Count - 1
@@ -1237,7 +1238,7 @@ Public Class F1_Productos
     Private Sub btgrupo5_Click(sender As Object, e As EventArgs) Handles btgrupo5.Click
         Dim numi As String = ""
 
-        If L_prLibreriaGrabar(numi, "1", "7", cbgrupo5.Text, "") Then
+        If L_prLibreriaGrabarGrupos(numi, "1", "7", cbgrupo5.Text, "", 0) Then
             _prCargarComboLibreria(cbgrupo5, "1", "7")
             cbgrupo5.SelectedIndex = CType(cbgrupo5.DataSource, DataTable).Rows.Count - 1
         End If

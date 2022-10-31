@@ -421,6 +421,30 @@ Public Class AccesoLogica
         Return Not _Error
     End Function
 
+    Public Shared Function L_prLibreriaGrabarGrupos(ByRef _numi As String, _cod1 As String, _cod2 As String, _desc1 As String, _desc2 As String, _cecon As Integer) As Boolean
+        Dim _Error As Boolean
+
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+
+        _listParam.Add(New Datos.DParametro("@tipo", 5))
+        _listParam.Add(New Datos.DParametro("@ylcod1", _cod1))
+        _listParam.Add(New Datos.DParametro("@ylcod2", _cod2))
+        _listParam.Add(New Datos.DParametro("@cecon", _cecon))
+        _listParam.Add(New Datos.DParametro("@desc", _desc1))
+        _listParam.Add(New Datos.DParametro("@yfuact", L_Usuario))
+
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TY005", _listParam)
+
+        If _Tabla.Rows.Count > 0 Then
+            _numi = _Tabla.Rows(0).Item(0)
+            _Error = False
+        Else
+            _Error = True
+        End If
+        Return Not _Error
+    End Function
+
     Public Shared Function L_fnEliminarProducto(numi As String, ByRef mensaje As String) As Boolean
         Dim _resultado As Boolean
         If L_fnbValidarEliminacion(numi, "TY005", "yfnumi", mensaje) = True Then

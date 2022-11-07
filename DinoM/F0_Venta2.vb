@@ -1447,15 +1447,19 @@ Public Class F0_Venta2
                 tbNit.Focus()
                 Return False
             End If
-            If (CbTipoDoc.Value = 5) Then ''El tipo de Doc. es Nit
 
-                Dim tokenSifac As String = F0_Venta2.ObtToken()
-                Dim Succes As Integer = VerificarNit(tokenSifac)
-                If Succes <> 200 Then
-                    Return False
+            Dim code = VerifConexion(tokenObtenido)
+            If (code = 200) Then
+                If (CbTipoDoc.Value = 5) Then ''El tipo de Doc. es Nit
+                    Dim tokenSifac As String = F0_Venta2.ObtToken()
+                    Dim Succes As Integer = VerificarNit(tokenSifac)
+                    If Succes <> 200 Then
+                        Return False
+                    End If
+
                 End If
-
             End If
+
             If (chbTarjeta.Checked = True) Then
 
                 If tbNroTarjeta.Text = String.Empty Or tbNroTarjeta.Text = "0" Then

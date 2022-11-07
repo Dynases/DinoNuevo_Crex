@@ -3671,7 +3671,7 @@ Public Class F0_VentasSupermercado
 
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
-            Return ""
+            Return 0
         End Try
 
     End Function

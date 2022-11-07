@@ -83,14 +83,15 @@ Public Class F_CiNitNuevo
             TbEmailN.Text = "cliente@crex.com.bo"
         End If
 
-        If (CbTDoc.Value = 5) Then ''El tipo de Doc. es Nit
-
-            Dim tokenSifac As String = F0_VentasSupermercado.ObtToken()
-            Dim Succes As Integer = F0_VentasSupermercado.VerificarNit(tokenSifac, tbNit.Text)
-            If Succes <> 200 Then
-                _ok = False
+        Dim tokenSifac As String = F0_VentasSupermercado.ObtToken()
+        Dim code = F0_VentasSupermercado.VerifConexion(tokenSifac)
+        If (code = 200) Then
+            If (CbTDoc.Value = 5) Then ''El tipo de Doc. es Nit
+                Dim Succes As Integer = F0_VentasSupermercado.VerificarNit(tokenSifac, tbNit.Text)
+                If Succes <> 200 Then
+                    _ok = False
+                End If
             End If
-
         End If
 
         Return _ok

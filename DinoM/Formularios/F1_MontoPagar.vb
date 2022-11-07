@@ -329,52 +329,67 @@ Public Class F1_MontoPagar
     End Sub
 
     Private Sub btnContinuar_Click(sender As Object, e As EventArgs) Handles btnContinuar.Click
-        If tbNit.Text = String.Empty Or tbRazonSocial.Text = String.Empty Then
-            ToastNotification.Show(Me, "Debe Ingresar Nit y Razón Social obligatoriamente!!!", My.Resources.WARNING, 3500, eToastGlowColor.Red, eToastPosition.TopCenter)
-            Exit Sub
-        End If
-        If (CbTipoDoc.SelectedIndex < 0) Then
-            ToastNotification.Show(Me, "Por Favor Seleccione Tipo de Documento!!!", My.Resources.WARNING, 3500, eToastGlowColor.Red, eToastPosition.TopCenter)
-            CbTipoDoc.Focus()
-            Exit Sub
-        End If
-        If (CbTipoDoc.Value = 5) Then ''El tipo de Doc. es Nit
+        Try
+
+            If tbNit.Text = String.Empty Or tbRazonSocial.Text = String.Empty Then
+                ToastNotification.Show(Me, "Debe Ingresar Nit y Razón Social obligatoriamente!!!", My.Resources.WARNING, 3500, eToastGlowColor.Red, eToastPosition.TopCenter)
+                Exit Sub
+            End If
+            If (CbTipoDoc.SelectedIndex < 0) Then
+                ToastNotification.Show(Me, "Por Favor Seleccione Tipo de Documento!!!", My.Resources.WARNING, 3500, eToastGlowColor.Red, eToastPosition.TopCenter)
+                CbTipoDoc.Focus()
+                Exit Sub
+            End If
 
             Dim tokenSifac As String = F0_VentasSupermercado.ObtToken()
-            Dim Succes As Integer = F0_VentasSupermercado.VerificarNit(tokenSifac, tbNit.Text)
-            If Succes <> 200 Then
-                Exit Sub
+            Dim code = F0_VentasSupermercado.VerifConexion(tokenSifac)
+            If (code = 200) Then
+                If (CbTipoDoc.Value = 5) Then ''El tipo de Doc. es Nit
+                    Dim Succes As Integer = F0_VentasSupermercado.VerificarNit(tokenSifac, tbNit.Text)
+                    If Succes <> 200 Then
+                        Exit Sub
+                    End If
+                End If
             End If
-        End If
-        If (chbTarjeta.Checked = True) Then
+            If (chbTarjeta.Checked = True) Then
 
-            If tbNroTarjeta.Text = String.Empty Or tbNroTarjeta.Text = "0" Then
-                Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
-                ToastNotification.Show(Me, "Debe colocar el Nro. de Tarjeta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
-                tbNroTarjeta.Focus()
-                Exit Sub
+                If tbNroTarjeta.Text = String.Empty Or tbNroTarjeta.Text = "0" Then
+                    Dim img As Bitmap = New Bitmap(My.Resources.mensaje, 50, 50)
+                    ToastNotification.Show(Me, "Debe colocar el Nro. de Tarjeta".ToUpper, img, 2000, eToastGlowColor.Red, eToastPosition.BottomCenter)
+                    tbNroTarjeta.Focus()
+                    Exit Sub
+                End If
             End If
-        End If
 
-        If (tbMontoTarej.Value + (tbMontoDolar.Value * cbCambioDolar.Text) + tbMontoBs.Value >= TotalVenta) Then
-            Bandera = True
-            TotalBs = tbMontoBs.Value
-            TotalSus = tbMontoDolar.Value
-            TotalTarjeta = tbMontoTarej.Value
-            Nit = tbNit.Text
-            RazonSocial = tbRazonSocial.Text
-            TipoCambio = cbCambioDolar.Text
-            'tipoDoc = CbTipoDoc.Value
-            'email = TbEmail.Text
-            Me.Close()
+            If (tbMontoTarej.Value + (tbMontoDolar.Value * cbCambioDolar.Text) + tbMontoBs.Value >= TotalVenta) Then
+                Bandera = True
+                TotalBs = tbMontoBs.Value
+                TotalSus = tbMontoDolar.Value
+                TotalTarjeta = tbMontoTarej.Value
+                Nit = tbNit.Text
+                RazonSocial = tbRazonSocial.Text
+                TipoCambio = cbCambioDolar.Text
+                'tipoDoc = CbTipoDoc.Value
+                'email = TbEmail.Text
+                Me.Close()
 
-        Else
-            ToastNotification.Show(Me, "Debe Ingresar un Monto a Cobrar Valido igual o mayor A = " + Str(TotalVenta), My.Resources.WARNING, 4000, eToastGlowColor.Red, eToastPosition.TopCenter)
-            tbMontoBs.Focus()
-        End If
+            Else
+                ToastNotification.Show(Me, "Debe Ingresar un Monto a Cobrar Valido igual o mayor A = " + Str(TotalVenta), My.Resources.WARNING, 4000, eToastGlowColor.Red, eToastPosition.TopCenter)
+                tbMontoBs.Focus()
+            End If
+        Catch ex As Exception
+            MostrarMensajeError(ex.Message)
+        End Try
+    End Sub
+    Private Sub MostrarMensajeError(mensaje As String)
+        ToastNotification.Show(Me,
+                               mensaje.ToUpper,
+                               My.Resources.WARNING,
+                               5000,
+                               eToastGlowColor.Red,
+                               eToastPosition.TopCenter)
 
     End Sub
-
     Private Sub BtnSalir_Click(sender As Object, e As EventArgs) Handles BtnSalir.Click
         TotalBs = 0
         TotalSus = 0

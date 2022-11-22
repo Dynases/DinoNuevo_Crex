@@ -76,6 +76,7 @@ Public Class notifi
     Sub _prMostrarMensajeDe()
 
         Dim info As New TaskDialogInfo(Context, eTaskDialogIcon.Information, "Notificación".ToUpper, Header, eTaskDialogButton.Ok, eTaskDialogBackgroundColor.Default)
+
         Dim result As eTaskDialogResult = TaskDialog.Show(info)
         If result = eTaskDialogResult.Ok Then
             Dim mensajeError As String = ""

@@ -14,6 +14,8 @@ Public Class F_CiNitNuevo
     Public Correo As String = ""
     Public TipoDoc As String = ""
     Public Cliente As Boolean = False
+    Public NuevoCli As Boolean = False
+
 
 
 
@@ -89,6 +91,11 @@ Public Class F_CiNitNuevo
             If (CbTDoc.Value = 5) Then ''El tipo de Doc. es Nit
                 Dim Succes As Integer = F0_VentasSupermercado.VerificarNit(tokenSifac, tbNit.Text)
                 If Succes <> 200 Then
+                    'If F0_VentasSupermercado.CodExcepcion = 1 Then
+                    '    _ok = True
+                    'Else
+                    '    _ok = False
+                    'End If
                     _ok = False
                 End If
             End If
@@ -116,8 +123,8 @@ Public Class F_CiNitNuevo
                 Razonsocial = tbRazonSocial.Text
                 Nit = tbNit.Text
                 Correo = TbEmailN.Text
-
-
+                NuevoCli = True
+                'F1_MontoPagar.NuevoCliente = NuevoCli
                 Me.Close()
             End If
         End If

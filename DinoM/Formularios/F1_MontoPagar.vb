@@ -28,6 +28,9 @@ Public Class F1_MontoPagar
     Public email As String = ""
     Public IdNit As String = ""
 
+    Public CExcep As Integer
+    Public NuevoCliente As Boolean = False
+
     Private Sub F1_MontoPagar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _prCargarComboLibreria(cbCambioDolar, 7, 1)
         cbCambioDolar.SelectedIndex = CType(cbCambioDolar.DataSource, DataTable).Rows.Count - 1
@@ -239,6 +242,7 @@ Public Class F1_MontoPagar
                 'tbRazonSocial.Focus()
                 L_Validar_Nit(tbNit.Text.Trim, nom1, nom2, correo, tipoDoc, id)
                 IdNit = id
+
             Else
                 tbRazonSocial.Text = nom1
                 TbEmail.Text = correo
@@ -271,6 +275,7 @@ Public Class F1_MontoPagar
             tbRazonSocial.Text = frm.Razonsocial
             TbEmail.Text = frm.Correo
             CbTipoDoc.Value = frm.CbTDoc.Value
+            NuevoCliente = frm.NuevoCli
             'dt = L_fnObtenerClientesporRazonSocialNit(frm.Razonsocial, frm.Nit)
             'If (dt.Rows.Count > 0) Then
 
@@ -341,16 +346,26 @@ Public Class F1_MontoPagar
                 Exit Sub
             End If
 
-            Dim tokenSifac As String = F0_VentasSupermercado.ObtToken()
-            Dim code = F0_VentasSupermercado.VerifConexion(tokenSifac)
-            If (code = 200) Then
-                If (CbTipoDoc.Value = 5) Then ''El tipo de Doc. es Nit
-                    Dim Succes As Integer = F0_VentasSupermercado.VerificarNit(tokenSifac, tbNit.Text)
-                    If Succes <> 200 Then
-                        Exit Sub
+            If NuevoCliente = False Then
+                Dim tokenSifac As String = F0_VentasSupermercado.ObtToken()
+                Dim code = F0_VentasSupermercado.VerifConexion(tokenSifac)
+                If (code = 200) Then
+                    If (CbTipoDoc.Value = 5) Then ''El tipo de Doc. es Nit
+                        Dim Succes As Integer = F0_VentasSupermercado.VerificarNit(tokenSifac, tbNit.Text)
+                        If Succes <> 200 Then
+                            'If F0_VentasSupermercado.CodExcepcion = 1 Then
+                            '    'Prosigue normal con el grabado
+                            '    CExcep = F0_VentasSupermercado.CodExcepcion
+                            'Else
+                            '    CExcep = F0_VentasSupermercado.CodExcepcion
+                            '    Exit Sub
+                            'End If
+                            Exit Sub
+                        End If
                     End If
                 End If
             End If
+
             If (chbTarjeta.Checked = True) Then
 
                 If tbNroTarjeta.Text = String.Empty Or tbNroTarjeta.Text = "0" Then

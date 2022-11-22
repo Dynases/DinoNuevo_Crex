@@ -90,8 +90,10 @@ Partial Class F1_Productos
         Me.SuperTabControl_Imagenes_DetalleProducto = New DevComponents.DotNetBar.SuperTabControl()
         Me.SuperTabControlPanel1 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.UsImg = New DinoM.UCImg()
         Me.SuperTabItem_Imagenes = New DevComponents.DotNetBar.SuperTabItem()
+        Me.SuperTabControlPanel2 = New DevComponents.DotNetBar.SuperTabControlPanel()
+        Me.dgjDetalleProducto = New Janus.Windows.GridEX.GridEX()
+        Me.SuperTabItem_DetalleProducto = New DevComponents.DotNetBar.SuperTabItem()
         Me.SuperTabControlPanel3 = New DevComponents.DotNetBar.SuperTabControlPanel()
         Me.CbProdServ = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
         Me.CbUmedida = New Janus.Windows.GridEX.EditControls.MultiColumnCombo()
@@ -102,12 +104,10 @@ Partial Class F1_Productos
         Me.LabelX14 = New DevComponents.DotNetBar.LabelX()
         Me.LabelX15 = New DevComponents.DotNetBar.LabelX()
         Me.SuperTabItem1 = New DevComponents.DotNetBar.SuperTabItem()
-        Me.SuperTabControlPanel2 = New DevComponents.DotNetBar.SuperTabControlPanel()
-        Me.dgjDetalleProducto = New Janus.Windows.GridEX.GridEX()
-        Me.SuperTabItem_DetalleProducto = New DevComponents.DotNetBar.SuperTabItem()
         Me.btExcel = New DevComponents.DotNetBar.ButtonX()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.UsImg = New DinoM.UCImg()
         CType(Me.SuperTabPrincipal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabPrincipal.SuspendLayout()
         Me.SuperTabControlPanelRegistro.SuspendLayout()
@@ -145,12 +145,12 @@ Partial Class F1_Productos
         Me.SuperTabControl_Imagenes_DetalleProducto.SuspendLayout()
         Me.SuperTabControlPanel1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.SuperTabControlPanel2.SuspendLayout()
+        CType(Me.dgjDetalleProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuperTabControlPanel3.SuspendLayout()
         CType(Me.CbProdServ, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CbUmedida, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CbAeconomica, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SuperTabControlPanel2.SuspendLayout()
-        CType(Me.dgjDetalleProducto, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -1267,9 +1267,9 @@ Partial Class F1_Productos
         Me.SuperTabControl_Imagenes_DetalleProducto.ControlBox.MenuBox.Name = ""
         Me.SuperTabControl_Imagenes_DetalleProducto.ControlBox.Name = ""
         Me.SuperTabControl_Imagenes_DetalleProducto.ControlBox.SubItems.AddRange(New DevComponents.DotNetBar.BaseItem() {Me.SuperTabControl_Imagenes_DetalleProducto.ControlBox.MenuBox, Me.SuperTabControl_Imagenes_DetalleProducto.ControlBox.CloseBox})
+        Me.SuperTabControl_Imagenes_DetalleProducto.Controls.Add(Me.SuperTabControlPanel3)
         Me.SuperTabControl_Imagenes_DetalleProducto.Controls.Add(Me.SuperTabControlPanel2)
         Me.SuperTabControl_Imagenes_DetalleProducto.Controls.Add(Me.SuperTabControlPanel1)
-        Me.SuperTabControl_Imagenes_DetalleProducto.Controls.Add(Me.SuperTabControlPanel3)
         Me.SuperTabControl_Imagenes_DetalleProducto.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SuperTabControl_Imagenes_DetalleProducto.Location = New System.Drawing.Point(0, 0)
         Me.SuperTabControl_Imagenes_DetalleProducto.Name = "SuperTabControl_Imagenes_DetalleProducto"
@@ -1306,22 +1306,37 @@ Partial Class F1_Productos
         Me.Panel1.Size = New System.Drawing.Size(430, 290)
         Me.Panel1.TabIndex = 223
         '
-        'UsImg
-        '
-        Me.UsImg.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
-        Me.UsImg.BackColor = System.Drawing.Color.Transparent
-        Me.UsImg.Location = New System.Drawing.Point(108, 6)
-        Me.UsImg.Margin = New System.Windows.Forms.Padding(4)
-        Me.UsImg.Name = "UsImg"
-        Me.UsImg.Size = New System.Drawing.Size(290, 270)
-        Me.UsImg.TabIndex = 222
-        '
         'SuperTabItem_Imagenes
         '
         Me.SuperTabItem_Imagenes.AttachedControl = Me.SuperTabControlPanel1
         Me.SuperTabItem_Imagenes.GlobalItem = False
         Me.SuperTabItem_Imagenes.Name = "SuperTabItem_Imagenes"
         Me.SuperTabItem_Imagenes.Text = "IMAGENES"
+        '
+        'SuperTabControlPanel2
+        '
+        Me.SuperTabControlPanel2.Controls.Add(Me.dgjDetalleProducto)
+        Me.SuperTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SuperTabControlPanel2.Location = New System.Drawing.Point(0, 27)
+        Me.SuperTabControlPanel2.Name = "SuperTabControlPanel2"
+        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(430, 290)
+        Me.SuperTabControlPanel2.TabIndex = 0
+        Me.SuperTabControlPanel2.TabItem = Me.SuperTabItem_DetalleProducto
+        '
+        'dgjDetalleProducto
+        '
+        Me.dgjDetalleProducto.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.dgjDetalleProducto.Location = New System.Drawing.Point(0, 0)
+        Me.dgjDetalleProducto.Name = "dgjDetalleProducto"
+        Me.dgjDetalleProducto.Size = New System.Drawing.Size(430, 290)
+        Me.dgjDetalleProducto.TabIndex = 0
+        '
+        'SuperTabItem_DetalleProducto
+        '
+        Me.SuperTabItem_DetalleProducto.AttachedControl = Me.SuperTabControlPanel2
+        Me.SuperTabItem_DetalleProducto.GlobalItem = False
+        Me.SuperTabItem_DetalleProducto.Name = "SuperTabItem_DetalleProducto"
+        Me.SuperTabItem_DetalleProducto.Text = "DETALLE PRODUCTO"
         '
         'SuperTabControlPanel3
         '
@@ -1482,31 +1497,6 @@ Partial Class F1_Productos
         Me.SuperTabItem1.Name = "SuperTabItem1"
         Me.SuperTabItem1.Text = "DATOS HOMOLOGACIÓN"
         '
-        'SuperTabControlPanel2
-        '
-        Me.SuperTabControlPanel2.Controls.Add(Me.dgjDetalleProducto)
-        Me.SuperTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SuperTabControlPanel2.Location = New System.Drawing.Point(0, 27)
-        Me.SuperTabControlPanel2.Name = "SuperTabControlPanel2"
-        Me.SuperTabControlPanel2.Size = New System.Drawing.Size(430, 290)
-        Me.SuperTabControlPanel2.TabIndex = 0
-        Me.SuperTabControlPanel2.TabItem = Me.SuperTabItem_DetalleProducto
-        '
-        'dgjDetalleProducto
-        '
-        Me.dgjDetalleProducto.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.dgjDetalleProducto.Location = New System.Drawing.Point(0, 0)
-        Me.dgjDetalleProducto.Name = "dgjDetalleProducto"
-        Me.dgjDetalleProducto.Size = New System.Drawing.Size(430, 290)
-        Me.dgjDetalleProducto.TabIndex = 0
-        '
-        'SuperTabItem_DetalleProducto
-        '
-        Me.SuperTabItem_DetalleProducto.AttachedControl = Me.SuperTabControlPanel2
-        Me.SuperTabItem_DetalleProducto.GlobalItem = False
-        Me.SuperTabItem_DetalleProducto.Name = "SuperTabItem_DetalleProducto"
-        Me.SuperTabItem_DetalleProducto.Text = "DETALLE PRODUCTO"
-        '
         'btExcel
         '
         Me.btExcel.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton
@@ -1547,6 +1537,16 @@ Partial Class F1_Productos
         '
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 500
+        '
+        'UsImg
+        '
+        Me.UsImg.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
+        Me.UsImg.BackColor = System.Drawing.Color.Transparent
+        Me.UsImg.Location = New System.Drawing.Point(108, 6)
+        Me.UsImg.Margin = New System.Windows.Forms.Padding(4)
+        Me.UsImg.Name = "UsImg"
+        Me.UsImg.Size = New System.Drawing.Size(290, 270)
+        Me.UsImg.TabIndex = 222
         '
         'F1_Productos
         '
@@ -1601,13 +1601,13 @@ Partial Class F1_Productos
         Me.SuperTabControlPanel1.ResumeLayout(False)
         Me.SuperTabControlPanel1.PerformLayout()
         Me.Panel1.ResumeLayout(False)
+        Me.SuperTabControlPanel2.ResumeLayout(False)
+        CType(Me.dgjDetalleProducto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SuperTabControlPanel3.ResumeLayout(False)
         Me.SuperTabControlPanel3.PerformLayout()
         CType(Me.CbProdServ, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CbUmedida, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CbAeconomica, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.SuperTabControlPanel2.ResumeLayout(False)
-        CType(Me.dgjDetalleProducto, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.ResumeLayout(False)
 

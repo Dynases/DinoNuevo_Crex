@@ -4187,13 +4187,13 @@ salirIf:
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         tokenObtenido = ObtToken()
-        Dim code
+        'Dim code
         _Inter = _Inter + 1
         If _Inter = 1 Then
-            MetPago(tokenObtenido)
+            'MetPago(tokenObtenido)
             CodTipoDocumento(tokenObtenido)
-            code = VerifConexion(tokenObtenido)
-            If (code = 200) Then Label1Conn.Text = "Conectado con Siat" Else Label1Conn.Text = "No conectado con Siat"
+            'code = VerifConexion(tokenObtenido)
+            'If (code = 200) Then Label1Conn.Text = "Conectado con Siat" Else Label1Conn.Text = "No conectado con Siat"
             Me.WindowState = FormWindowState.Normal
         Else
             Me.Opacity = 100
@@ -4624,7 +4624,11 @@ salirIf:
             CodMetPago = 1
             NroTarjeta = ""
         End If
-
+        If swTipoVenta.Value = True Then
+            CodMetPago = 1
+        Else
+            CodMetPago = 6
+        End If
         Dim dtmax = L_fnObtenerMaxFact(gs_NroCaja, Convert.ToInt32(Now.Date.Year))
         If dtmax.Rows.Count = 0 Then
             NumFactura = 1

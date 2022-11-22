@@ -480,7 +480,7 @@ Public Class F0_AnularFactura
             .Refresh()
         End With
 
-        CbMotivoA.SelectedIndex = 0
+        CbMotivoA.SelectedIndex = 1
 
         Return ""
     End Function
@@ -545,7 +545,7 @@ Public Class F0_AnularFactura
 
         Catch ex As Exception
             MostrarMensajeError(ex.Message)
-            Return ""
+            Return 0
         End Try
     End Function
 

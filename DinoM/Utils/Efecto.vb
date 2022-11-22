@@ -31,6 +31,7 @@ Public Class Efecto
     Public Email As String = ""
     Public IdNit As String
     Public nroTarjeta As String
+    Public CExc As Integer
 
     Public Conversion As Double = 0
     Public CantidadPrevia As Double = 0
@@ -122,6 +123,7 @@ Public Class Efecto
             Email = frmAyuda.TbEmail.Text
             IdNit = frmAyuda.IdNit
             nroTarjeta = frmAyuda.tbNroTarjeta.Text
+            CExc = frmAyuda.CExcep
 
             band = True
             Me.Close()

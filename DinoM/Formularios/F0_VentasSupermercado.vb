@@ -73,6 +73,9 @@ Public Class F0_VentasSupermercado
 
     Public NroTarjeta As String
 
+    Public CodExcepcion As Integer
+
+
 
 
 #Region "Metodos Privados"
@@ -2359,12 +2362,12 @@ Public Class F0_VentasSupermercado
         tbProducto.Focus()
 
         tokenObtenido = ObtToken()
-        Dim code
+        'Dim code
 
-        MetPago(tokenObtenido)
+        'MetPago(tokenObtenido)
         CodTipoDocumento(tokenObtenido)
-        code = VerifConexion(tokenObtenido)
-        If (code = 200) Then Label1Conn.Text = "Conectado con Siat" Else Label1Conn.Text = "No conectado con Siat"
+        'code = VerifConexion(tokenObtenido)
+        'If (code = 200) Then Label1Conn.Text = "Conectado con Siat" Else Label1Conn.Text = "No conectado con Siat"
     End Sub
 
     Private Sub tbProducto_KeyDown(sender As Object, e As KeyEventArgs) Handles tbProducto.KeyDown
@@ -2463,6 +2466,7 @@ Public Class F0_VentasSupermercado
                 TbEmailS.Text = ef.Email
                 IdNit = ef.IdNit
                 NroTarjeta = ef.nroTarjeta
+                CodExcepcion = ef.CExc
 
                 _prGuardar()
             Else
@@ -3455,6 +3459,7 @@ Public Class F0_VentasSupermercado
         'Dim TMetPago = CbMetPago.SelectedIndex + 1 'obtiene el 'Codigo Metodo de pago' 
         Dim TDoc = CbTDoc.Value 'obtiene el 'Codigo Tipo de documento' 
 
+        Dim d As Integer = CodExcepcion
         'Dim tabla As DataTable = rearmarDetalle()
         Dim dtDetalle As DataTable = quitarUltimaFilaVacia(CType(grdetalle.DataSource, DataTable))
         Dim array(dtDetalle.Rows.Count - 1) As EmisorEnvio.Detalle
@@ -3645,19 +3650,28 @@ Public Class F0_VentasSupermercado
                 notifi.Header = "Error de solicitud - Código: " + codigo.ToString() & vbCrLf & " " & vbCrLf & details & vbCrLf & " " & vbCrLf & " Verifique".ToUpper
                 notifi.ShowDialog()
 
+                'Dim bandera As Boolean = False
+                'bandera = notifi.band
+                'If (bandera = True) Then
+
+                '    CodExcepcion = 0
+                'Else
+                '     CodExcepcion = 1
+                'End If
+
             ElseIf codigo = 500 Then
 
-                Dim details = JsonConvert.SerializeObject(resultError.errors.details)
-                Dim siat = JsonConvert.SerializeObject(resultError.errors.siat)
-                Dim notifi = New notifi
+                    Dim details = JsonConvert.SerializeObject(resultError.errors.details)
+                    Dim siat = JsonConvert.SerializeObject(resultError.errors.siat)
+                    Dim notifi = New notifi
 
-                notifi.tipo = 2
-                notifi.Context = "SIFAC".ToUpper
-                notifi.Header = "Error de solicitud - Código: " + codigo.ToString() & vbCrLf & " " & vbCrLf & details & vbCrLf & siat & vbCrLf & " " & vbCrLf & " Verifique".ToUpper
-                notifi.ShowDialog()
+                    notifi.tipo = 2
+                    notifi.Context = "SIFAC".ToUpper
+                    notifi.Header = "Error de solicitud - Código: " + codigo.ToString() & vbCrLf & " " & vbCrLf & details & vbCrLf & siat & vbCrLf & " " & vbCrLf & " Verifique".ToUpper
+                    notifi.ShowDialog()
 
-            ElseIf codigo = 401 Or codigo = 404 Or codigo = 405 Then
-                Dim details = JsonConvert.SerializeObject(resultError.errors.details)
+                ElseIf codigo = 401 Or codigo = 404 Or codigo = 405 Then
+                    Dim details = JsonConvert.SerializeObject(resultError.errors.details)
                 Dim notifi = New notifi
 
                 notifi.tipo = 2

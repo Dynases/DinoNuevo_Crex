@@ -394,20 +394,20 @@ Public Class F1_Productos
         Dim dtNumi = L_fnConsultarNumi()
         tbCodigo.Text = dtNumi.Rows(0).Item("newNumi")
 
-        Dim succes = Homologar(tokenSifac)
-        If succes = 200 Then
-            res = L_fnGrabarProducto(tbCodigo.Text, tbCodProd.Text, tbCodBarra.Text, tbDescPro.Text,
+        'Dim succes = Homologar(tokenSifac)
+        'If succes = 200 Then
+        res = L_fnGrabarProducto(tbCodigo.Text, tbCodProd.Text, tbCodBarra.Text, tbDescPro.Text,
                                                 tbDescCort.Text, cbgrupo1.Value, cbgrupo2.Value, cbgrupo3.Value,
                                                 cbgrupo4.Value, cbUMed.Value, cbUniVenta.Value, cbUnidMaxima.Value,
                                                 tbConversion.Text,
                                                 IIf(tbStockMinimo.Text = String.Empty, 0, tbStockMinimo.Text),
                                                 IIf(swEstado.Value = True, 1, 0), nameImg,
                                                 quitarUltimaFilaVacia(CType(dgjDetalleProducto.DataSource, DataTable).DefaultView.ToTable(False, "yfanumi", "yfayfnumi", "yfasim", "yfadesc", "estado")),
-                                                tbDescDet.Text, cbgrupo5.Value, CodActEco, Ume, CodProSINs, preciosifac)
+                                                tbDescDet.Text, cbgrupo5.Value, CbAeconomica.Value, CbUmedida.Value, CbProdServ.Value, TbPrecioPsifac.Text)
 
-        Else
-            res = False
-        End If
+        'Else
+        '    res = False
+        'End If
         If res Then
             Modificado = False
             _fnMoverImagenRuta(RutaGlobal + "\Imagenes\Imagenes ProductoDino", nameImg)
@@ -1493,5 +1493,7 @@ Public Class F1_Productos
         Return codigo
     End Function
 
-
+    Private Sub TbPrecioPsifac_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbPrecioPsifac.KeyPress
+        g_prValidarTextBox(1, e)
+    End Sub
 End Class

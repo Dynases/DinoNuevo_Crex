@@ -1980,6 +1980,15 @@ Public Class AccesoLogica
         _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
         Return _Tabla
     End Function
+    Public Shared Function L_fnRecuperarFactura(tanumi As Integer) As DataTable
+        Dim _Tabla As DataTable
+        Dim _listParam As New List(Of Datos.DParametro)
+        _listParam.Add(New Datos.DParametro("@tipo", 24))
+        _listParam.Add(New Datos.DParametro("@tanumi", tanumi))
+        _listParam.Add(New Datos.DParametro("@tauact", L_Usuario))
+        _Tabla = D_ProcedimientoConParam("sp_Mam_TV001", _listParam)
+        Return _Tabla
+    End Function
 
     Public Shared Function L_prBitacora(_numi As String) As DataTable
         Dim _Tabla As DataTable
@@ -2806,7 +2815,7 @@ Public Class AccesoLogica
                 + "" + _Nscf + ", " _
                 + "" + _NumAsiento + ""
 
-            D_Insertar_Datos("BDDiconDinoEco.dbo.TPA001", Sql)
+            D_Insertar_Datos("BDDiconDinoCrex.dbo.TPA001", Sql)
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

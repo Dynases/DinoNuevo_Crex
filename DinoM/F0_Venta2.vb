@@ -1695,7 +1695,7 @@ Public Class F0_Venta2
                 If (gb_FacturaEmite) Then
                     If tbNit.Text <> String.Empty Then
                         P_fnGenerarFactura(numi)
-                        '_prImiprimirNotaVenta(numi)
+                        _prImiprimirNotaVenta(numi)
                     Else
                         _prImiprimirNotaVenta(numi)
                     End If
@@ -3876,58 +3876,58 @@ salirIf:
     End Sub
 
     Private Sub TbNit_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tbNit.Validating
-        If btnGrabar.Enabled = True Then
+        'If btnGrabar.Enabled = True Then
 
-            Dim nom1, nom2, correo, tipoDoc As String
-            nom1 = ""
-            nom2 = ""
-            correo = ""
-            tipoDoc = ""
-            If (tbNit.Text.Trim <> String.Empty) Then
-                L_Validar_Nit(tbNit.Text.Trim, nom1, nom2, correo, tipoDoc, "")
+        '    Dim nom1, nom2, correo, tipoDoc As String
+        '    nom1 = ""
+        '    nom2 = ""
+        '    correo = ""
+        '    tipoDoc = ""
+        '    If (tbNit.Text.Trim <> String.Empty) Then
+        '        L_Validar_Nit(tbNit.Text.Trim, nom1, nom2, correo, tipoDoc, "")
 
-                If nom1 = "" Then
-                    ClienteNuevo()
-                    TbNombre1.Focus()
-                Else
-                    TbNombre1.Text = nom1
-                    TbNombre2.Text = nom2
-                    TbEmail.Text = correo
-                    CbTipoDoc.Value = tipoDoc
-                    Dim dt As DataTable = L_fnObtenerClientesporRazonSocialNit(TbNombre1.Text, tbNit.Text)
-                    If dt.Rows.Count > 0 Then
-                        tbCliente.Text = dt.Rows(0).Item("yddesc")
-                        _CodCliente = dt.Rows(0).Item("ydnumi")
-                        _dias = dt.Rows(0).Item("yddias")
-                        Dim numiVendedor As Integer = IIf(IsDBNull(dt.Rows(0).Item("ydnumivend")), 0, dt.Rows(0).Item("ydnumivend"))
-                        If (numiVendedor > 0) Then
-                            tbVendedor.Text = dt.Rows(0).Item("vendedor")
-                            _CodEmpleado = dt.Rows(0).Item("ydnumivend")
-                            grdetalle.Select()
-                            Table_Producto = Nothing
-                        Else
-                            tbVendedor.Clear()
-                            _CodEmpleado = 0
-                            tbVendedor.Focus()
-                            Table_Producto = Nothing
-                        End If
+        '        If nom1 = "" Then
+        '            ClienteNuevo()
+        '            TbNombre1.Focus()
+        '        Else
+        '            TbNombre1.Text = nom1
+        '            TbNombre2.Text = nom2
+        '            TbEmail.Text = correo
+        '            CbTipoDoc.Value = tipoDoc
+        '            Dim dt As DataTable = L_fnObtenerClientesporRazonSocialNit(TbNombre1.Text, tbNit.Text)
+        '            If dt.Rows.Count > 0 Then
+        '                tbCliente.Text = dt.Rows(0).Item("yddesc")
+        '                _CodCliente = dt.Rows(0).Item("ydnumi")
+        '                _dias = dt.Rows(0).Item("yddias")
+        '                Dim numiVendedor As Integer = IIf(IsDBNull(dt.Rows(0).Item("ydnumivend")), 0, dt.Rows(0).Item("ydnumivend"))
+        '                If (numiVendedor > 0) Then
+        '                    tbVendedor.Text = dt.Rows(0).Item("vendedor")
+        '                    _CodEmpleado = dt.Rows(0).Item("ydnumivend")
+        '                    grdetalle.Select()
+        '                    Table_Producto = Nothing
+        '                Else
+        '                    tbVendedor.Clear()
+        '                    _CodEmpleado = 0
+        '                    tbVendedor.Focus()
+        '                    Table_Producto = Nothing
+        '                End If
 
 
-                    End If
+        '            End If
 
-                End If
+        '        End If
 
-            End If
+        '    End If
 
-        End If
+        'End If
     End Sub
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         Try
             If (Not _fnAccesible()) Then
 
+                Dim dt As DataTable = L_fnRecuperarFactura(tbCodigo.Text)
 
-
-                Dim url As String = "https://www.pilotocrex.sifac.nwc.com.bo/api/v2/pdf/F53ABD0E99D139B9943A0235776C8310B11F2A5AB88D8297E33D6D74"
+                Dim url As String = dt.Rows(0).Item("fvaFactUrl").ToString
                 System.Diagnostics.Process.Start(url)
 
 

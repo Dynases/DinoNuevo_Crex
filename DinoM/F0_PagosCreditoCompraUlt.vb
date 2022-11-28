@@ -1161,5 +1161,9 @@ Public Class F0_PagosCreditoCompraUlt
 
     End Sub
 
+    Private Sub grPendiente_EditingCell(sender As Object, e As EditingCellEventArgs) Handles grPendiente.EditingCell
+        e.Cancel = True
+    End Sub
+
 #End Region
 End Class

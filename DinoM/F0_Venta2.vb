@@ -4456,7 +4456,7 @@ salirIf:
         Lenvio.email = "lilian@dynasys.com.bo"
         Lenvio.password = "123456Lily*"
 
-        Dim url = "https://www.pilotocrex.sifac.nwc.com.bo/api/v2/login"
+        Dim url = "https://crex.sifac.nwc.com.bo/api/v2/login"
 
         Dim headers = New List(Of Parametro) From {
             New Parametro("Authorization", "bearer "),
@@ -4480,7 +4480,7 @@ salirIf:
 
         Dim api = New DBApi()
 
-        Dim url = "https://www.pilotocrex.sifac.nwc.com.bo/api/v2/conexion-siat"
+        Dim url = "https://crex.sifac.nwc.com.bo/api/v2/conexion-siat"
 
         Dim headers = New List(Of Parametro) From {
             New Parametro("Authorization", "Bearer " + tokenObtenido),
@@ -4503,7 +4503,7 @@ salirIf:
 
         Dim api = New DBApi()
 
-        Dim url = "https://www.pilotocrex.sifac.nwc.com.bo/api/v2/metodos-pago"
+        Dim url = "https://crex.sifac.nwc.com.bo/api/v2/metodos-pago"
 
         Dim headers = New List(Of Parametro) From {
             New Parametro("Authorization", "Bearer " + tokenObtenido),
@@ -4531,7 +4531,7 @@ salirIf:
 
         Dim api = New DBApi()
 
-        Dim url = "https://www.pilotocrex.sifac.nwc.com.bo/api/v2/tipo-documento"
+        Dim url = "https://crex.sifac.nwc.com.bo/api/v2/tipo-documento"
 
         Dim headers = New List(Of Parametro) From {
             New Parametro("Authorization", "Bearer " + tokenObtenido),
@@ -4662,7 +4662,7 @@ salirIf:
         Emenvio.actividadEconomica = 471110 'falta
         Emenvio.detalles = array
         Dim json = JsonConvert.SerializeObject(Emenvio)
-        Dim url = "https://www.pilotocrex.sifac.nwc.com.bo/api/v2/emision"
+        Dim url = "https://crex.sifac.nwc.com.bo/api/v2/emision"
 
         Dim headers = New List(Of Parametro) From {
             New Parametro("Authorization", "Bearer " + tokenObtenido),
@@ -4743,7 +4743,7 @@ salirIf:
         Dim api = New DBApi()
         Dim nit As String = tbNit.Text.Trim
 
-        Dim url = "https://www.pilotocrex.sifac.nwc.com.bo/api/v2/nit/" + nit + ""
+        Dim url = "https://crex.sifac.nwc.com.bo/api/v2/nit/" + nit + ""
 
         Dim headers = New List(Of Parametro) From {
             New Parametro("Authorization", "Bearer " + tokenObtenido),

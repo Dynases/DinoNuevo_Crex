@@ -3462,6 +3462,8 @@ Public Class F0_VentasSupermercado
         Dim d As Integer = CodExcepcion
         'Dim tabla As DataTable = rearmarDetalle()
         Dim dtDetalle As DataTable = quitarUltimaFilaVacia(CType(grdetalle.DataSource, DataTable))
+        dtDetalle = dtDetalle.Select("estado=0").CopyToDataTable
+
         Dim array(dtDetalle.Rows.Count - 1) As EmisorEnvio.Detalle
         Dim val = 0
         PrecioTot = 0

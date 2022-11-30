@@ -4574,6 +4574,8 @@ salirIf:
 
         'Dim tabla As DataTable = rearmarDetalle()
         Dim dtDetalle As DataTable = quitarUltimaFilaVacia(CType(grdetalle.DataSource, DataTable))
+        dtDetalle = dtDetalle.Select("estado=0").CopyToDataTable
+
         Dim array(dtDetalle.Rows.Count - 1) As EmisorEnvio.Detalle
         Dim val = 0
         PrecioTot = 0
@@ -4624,9 +4626,7 @@ salirIf:
             CodMetPago = 1
             NroTarjeta = ""
         End If
-        If swTipoVenta.Value = True Then
-            CodMetPago = 1
-        Else
+        If swTipoVenta.Value = False Then
             CodMetPago = 6
         End If
         Dim dtmax = L_fnObtenerMaxFact(gs_NroCaja, Convert.ToInt32(Now.Date.Year))

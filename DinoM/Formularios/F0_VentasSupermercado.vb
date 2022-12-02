@@ -3462,6 +3462,7 @@ Public Class F0_VentasSupermercado
         Dim d As Integer = CodExcepcion
         'Dim tabla As DataTable = rearmarDetalle()
         Dim dtDetalle As DataTable = quitarUltimaFilaVacia(CType(grdetalle.DataSource, DataTable))
+
         dtDetalle = dtDetalle.Select("estado=0").CopyToDataTable
 
         Dim array(dtDetalle.Rows.Count - 1) As EmisorEnvio.Detalle
@@ -3476,7 +3477,7 @@ Public Class F0_VentasSupermercado
             EmenvioDetalle.unidadMedida = Convert.ToInt32(row("ygcodu"))
             EmenvioDetalle.cantidad = (row("tbcmin"))
             EmenvioDetalle.precioUnitario = (row("tbpbas"))
-            EmenvioDetalle.montoDescuento = (row("tbdesc"))
+            EmenvioDetalle.montoDescuento = Math.Round((row("tbdesc")), 2)
             EmenvioDetalle.subTotal = (row("tbtotdesc"))
             EmenvioDetalle.numeroSerie = "0"
             EmenvioDetalle.numeroImei = "0"

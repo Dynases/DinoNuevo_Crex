@@ -790,7 +790,6 @@ Partial Class F0_VentasSupermercado
         Me.ClientSize = New System.Drawing.Size(1156, 594)
         Me.Controls.Add(Me.PanelImagen)
         Me.Controls.Add(Me.PanelDatos)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "F0_VentasSupermercado"
         Me.Text = "Ventas"

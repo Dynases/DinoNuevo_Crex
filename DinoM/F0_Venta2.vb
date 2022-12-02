@@ -3930,7 +3930,7 @@ salirIf:
                 Dim url As String = dt.Rows(0).Item("fvaFactUrl").ToString
                 System.Diagnostics.Process.Start(url)
 
-
+                _prImiprimirNotaVenta(tbCodigo.Text)
 
 
 

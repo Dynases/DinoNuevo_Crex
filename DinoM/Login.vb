@@ -89,7 +89,7 @@ Public Class Login
             gi_userRol = dtUsuario.Rows(0).Item("ydrol")
             gi_userSuc = dtUsuario.Rows(0).Item("ydsuc")
             'gb_userTodasSuc = IIf(dtUsuario.Rows(0).Item("ydall") = 1, True, False)
-
+            P_Principal.lbUsuario.Text = gs_user
             _prDesvenecerPantalla()
 
             Try

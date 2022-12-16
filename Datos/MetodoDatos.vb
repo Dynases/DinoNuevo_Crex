@@ -65,6 +65,7 @@ Public Class MetodoDatos
             _adaptador.SelectCommand = Comando
 
         Comando.CommandTimeout = 0
+        'Comando.CommandTimeout = 3200
 
         _adaptador.Fill(_tabla)
             'Catch ex As Exception

@@ -1747,7 +1747,7 @@ salirIf:
                     grdetalle.SetValue("cbtotal", (CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbptot") - CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbdescpro")) + CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbice"))
 
                 Else
-                    If (grdetalle.GetValue("cbdesc") > 0 And grdetalle.GetValue("cbdesc") <= grdetalle.GetValue("cbptot")) Then
+                    If (grdetalle.GetValue("cbdesc") >= 0 And grdetalle.GetValue("cbdesc") <= grdetalle.GetValue("cbptot")) Then
                         Dim rowIndex As Integer = grdetalle.Row
                         P_PonerTotal(rowIndex)
                     Else
@@ -1771,7 +1771,7 @@ salirIf:
                     grdetalle.SetValue("cbtotal", CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbptot") - CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbdesc") - CType(grdetalle.DataSource, DataTable).Rows(pos).Item("cbdescpro"))
 
                 Else
-                    If (grdetalle.GetValue("cbice") > 0 And grdetalle.GetValue("cbice") <= grdetalle.GetValue("cbptot")) Then
+                    If (grdetalle.GetValue("cbice") >= 0 And grdetalle.GetValue("cbice") <= grdetalle.GetValue("cbptot")) Then
                         Dim rowIndex As Integer = grdetalle.Row
                         P_PonerTotal(rowIndex)
                     Else

@@ -79,7 +79,7 @@ Public Class P_Principal
         Modelo.MGlobal.gs_usuario = gs_user
 
         lbUsuario.Text = gs_user
-        lbUsuario.Font = New Font("Tahoma", 12, FontStyle.Bold)
+        lbUsuario.Font = New Font("Tahoma", 8, FontStyle.Bold)
 
         If gs_user = "DEFAULT" Then
             SideNav1.Enabled = False

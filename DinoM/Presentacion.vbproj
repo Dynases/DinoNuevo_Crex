@@ -99,39 +99,43 @@
     </Reference>
     <Reference Include="DevComponents.DotNetBar.Keyboard, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.Keyboard.dll</HintPath>
+      <HintPath>C:\librerias\DotNet\DevComponents.DotNetBar.Keyboard.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar.Layout, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.Layout.dll</HintPath>
+      <HintPath>C:\librerias\DotNet\DevComponents.DotNetBar.Layout.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar.Layout.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.Layout.Design.dll</HintPath>
+      <HintPath>C:\librerias\DotNet\DevComponents.DotNetBar.Layout.Design.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar.Schedule, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.Schedule.dll</HintPath>
+      <HintPath>C:\librerias\DotNet\DevComponents.DotNetBar.Schedule.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
+      <HintPath>C:\librerias\DotNet\DevComponents.DotNetBar.SuperGrid.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.DotNetBar2, Version=12.5.0.2, Culture=neutral, PublicKeyToken=c39c3242a43eee2b, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.DotNetBar2.dll</HintPath>
+      <HintPath>C:\librerias\DotNet\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.Instrumentation, Version=12.5.0.2, Culture=neutral, PublicKeyToken=bc4a9d761ea44ef0, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.Instrumentation.dll</HintPath>
+      <HintPath>C:\librerias\DotNet\DevComponents.Instrumentation.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.Instrumentation.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=30cefae8f341f577, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\librerias\DotNet\DevComponents.Instrumentation.Design.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.SuperGrid.Design, Version=12.5.0.2, Culture=neutral, PublicKeyToken=1fea3f5d8d482bff, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.SuperGrid.Design.dll</HintPath>
+      <HintPath>C:\librerias\DotNet\DevComponents.SuperGrid.Design.dll</HintPath>
     </Reference>
     <Reference Include="DevComponents.TreeGX, Version=12.5.0.2, Culture=neutral, PublicKeyToken=cfcbd7476b2389d1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Google Drive\Librerias\DotNet\DevComponents.TreeGX.dll</HintPath>
+      <HintPath>C:\librerias\DotNet\DevComponents.TreeGX.dll</HintPath>
     </Reference>
     <Reference Include="FlashControlV71">
       <HintPath>C:\librerias\FlashControlV71.dll</HintPath>
@@ -184,7 +188,7 @@
       <HintPath>C:\librerias\QrCode\OnBarcode.Barcode.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
-      <HintPath>..\..\..\..\Sistemas Varios\DINO FACTURACION EDWIN\Dino_Nuevo\DinoM\bin\Debug\RestSharp.dll</HintPath>
+      <HintPath>C:\librerias\Json\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -612,6 +616,12 @@
       <DependentUpon>Pr_EstadoCuentasProveedores.vb</DependentUpon>
     </Compile>
     <Compile Include="Pr_EstadoCuentasProveedores.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pr_KardexProductosNuevo.Designer.vb">
+      <DependentUpon>Pr_KardexProductosNuevo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pr_KardexProductosNuevo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pr_ProductosSinVender.Designer.vb">
@@ -1369,6 +1379,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pr_EstadoCuentasProveedores.resx">
       <DependentUpon>Pr_EstadoCuentasProveedores.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pr_KardexProductosNuevo.resx">
+      <DependentUpon>Pr_KardexProductosNuevo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pr_ProductosSinVender.resx">
       <DependentUpon>Pr_ProductosSinVender.vb</DependentUpon>

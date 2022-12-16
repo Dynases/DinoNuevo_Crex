@@ -1283,7 +1283,7 @@ Public Class F1_Productos
             .DropDownList.Columns.Clear()
             .DropDownList.Columns.Add("codigoActividad").Width = 70
             .DropDownList.Columns("codigoActividad").Caption = "COD"
-            .DropDownList.Columns.Add("descripcion").Width = 500
+            .DropDownList.Columns.Add("descripcion").Width = 1000
             .DropDownList.Columns("descripcion").Caption = "DESCRIPCION"
             .ValueMember = "codigoActividad"
             .DisplayMember = "descripcion"
@@ -1315,7 +1315,7 @@ Public Class F1_Productos
             .DropDownList.Columns.Clear()
             .DropDownList.Columns.Add("codigoClasificador").Width = 70
             .DropDownList.Columns("codigoClasificador").Caption = "COD"
-            .DropDownList.Columns.Add("descripcion").Width = 250
+            .DropDownList.Columns.Add("descripcion").Width = 350
             .DropDownList.Columns("descripcion").Caption = "DESCRIPCION"
             .ValueMember = "codigoClasificador"
             .DisplayMember = "descripcion"
@@ -1357,11 +1357,11 @@ Public Class F1_Productos
 
             With CbProdServ
                 .DropDownList.Columns.Clear()
-                .DropDownList.Columns.Add("codigoActividad").Width = 70
+                .DropDownList.Columns.Add("codigoActividad").Width = 80
                 .DropDownList.Columns("codigoActividad").Caption = "COD"
-                .DropDownList.Columns.Add("codigoProducto").Width = 70
+                .DropDownList.Columns.Add("codigoProducto").Width = 80
                 .DropDownList.Columns("codigoProducto").Caption = "COD. PROD"
-                .DropDownList.Columns.Add("descripcionProducto").Width = 500
+                .DropDownList.Columns.Add("descripcionProducto").Width = 1150
                 .DropDownList.Columns("descripcionProducto").Caption = "DESCRIPCION"
                 .ValueMember = "codigoProducto"
                 .DisplayMember = "descripcionProducto"
@@ -1493,7 +1493,7 @@ Public Class F1_Productos
         Return codigo
     End Function
 
-    Private Sub TbPrecioPsifac_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TbPrecioPsifac.KeyPress
+    Private Sub TbPrecioPsifac_KeyPress(sender As Object, e As KeyPressEventArgs)
         g_prValidarTextBox(1, e)
     End Sub
 End Class

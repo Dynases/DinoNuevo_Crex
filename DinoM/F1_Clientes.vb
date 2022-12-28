@@ -87,10 +87,10 @@ Public Class F1_Clientes
         'copio la imagen en la carpeta del sistema
 
         Dim file As New OpenFileDialog()
-        file.Filter = "Ficheros JPG o JPEG o PNG|*.jpg;*.jpeg;*.png" & _
-                      "|Ficheros GIF|*.gif" & _
-                      "|Ficheros BMP|*.bmp" & _
-                      "|Ficheros PNG|*.png" & _
+        file.Filter = "Ficheros JPG o JPEG o PNG|*.jpg;*.jpeg;*.png" &
+                      "|Ficheros GIF|*.gif" &
+                      "|Ficheros BMP|*.bmp" &
+                      "|Ficheros PNG|*.png" &
                       "|Ficheros TIFF|*.tif"
         If file.ShowDialog() = DialogResult.OK Then
             Dim ruta As String = file.FileName
@@ -308,7 +308,7 @@ Public Class F1_Clientes
 
     Public Overrides Sub _PMOHabilitar()
 
-        tbRazonSocial.ReadOnly = False
+        'tbRazonSocial.ReadOnly = False
         btnSearch.Visible = True
         tbNombre.ReadOnly = False
         tbDireccion.ReadOnly = False
@@ -332,7 +332,8 @@ Public Class F1_Clientes
         _prCrearCarpetaTemporal()
         BtAdicionar.Visible = True
         tbCodCliente.ReadOnly = False
-        tbRazonSocial.Focus()
+
+        tbNombre.Focus()
         ''  SuperTabItem1.Visible =True 
     End Sub
 
@@ -470,10 +471,10 @@ Public Class F1_Clientes
 
         Dim nameImage As String = JGrM_Buscador.GetValue("ydimg")
         If (Modificado = False) Then
-            res = L_fnModificarClientes(tbCodigoOriginal.Text, tbCodCliente.Text, tbRazonSocial.Text, tbNombre.Text, NumiVendedor, cbZona.Value, cbTipoDoc.Value, tbNdoc.Text, tbDireccion.Text, tbTelf1.Text, tbTelf2.Text, cbCatPrec.Value, IIf(swEstado.Value = True, 1, 0), _latitud, _longitud, tbObs.Text, tbFnac.Value.ToString("yyyy/MM/dd"), tbNombFac.Text, _Tipo, tbNit.Text, Tbdias.Text, TbLCred.Text, tbFIngr.Value.ToString("yyyy/MM/dd"), tbUltVenta.Value.ToString("yyyy/MM/dd"), nameImage, cbVisita.Value)
+            res = L_fnModificarClientes(tbCodigoOriginal.Text, tbCodCliente.Text, tbNombFac.Text, tbNombre.Text, NumiVendedor, cbZona.Value, cbTipoDoc.Value, tbNdoc.Text, tbDireccion.Text, tbTelf1.Text, tbTelf2.Text, cbCatPrec.Value, IIf(swEstado.Value = True, 1, 0), _latitud, _longitud, tbObs.Text, tbFnac.Value.ToString("yyyy/MM/dd"), tbNombFac.Text, _Tipo, tbNit.Text, Tbdias.Text, TbLCred.Text, tbFIngr.Value.ToString("yyyy/MM/dd"), tbUltVenta.Value.ToString("yyyy/MM/dd"), nameImage, cbVisita.Value)
 
         Else
-            res = L_fnModificarClientes(tbCodigoOriginal.Text, tbCodCliente.Text, tbRazonSocial.Text, tbNombre.Text, NumiVendedor, cbZona.Value, cbTipoDoc.Value, tbNdoc.Text, tbDireccion.Text, tbTelf1.Text, tbTelf2.Text, cbCatPrec.Value, IIf(swEstado.Value = True, 1, 0), _latitud, _longitud, tbObs.Text, tbFnac.Value.ToString("yyyy/MM/dd"), tbNombFac.Text, _Tipo, tbNit.Text, Tbdias.Text, TbLCred.Text, tbFIngr.Value.ToString("yyyy/MM/dd"), tbUltVenta.Value.ToString("yyyy/MM/dd"), nameImg, cbVisita.Value)
+            res = L_fnModificarClientes(tbCodigoOriginal.Text, tbCodCliente.Text, tbNombFac.Text, tbNombre.Text, NumiVendedor, cbZona.Value, cbTipoDoc.Value, tbNdoc.Text, tbDireccion.Text, tbTelf1.Text, tbTelf2.Text, cbCatPrec.Value, IIf(swEstado.Value = True, 1, 0), _latitud, _longitud, tbObs.Text, tbFnac.Value.ToString("yyyy/MM/dd"), tbNombFac.Text, _Tipo, tbNit.Text, Tbdias.Text, TbLCred.Text, tbFIngr.Value.ToString("yyyy/MM/dd"), tbUltVenta.Value.ToString("yyyy/MM/dd"), nameImg, cbVisita.Value)
 
         End If
         If res Then
@@ -554,6 +555,22 @@ Public Class F1_Clientes
     Public Overrides Function _PMOValidarCampos() As Boolean
         Dim _ok As Boolean = True
         MEP.Clear()
+        If tbNombFac.Text = String.Empty Then
+            tbNombFac.BackColor = Color.Red
+            MEP.SetError(tbNombFac, "Ingrese el Nombre para la Factura!".ToUpper)
+            _ok = False
+        Else
+            tbNombFac.BackColor = Color.White
+            MEP.SetError(tbNombFac, "")
+        End If
+        If tbRazonSocial.Text = String.Empty Then
+            tbRazonSocial.BackColor = Color.Red
+            MEP.SetError(tbRazonSocial, "Ingrese la Razón Social!".ToUpper)
+            _ok = False
+        Else
+            tbRazonSocial.BackColor = Color.White
+            MEP.SetError(tbRazonSocial, "")
+        End If
 
         If tbNombre.Text = String.Empty Then
             tbNombre.BackColor = Color.Red
@@ -563,6 +580,15 @@ Public Class F1_Clientes
             tbNombre.BackColor = Color.White
             MEP.SetError(tbNombre, "")
         End If
+        If tbVendedor.Text = String.Empty Then
+            tbVendedor.BackColor = Color.Red
+            MEP.SetError(tbVendedor, "Debe seleccionar un vendedor!".ToUpper)
+            _ok = False
+        Else
+            tbVendedor.BackColor = Color.White
+            MEP.SetError(tbVendedor, "")
+        End If
+
         If (cbCatPrec.SelectedIndex < 0) Then
 
             If (CType(cbCatPrec.DataSource, DataTable).Rows.Count > 0) Then
@@ -581,7 +607,14 @@ Public Class F1_Clientes
                 cbTipoDoc.SelectedIndex = 0
             End If
         End If
-
+        If tbNit.Text = String.Empty Then
+            tbNit.BackColor = Color.Red
+            MEP.SetError(tbNit, "ingrese el Nit para la Factura!".ToUpper)
+            _ok = False
+        Else
+            tbNit.BackColor = Color.White
+            MEP.SetError(tbNit, "")
+        End If
         If (cbVisita.SelectedIndex < 0) Then
 
             If (CType(cbVisita.DataSource, DataTable).Rows.Count > 0) Then
@@ -994,5 +1027,12 @@ Public Class F1_Clientes
             Me.Opacity = 100
             Timer1.Enabled = False
         End If
+    End Sub
+
+    Private Sub tbNombFac_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles tbNombFac.Validating
+        If btnGrabar.Enabled = True Then
+            tbRazonSocial.Text = tbNombFac.Text
+        End If
+
     End Sub
 End Class
